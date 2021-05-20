@@ -7,3 +7,6 @@ git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pac
 
 ## install lsp
 https://github.com/kabouzeid/nvim-lspinstall
+
+## alias vi as nvim
+add to `~/.zshrc` alias vi="nvim"
