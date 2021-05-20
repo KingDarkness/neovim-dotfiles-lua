@@ -35,6 +35,7 @@ return require('packer').startup(function()
   use {"lukas-reineke/indent-blankline.nvim", branch = "lua"}
   -- git
   use "lewis6991/gitsigns.nvim"
+  use "apzelos/blamer.nvim"
   -- other
   use "907th/vim-auto-save"
   use "junegunn/vim-easy-align"

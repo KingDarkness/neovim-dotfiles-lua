@@ -1,3 +1,5 @@
+local g = vim.g      -- a table to access global variables
+
 require("gitsigns").setup {
     signs = {
         add = {hl = "DiffAdd", text = "▌", numhl = "GitSignsAddNr"},
@@ -25,3 +27,8 @@ require("gitsigns").setup {
     sign_priority = 5,
     status_formatter = nil -- Use default
 }
+
+g.blamer_enabled = 1
+g.blamer_show_in_visual_modes = 0
+g.blamer_show_in_insert_modes = 0
+g.blamer_delay = 500

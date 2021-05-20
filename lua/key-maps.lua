@@ -8,6 +8,10 @@ end
 
 local opt = {}
 
+-- open terminal
+map("n", "<C-T>", [[<Cmd> split term://$SHELL | resize 10 <CR>]], opt) --  bottom
+-- back to nomal mode on terminal
+map("t", "<C-n>", [[<C-\><C-n>]], {silent=true})
 -- COPY EVERYTHING in the file--
 map('n', '<C-a>', [[ <Cmd> %y+<CR>]], opt)
 -- save
