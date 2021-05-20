@@ -13,11 +13,20 @@ require "tree"
 require "top-bufferline"
 require "custom-highlights"
 require "blankline"
+require("colorizer").setup()
+require("neoscroll").setup() -- smooth scroll
 -- file manager
 require "telescopes"
 -- syntax highlight
 require "treesitter"
+-- lsp
+require 'compe-completion'
+require 'lspconfigs'
+require("nvim-autopairs").setup()
+require("lspkind").init()
 -- git
 require "gitsigns-settings"
+-- setup for TrueZen.nvim
+require "zenmode"
 
 
