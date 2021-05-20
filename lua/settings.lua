@@ -77,9 +77,11 @@ opt("w", "cul", true)
 
 opt("o", "clipboard", "unnamed,unnamedplus")
 
+opt("o", "wildmode", "list:longest,list:full")
+
 -- hide line numbers in terminal windows
 vim.api.nvim_exec([[
-   au BufEnter term://* setlocal nonumber
+  au BufEnter term://* setlocal nonumber
 ]], false)
 
 local M = {}
