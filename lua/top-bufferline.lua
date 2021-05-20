@@ -82,6 +82,3 @@ require "bufferline".setup {
         }
     }
 }
-
-local opt = {silent = true}
-local map = vim.api.nvim_set_keymap

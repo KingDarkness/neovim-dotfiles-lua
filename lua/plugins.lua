@@ -1,13 +1,14 @@
 local packer = require("packer")
 local use = packer.use
 
+-- "
+
 return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   -- highlighting
   use "nvim-treesitter/nvim-treesitter"
   -- lsp stuff
-  use "nvim-treesitter/nvim-treesitter"
   use "neovim/nvim-lspconfig"
   use 'kabouzeid/nvim-lspinstall'
   use "hrsh7th/nvim-compe"
@@ -45,8 +46,14 @@ return require('packer').startup(function()
   use "kdav5758/TrueZen.nvim"
   use "folke/which-key.nvim"
   use "tweekmonster/startuptime.vim"
+  use "schickling/vim-bufonly"
   -- doc generate
   use { 'kkoomen/vim-doge', run = function() vim.fn['doge#install'](0) end }
+  -- comment
+  use "tpope/vim-commentary"
+  -- workspace
+  -- search & replace
+  use "mhinz/vim-grepper"
 
 end, {
   display = {

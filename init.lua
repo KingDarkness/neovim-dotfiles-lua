@@ -28,5 +28,9 @@ require("lspkind").init()
 require "gitsigns-settings"
 -- setup for TrueZen.nvim
 require "zenmode"
-
-
+-- test runer
+require "test"
+-- comment
+require "comment"
+-- search & replace
+require "grepper"
