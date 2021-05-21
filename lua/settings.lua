@@ -14,7 +14,7 @@ local function opt(scope, key, value)
 end
 
 local base16 = require "base16"
-base16(base16.themes["gruvbox-dark-pale"], true)
+base16(base16.themes["onedark"], true)
 cmd "syntax on"
 
 opt("o", "encoding", "utf-8")
