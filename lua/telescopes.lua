@@ -7,7 +7,8 @@ require("telescope").setup {
             "--with-filename",
             "--line-number",
             "--column",
-            "--smart-case"
+            "--smart-case",
+            "--hidden"
         },
         prompt_position = "bottom",
         prompt_prefix = " ",
@@ -60,6 +61,7 @@ local opt = {noremap = true, silent = true}
 
 -- mappings
 vim.api.nvim_set_keymap("n", "<Leader>p", [[<Cmd>lua require('telescope.builtin').find_files()<CR>]], opt)
+vim.api.nvim_set_keymap("n", "<Leader>r", [[<Cmd>lua require('telescope.builtin').treesitter()<CR>]], opt)
 vim.api.nvim_set_keymap(
     "n",
     "<Leader>fp",
