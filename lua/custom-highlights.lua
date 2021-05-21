@@ -37,9 +37,9 @@ cmd "hi NvimTreeVertSplit guifg=#1e222a"
 cmd "hi NvimTreeRootFolder guifg=#f9929b"
 
 -- telescope
-cmd "hi TelescopeBorder   guifg=#2a2e36"
-cmd "hi TelescopePromptBorder   guifg=#2a2e36"
-cmd "hi TelescopeResultsBorder  guifg=#2a2e36"
+cmd "hi TelescopeBorder   guifg=#525865"
+cmd "hi TelescopePromptBorder   guifg=#525865"
+cmd "hi TelescopeResultsBorder  guifg=#525865"
 cmd "hi TelescopePreviewBorder  guifg=#525865"
 
 -- LspDiagnostics ---
