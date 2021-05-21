@@ -36,3 +36,5 @@ require "test"
 require "comment"
 -- search & replace
 require "grepper"
+-- format code
+require "autoformats"

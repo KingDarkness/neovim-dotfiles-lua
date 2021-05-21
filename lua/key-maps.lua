@@ -19,7 +19,7 @@ map('n', '<C-s>', [[ <Cmd> w <CR>]], opt)
 -- toggle numbers ---
 map('n', '<leader>n', [[ <Cmd> set nu!<CR>]], opt)
 -- Close buffer
-map('n', '<leader>c', [[ <Cmd> bd <CR>]], opt)
+map('n', '<leader>c', [[ <Cmd> bdelete <CR>]], opt)
 map('n', '<leader>ca', [[ <Cmd> BOnly <CR>]], opt)
 -- Clean search (highlight)
 map('n', '<leader><space>', [[ <Cmd> noh <CR>]], opt)

@@ -1,1 +1,3 @@
 sessions/*
+plugins/formatters/*/vendor
+plugins/formatters/*/node_modules
