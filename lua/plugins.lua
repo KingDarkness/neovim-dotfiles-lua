@@ -10,7 +10,6 @@ return require("packer").startup(
         use "wbthomason/packer.nvim"
         -- highlighting
         use "nvim-treesitter/nvim-treesitter"
-        use "posva/vim-vue"
         -- lsp stuff
         use "neovim/nvim-lspconfig"
         use "kabouzeid/nvim-lspinstall"

@@ -21,12 +21,12 @@ opt("o", "encoding", "utf-8")
 opt("o", "fileencoding", "utf-8")
 opt("o", "fileencodings", "utf-8")
 opt("o", "backspace", "indent,eol,start")
-opt("o", "tabstop", 2)
-opt("o", "softtabstop", 0)
-opt("o", "shiftwidth", 2)
-opt("o", "expandtab", true)
-opt("o", "smartindent", true)
-opt("o", "autoindent", true)
+opt("b", "tabstop", 4)
+opt("b", "softtabstop", 0)
+opt("b", "shiftwidth", 4)
+opt("b", "expandtab", true)
+opt("b", "smartindent", true)
+opt("b", "autoindent", true)
 -- Enable hidden buffers
 opt("o", "hidden", true)
 -- Makes popup menu smaller
@@ -80,8 +80,22 @@ opt("o", "clipboard", "unnamed,unnamedplus")
 opt("o", "wildmode", "list:longest,list:full")
 
 -- hide line numbers in terminal windows
-vim.api.nvim_exec(
+vim.api.nvim_exec([[
+  au BufEnter term://* setlocal nonumber
+]], false)
+-- fix autoindent not working
+vim.api.nvim_command([[
+  augroup AutoIndent
+    autocmd BufEnter * :set smartindent autoindent
+  augroup END
+]])
+
+vim.cmd(
     [[
+  filetype plugin indent on
+  set smartindent
+  set autoindent
+
   set nobackup
   set nowritebackup
   set noswapfile
@@ -89,9 +103,8 @@ vim.api.nvim_exec(
   highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
   highlight link multiple_cursors_visual Visual
 
-  au BufEnter term://* setlocal nonumber
-]],
-    false
+  set shortmess+=c
+]]
 )
 
 local M = {}

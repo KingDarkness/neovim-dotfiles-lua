@@ -38,5 +38,3 @@ require "comment"
 require "grepper"
 -- format code
 require "autoformats"
--- syntaxs
-require "vue-syntax"
