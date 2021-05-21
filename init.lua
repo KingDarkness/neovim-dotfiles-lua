@@ -1,4 +1,4 @@
-local g = vim.g      -- a table to access global variables
+local g = vim.g -- a table to access global variables
 require "plugins"
 g.mapleader = ","
 -- global settings
@@ -22,8 +22,8 @@ require "sessions"
 -- syntax highlight
 require "treesitter"
 -- lsp
-require 'compe-completion'
-require 'lspconfigs'
+require "compe-completion"
+require "lspconfigs"
 require("nvim-autopairs").setup()
 require("lspkind").init()
 -- git
@@ -38,3 +38,5 @@ require "comment"
 require "grepper"
 -- format code
 require "autoformats"
+-- syntaxs
+require "vue-syntax"
