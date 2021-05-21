@@ -1,8 +1,8 @@
-local g = vim.g -- a table to access global variables
+local g = svim.g -- a table to access global variables
 
 g.neoformat_only_msg_on_error = 1
 -- open to debug
--- g.neoformat_verbose = 1
+g.neoformat_verbose = 1
 
 g.shfmt_opt = "-ci"
 
@@ -29,6 +29,14 @@ g.neoformat_typescript_prettier = {
 }
 
 g.neoformat_enabled_typescript = {"prettier"}
+
+g.neoformat_vue_prettier = {
+    exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
+    args = {"--write", "--config .prettierrc.json"},
+    replace = 1
+}
+
+g.neoformat_enabled_vue = {"prettier"}
 
 g.neoformat_html_prettier = {
     exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
@@ -95,9 +103,23 @@ g.neoformat_lua_luafmt = {
 g.neoformat_enabled_lua = {"luafmt"}
 
 -- auto format on save
-vim.api.nvim_exec([[
-  augroup php
+vim.api.nvim_exec(
+    [[
+  augroup neoformat
     autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
+    autocmd BufWritePre *.php undojoin | Neoformat
+    autocmd BufWritePre *.js undojoin | Neoformat
+    autocmd BufWritePre *.ts undojoin | Neoformat
+    autocmd BufWritePre *.vue undojoin | Neoformat
+    autocmd BufWritePre *.json undojoin | Neoformat
+    autocmd BufWritePre *.css undojoin | Neoformat
+    autocmd BufWritePre *.scss undojoin | Neoformat
+    autocmd BufWritePre *.less undojoin | Neoformat
+    autocmd BufWritePre *.yaml undojoin | Neoformat
+    autocmd BufWritePre *.yml undojoin | Neoformat
+    autocmd BufWritePre *.lua undojoin | Neoformat
+    autocmd BufWritePre *.sh undojoin | Neoformat
   augroup END
-]], false)
+]],
+    false
+)
