@@ -53,7 +53,9 @@ return require('packer').startup(function()
   use { 'kkoomen/vim-doge', run = function() vim.fn['doge#install'](0) end }
   -- comment
   use "tpope/vim-commentary"
-  -- workspace
+  -- workspace & dashboard
+  use "rmagatti/auto-session"
+  use "rmagatti/session-lens"
   -- search & replace
   use "mhinz/vim-grepper"
 

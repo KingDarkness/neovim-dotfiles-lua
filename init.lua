@@ -17,6 +17,8 @@ require("colorizer").setup()
 require("neoscroll").setup() -- smooth scroll
 -- file manager
 require "telescopes"
+-- workspace
+require "sessions"
 -- syntax highlight
 require "treesitter"
 -- lsp
