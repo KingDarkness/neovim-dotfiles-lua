@@ -1,12 +1,26 @@
-## install
+## Install
+
 Install neovim-nightly , also use a nerdfont on your terminal.
-Install packer.nvim
+[neovim-nightly](https://github.com/neovim/neovim/releases)
+
+clone this project to ~/.config/nvim
 ```bash
-git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+$ git clone https://github.com/KingDarkness/vimconfig-lua.git ~/.config/nvim
+$ cd ~/.config/nvim
+$ chmod a+x install.sh
+$ ./install.sh
 ```
 
-## install lsp
-https://github.com/kabouzeid/nvim-lspinstall
+## Install lsp
+[https://github.com/kabouzeid/nvim-lspinstall](https://github.com/kabouzeid/nvim-lspinstall)
 
-## alias vi as nvim
-add to `~/.zshrc` alias vi="nvim"
+Exp:
+```vim
+LspInstall php
+````
+
+## alias vi as nvim (optional)
+
+add to bottom `~/.zshrc` or `~/.bashrc`
+
+alias vi="nvim"
