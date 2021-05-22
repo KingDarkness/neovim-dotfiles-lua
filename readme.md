@@ -17,7 +17,7 @@ Install neovim-nightly , also use a nerdfont on your terminal.
 clone this project to ~/.config/nvim
 
 ```bash
-$ git clone https://github.com/KingDarkness/vimconfig-lua.git ~/.config/nvim
+$ git clone https://github.com/KingDarkness/neovim-dotfiles-lua.git ~/.config/nvim
 $ cd ~/.config/nvim
 $ chmod a+x install.sh
 $ ./install.sh
