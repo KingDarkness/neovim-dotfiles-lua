@@ -1,4 +1,4 @@
-local true_zen = require("true-zen")
+local true_zen = require('true-zen')
 
 true_zen.setup(
     {
@@ -27,10 +27,10 @@ true_zen.setup(
         left = {
             hidden_number = false,
             hidden_relativenumber = false,
-            hidden_signcolumn = "no",
+            hidden_signcolumn = 'no',
             shown_number = true,
             shown_relativenumber = false,
-            shown_signcolumn = "yes"
+            shown_signcolumn = 'yes'
         },
         ataraxis = {
             just_do_it_for_me = false,
@@ -38,7 +38,7 @@ true_zen.setup(
             right_padding = 37,
             top_padding = 2,
             bottom_padding = 2,
-            custome_bg = "#1e222a"
+            custome_bg = '#1e222a'
         },
         integrations = {
             integration_galaxyline = true
