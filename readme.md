@@ -1,9 +1,13 @@
 ## Install
 
 Install neovim-nightly , also use a nerdfont on your terminal.
+
 [neovim-nightly](https://github.com/neovim/neovim/releases)
 
+[nerdfont](https://www.nerdfonts.com/)
+
 clone this project to ~/.config/nvim
+
 ```bash
 $ git clone https://github.com/KingDarkness/vimconfig-lua.git ~/.config/nvim
 $ cd ~/.config/nvim
@@ -12,6 +16,7 @@ $ ./install.sh
 ```
 
 ## Install lsp
+
 [https://github.com/kabouzeid/nvim-lspinstall](https://github.com/kabouzeid/nvim-lspinstall)
 
 Exp:
