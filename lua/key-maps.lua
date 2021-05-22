@@ -38,6 +38,15 @@ map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
 map("n", "<leader>h", [[<Cmd>split<CR>]], opt)
 map("n", "<leader>v", [[<Cmd>vsplit<CR>]], opt)
 
+-- replace
+map('v', '<leader>r', [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], opt)
+map('v', '<leader>R', [[:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>]], opt)
+map('n', '<leader>R', [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], opt)
+
+-- search
+map('v', '<leader>f' , [[:<C-U> let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR> gvy/<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>gVzv:call setreg('"', old_reg, old_regtype)<CR>]], {silent=true})
+map('n', '<leader>f', [[:/\<<C-r><C-w>\><CR>]], opt)
+
 -- EasyAlign
 vim.api.nvim_exec([[
   xmap <leader>a <Plug>(EasyAlign)
@@ -55,18 +64,6 @@ vim.api.nvim_exec(
   vnoremap K :m '<-2<CR>gv=gv
   vnoremap <C-S-UP> :m '<-2<CR>gv=gv
   vnoremap <C-S-DOWN> :m '>+1<CR>gv=gv
-]],
-    false
-)
-
--- search
-
--- replace
-vim.api.nvim_exec(
-    [[
-  vnoremap <leader>R ''y:%s/<C-R>=escape(@', '/\')<CR>//g<Left><Left>
-  vnoremap <leader>r ''y:%s/<C-R>=expand('<cword>')<CR>//g<Left><Left>
-  nnoremap <leader>R ''y:%s/<C-R>=expand('<cword>')<CR>//g<Left><Left>
 ]],
     false
 )

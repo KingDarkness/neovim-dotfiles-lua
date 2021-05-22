@@ -18,6 +18,7 @@ vim.api.nvim_exec(
 
 
   nnoremap <Leader>RA :let @s='\<'.expand('<cword>').'\>'<CR> :Grepper -cword -noprompt<CR> :cfdo %s/<C-r>s//g \| update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+  nnoremap <Leader>RD :let @s='\<'.expand('<cword>').'\>'<CR> :Grepper -cword -noprompt -cd .<C-R>=GetAbsoluteForderPath()<CR><CR> :cfdo %s/<C-r>s//g \| update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 ]],
     false
 )

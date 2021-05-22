@@ -16,6 +16,7 @@ end
 local base16 = require "base16"
 base16(base16.themes["onedark"], true)
 cmd "syntax on"
+cmd "set nowrap"
 
 opt("o", "encoding", "utf-8")
 opt("o", "fileencoding", "utf-8")
@@ -85,6 +86,9 @@ vim.api.nvim_exec([[
 ]], false)
 -- fix autoindent not working
 vim.api.nvim_command([[
+  au TermEnter * setlocal scrolloff=0
+  au TermLeave * setlocal scrolloff=3
+
   augroup AutoIndent
     autocmd BufEnter * :set smartindent autoindent
   augroup END
