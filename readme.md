@@ -1,3 +1,8 @@
+## Screenshots
+<img src ="screenshots/lspkind-nvim.png"><hr>
+<img src ="screenshots/nvim-tree-lua.png"><hr>
+<img src ="screenshots/telescope-nvim.png"><hr>
+<img src ="screenshots/load-time.png"><hr>
 ## Install
 
 Install neovim-nightly , also use a nerdfont on your terminal.
