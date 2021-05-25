@@ -14,3 +14,5 @@ require('session-lens').setup({
 })
 
 vim.api.nvim_set_keymap("n", "<Leader>fs", [[<Cmd>:SearchSession<CR>]], {})
+vim.api.nvim_set_keymap("n", "<Leader>ss", [[<Cmd>:SaveSession<CR>]], {})
+vim.api.nvim_set_keymap("n", "<Leader>ds", [[<Cmd>:DeleteSession<CR>]], {})

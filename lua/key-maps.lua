@@ -64,6 +64,11 @@ vim.api.nvim_exec(
   vnoremap K :m '<-2<CR>gv=gv
   vnoremap <C-S-UP> :m '<-2<CR>gv=gv
   vnoremap <C-S-DOWN> :m '>+1<CR>gv=gv
+
+  nnoremap <C-S-DOWN> :m .+1<CR>==
+  nnoremap <C-S-UP> :m .-2<CR>==
+  inoremap <C-S-DOWN> <Esc>:m .+1<CR>==gi
+  inoremap <C-S-UP> <Esc>:m .-2<CR>==gi
 ]],
     false
 )

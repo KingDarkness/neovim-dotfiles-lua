@@ -76,8 +76,6 @@ opt("o", "splitright", true)
 
 opt("w", "cul", true)
 
-opt("o", "clipboard", "unnamed,unnamedplus")
-
 opt("o", "wildmode", "list:longest,list:full")
 
 -- hide line numbers in terminal windows
@@ -103,6 +101,8 @@ vim.cmd(
   set nobackup
   set nowritebackup
   set noswapfile
+
+  set clipboard=unnamed,unnamedplus
 
   highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
   highlight link multiple_cursors_visual Visual
