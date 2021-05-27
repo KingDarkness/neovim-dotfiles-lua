@@ -13,7 +13,7 @@ map("n", "<C-T>", [[<Cmd> split term://$SHELL | resize 10 <CR>]], opt) --  botto
 -- back to nomal mode on terminal
 map("t", "<C-n>", [[<C-\><C-n>]], {silent = true})
 -- COPY EVERYTHING in the file--
-map("n", "<C-a>", [[ <Cmd> %y+<CR>]], opt)
+map("n", "<leader>ya", [[ <Cmd> %y+<CR>]], opt)
 -- save
 map("n", "<C-s>", [[ <Cmd> w <CR>]], opt)
 -- toggle numbers ---
