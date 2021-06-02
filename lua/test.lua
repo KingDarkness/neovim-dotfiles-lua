@@ -1,4 +1,5 @@
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+    [[
   if exists('$SHELL')
     set shell=$SHELL
   else
@@ -12,7 +13,7 @@ vim.api.nvim_exec([[
   let test#neovim#term_position = "vert botright 100"
 
   function! DockerTransform(cmd) abort
-    let docker_container_name = '3t-product'
+    let docker_container_name = '3t-shipment'
     let phpunit_xml = '/var/www/html/phpunit.xml'
     return 'docker exec ' . docker_container_name . ' phpdbg -qrr ' . a:cmd . ' -c ' . phpunit_xml . ' --debug --colors=always'
   endfunction
@@ -24,4 +25,6 @@ vim.api.nvim_exec([[
   nmap <silent> <leader>tf :TestFile<cr>
   nmap <silent> <leader>ta :TestSuite<cr>
   nmap <silent> <leader>tp :TestLast<cr>
-]], false)
+]],
+    false
+)
