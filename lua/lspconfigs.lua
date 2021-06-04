@@ -86,7 +86,7 @@ require("trouble").setup {
     mode = "lsp_document_diagnostics",
     indent_lines = true,
     auto_open = false,
-    auto_close = false,
+    auto_close = true,
     auto_preview = true,
     auto_fold = false,
     signs = {
