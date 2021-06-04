@@ -10,9 +10,12 @@ return require("packer").startup(
         use "wbthomason/packer.nvim"
         -- highlighting
         use "nvim-treesitter/nvim-treesitter"
+        use {"folke/trouble.nvim"}
+        use "p00f/nvim-ts-rainbow"
         -- lsp stuff
         use "neovim/nvim-lspconfig"
         use "kabouzeid/nvim-lspinstall"
+        use "glepnir/lspsaga.nvim"
         use "hrsh7th/nvim-compe"
         use "onsails/lspkind-nvim"
         use "sbdchd/neoformat"
@@ -53,6 +56,7 @@ return require("packer").startup(
         use "schickling/vim-bufonly"
         use "terryma/vim-multiple-cursors"
         use "tpope/vim-surround"
+        use "mechatroner/rainbow_csv"
         -- doc generate
         use {
             "kkoomen/vim-doge",

@@ -9,7 +9,7 @@ end
 local opt = {}
 
 -- open terminal
-map("n", "<C-T>", [[<Cmd> split term://$SHELL | resize 10 <CR>]], opt) --  bottom
+-- map("n", "<C-T>", [[<Cmd> split term://$SHELL | resize 10 <CR>]], opt) --  bottom
 -- back to nomal mode on terminal
 map("t", "<C-n>", [[<C-\><C-n>]], {silent = true})
 -- COPY EVERYTHING in the file--
@@ -39,13 +39,18 @@ map("n", "<leader>h", [[<Cmd>split<CR>]], opt)
 map("n", "<leader>v", [[<Cmd>vsplit<CR>]], opt)
 
 -- replace
-map('v', '<leader>r', [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], opt)
-map('v', '<leader>R', [[:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>]], opt)
-map('n', '<leader>R', [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], opt)
+map("v", "<leader>r", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], opt)
+map("v", "<leader>R", [[:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>]], opt)
+map("n", "<leader>R", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], opt)
 
 -- search
-map('v', '<leader>f' , [[:<C-U> let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR> gvy/<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>gVzv:call setreg('"', old_reg, old_regtype)<CR>]], {silent=true})
-map('n', '<leader>f', [[:/\<<C-r><C-w>\><CR>]], opt)
+map(
+    "v",
+    "<leader>f",
+    [[:<C-U> let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR> gvy/<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>gVzv:call setreg('"', old_reg, old_regtype)<CR>]],
+    {silent = true}
+)
+map("n", "<leader>f", [[:/\<<C-r><C-w>\><CR>]], opt)
 
 -- EasyAlign
 vim.api.nvim_exec([[

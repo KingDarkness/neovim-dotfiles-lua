@@ -23,5 +23,10 @@ ts_config.setup {
     },
     indent = {
         enable = true
+    },
+    rainbow = {
+        enable = true,
+        max_file_lines = 1000,
+        extended_mode = true
     }
 }
