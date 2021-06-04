@@ -28,5 +28,16 @@ ts_config.setup {
         enable = true,
         max_file_lines = 1000,
         extended_mode = true
+    },
+    context_commentstring = {
+        enable = true,
+        config = {
+            vue = {
+                __default = "// %s",
+                comment = "// %s",
+                css_style = "/* %s */",
+                html = "<!-- %s -->"
+            }
+        }
     }
 }

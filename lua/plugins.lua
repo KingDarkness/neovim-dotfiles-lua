@@ -65,7 +65,8 @@ return require("packer").startup(
             end
         }
         -- comment
-        use "terrortylor/nvim-comment"
+        use "JoosepAlviste/nvim-ts-context-commentstring"
+        use "b3nj5m1n/kommentary"
         -- workspace & dashboard
         use "rmagatti/auto-session"
         use "rmagatti/session-lens"

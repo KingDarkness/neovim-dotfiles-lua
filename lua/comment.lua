@@ -1,10 +1,8 @@
-local g = vim.g -- a table to access global variables
-require('nvim_comment').setup(
-    {
-        marker_padding = true,
-        comment_empty = false,
-        create_mappings = true,
-        line_mapping = '<leader>/',
-        operator_mapping = '<leader>/'
-    }
-)
+require("kommentary.config").use_extended_mappings()
+
+vim.g.kommentary_create_default_mappings = false
+
+vim.api.nvim_set_keymap("n", "<leader>/", "<Plug>kommentary_line_increase", {})
+vim.api.nvim_set_keymap("n", "<leader>?", "<Plug>kommentary_line_decrease", {})
+vim.api.nvim_set_keymap("v", "<leader>/", "<Plug>kommentary_visual_increase", {})
+vim.api.nvim_set_keymap("v", "<leader>?", "<Plug>kommentary_visual_decrease", {})
