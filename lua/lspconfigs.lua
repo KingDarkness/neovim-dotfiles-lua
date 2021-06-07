@@ -48,6 +48,9 @@ function on_attach(client)
     elseif client.resolved_capabilities.document_range_formatting then
         buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
+
+    require "completion".on_attach()
+    require "lsp_signature".on_attach({hint_prefix = " ", use_lspsaga = false})
 end
 
 local lspconf = require("lspconfig")

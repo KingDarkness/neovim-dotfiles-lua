@@ -20,6 +20,8 @@ return require("packer").startup(
         use "onsails/lspkind-nvim"
         use "sbdchd/neoformat"
         use "nvim-lua/plenary.nvim"
+        use "nvim-lua/completion-nvim"
+        use "ray-x/lsp_signature.nvim"
         -- snippet support
         use "hrsh7th/vim-vsnip"
         use "rafamadriz/friendly-snippets"
