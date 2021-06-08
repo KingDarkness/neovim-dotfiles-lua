@@ -24,6 +24,7 @@ return require("packer").startup(
         use "ray-x/lsp_signature.nvim"
         -- snippet support
         use "hrsh7th/vim-vsnip"
+        use "hrsh7th/vim-vsnip-integ"
         use "rafamadriz/friendly-snippets"
 
         -- file managing , picker, theme, etc
