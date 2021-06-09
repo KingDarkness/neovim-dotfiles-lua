@@ -54,6 +54,7 @@ opt("o", "numberwidth", 2)
 opt("o", "termguicolors", true)
 opt("o", "background", "dark")
 opt("o", "mousemodel", "popup")
+opt("o", "wildmenu", true)
 -- Wait to redraw
 opt("o", "lazyredraw", true)
 opt("o", "ttyfast", true)
@@ -83,14 +84,16 @@ vim.api.nvim_exec([[
   au BufEnter term://* setlocal nonumber
 ]], false)
 -- fix autoindent not working
-vim.api.nvim_command([[
+vim.api.nvim_command(
+    [[
   au TermEnter * setlocal scrolloff=0
   au TermLeave * setlocal scrolloff=3
 
   augroup AutoIndent
     autocmd BufEnter * :set smartindent autoindent
   augroup END
-]])
+]]
+)
 
 vim.cmd(
     [[
