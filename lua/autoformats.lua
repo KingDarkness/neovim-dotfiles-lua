@@ -8,7 +8,12 @@ g.shfmt_opt = "-ci"
 
 g.neoformat_php_phpcsfix = {
     exe = vim.fn.stdpath("config") .. "/plugins/formatter/php-cs-fixer/vendor/bin/php-cs-fixer",
-    args = {"fix", "-q", "--using-cache=no"},
+    args = {
+        "fix",
+        "-q",
+        "--using-cache=no",
+        "--config=" .. vim.fn.stdpath("config") .. "/plugins/formatter/php-cs-fixer/.php-cs-fixer.dist.php"
+    },
     replace = 1
 }
 
