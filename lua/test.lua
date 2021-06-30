@@ -13,7 +13,7 @@ vim.api.nvim_exec(
   let test#neovim#term_position = "vert botright 100"
 
   function! DockerTransform(cmd) abort
-    let docker_container_name = '3t-shipment'
+    let docker_container_name = '3t-coupon'
     let phpunit_xml = '/var/www/html/phpunit.xml'
     return 'docker exec ' . docker_container_name . ' phpdbg -qrr ' . a:cmd . ' -c ' . phpunit_xml . ' --debug --colors=always'
   endfunction

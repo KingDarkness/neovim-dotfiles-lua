@@ -60,6 +60,7 @@ require("telescope").setup {
 
 require("telescope").load_extension("media_files")
 require("telescope").load_extension("fzf")
+require("telescope").load_extension("flutter")
 
 local opt = {noremap = true, silent = true}
 
@@ -81,3 +82,4 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap("n", "<Leader>fb", [[<Cmd>lua require('telescope.builtin').buffers()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fh", [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fo", [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], opt)
+vim.api.nvim_set_keymap("n", "<Leader>ff", [[<Cmd>lua require('telescope').extensions.flutter.commands()<CR>]], opt)

@@ -105,3 +105,19 @@ require("trouble").setup {
 vim.api.nvim_set_keymap("n", "<F8>", "<cmd>Trouble<cr>", {silent = true, noremap = true})
 vim.api.nvim_set_keymap("n", "<F9>", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
 vim.api.nvim_set_keymap("n", "<F7>", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
+
+require("flutter-tools").setup {
+    widget_guides = {
+        enabled = false
+    },
+    experimental = {
+        -- map of feature flags
+        lsp_derive_paths = true -- EXPERIMENTAL: Attempt to find the user's flutter SDK
+    },
+    outline = {
+        open_cmd = "30vnew" -- command to use to open the outline buffer
+    },
+    lsp = {
+        on_attach = on_attach
+    }
+}
