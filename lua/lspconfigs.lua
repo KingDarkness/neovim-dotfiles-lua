@@ -106,7 +106,7 @@ vim.api.nvim_set_keymap("n", "<F8>", "<cmd>Trouble<cr>", {silent = true, noremap
 vim.api.nvim_set_keymap("n", "<F9>", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
 vim.api.nvim_set_keymap("n", "<F7>", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
 
-require("flutter-tools").setup {
+--[[ require("flutter-tools").setup {
     widget_guides = {
         enabled = false
     },
@@ -120,4 +120,4 @@ require("flutter-tools").setup {
     lsp = {
         on_attach = on_attach
     }
-}
+} ]]

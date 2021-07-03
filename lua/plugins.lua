@@ -22,7 +22,7 @@ return require("packer").startup(
         use "nvim-lua/plenary.nvim"
         use "nvim-lua/completion-nvim"
         use "ray-x/lsp_signature.nvim"
-        use "akinsho/flutter-tools.nvim"
+        -- use "akinsho/flutter-tools.nvim"
         -- snippet support
         use "hrsh7th/vim-vsnip"
         use "hrsh7th/vim-vsnip-integ"
