@@ -6,7 +6,6 @@ require("telescope").setup {
             "--hidden",
             "--files"
         },
-        prompt_position = "bottom",
         prompt_prefix = " ",
         selection_caret = " ",
         entry_prefix = "  ",
@@ -14,10 +13,14 @@ require("telescope").setup {
         selection_strategy = "reset",
         sorting_strategy = "descending",
         layout_strategy = "horizontal",
-        layout_defaults = {
+        layout_config = {
+            prompt_position = "bottom",
+            preview_width = 0.6,
+            width = 0.75,
+            height = 0.75,
+            preview_cutoff = 120,
             horizontal = {
-                mirror = false,
-                preview_width = 0.6
+                mirror = false
             },
             vertical = {
                 mirror = false
@@ -28,10 +31,6 @@ require("telescope").setup {
         generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
         shorten_path = true,
         winblend = 0,
-        width = 0.75,
-        preview_cutoff = 120,
-        results_height = 1,
-        results_width = 0.8,
         border = {},
         borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
         color_devicons = true,
@@ -60,7 +59,7 @@ require("telescope").setup {
 
 require("telescope").load_extension("media_files")
 require("telescope").load_extension("fzf")
--- require("telescope").load_extension("flutter")
+require("telescope").load_extension("flutter")
 
 local opt = {noremap = true, silent = true}
 
