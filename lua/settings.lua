@@ -45,9 +45,6 @@ opt("o", "timeoutlen", 500)
 opt("o", "hlsearch", true)
 opt("o", "incsearch", true)
 opt("o", "autowriteall", true)
--- format
-opt("o", "fileformats", "unix,dos,mac")
-
 opt("o", "ruler", true)
 opt("w", "number", true)
 opt("o", "numberwidth", 2)
@@ -106,6 +103,7 @@ vim.cmd(
   set noswapfile
 
   set clipboard=unnamed,unnamedplus
+  set fileformats=unix,dos,mac
 
   highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
   highlight link multiple_cursors_visual Visual
