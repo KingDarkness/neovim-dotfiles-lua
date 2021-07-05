@@ -49,12 +49,21 @@ function on_attach(client)
         buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
-    require "completion".on_attach()
     require "lsp_signature".on_attach({hint_prefix = " ", use_lspsaga = false})
 end
 
 local lspconf = require("lspconfig")
 require "lspinstall".setup()
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdits"
+    }
+}
 
 -- these langs require same lspconfig so put em all in a table and loop through!
 local servers = require "lspinstall".installed_servers()
@@ -62,7 +71,8 @@ local servers = require "lspinstall".installed_servers()
 for _, lang in ipairs(servers) do
     lspconf[lang].setup {
         on_attach = on_attach,
-        root_dir = vim.loop.cwd
+        root_dir = vim.loop.cwd,
+        capabilities = capabilities
     }
 end
 

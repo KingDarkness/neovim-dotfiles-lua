@@ -20,7 +20,6 @@ return require("packer").startup(
         use "onsails/lspkind-nvim"
         use "sbdchd/neoformat"
         use "nvim-lua/plenary.nvim"
-        use "nvim-lua/completion-nvim"
         use "ray-x/lsp_signature.nvim"
         use "akinsho/flutter-tools.nvim"
         -- snippet support
@@ -42,7 +41,7 @@ return require("packer").startup(
         }
         use "nvim-telescope/telescope-media-files.nvim"
         use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
-        use {"lukas-reineke/indent-blankline.nvim", branch = "lua"}
+        use {"lukas-reineke/indent-blankline.nvim", branch = "master"}
         -- git
         use "lewis6991/gitsigns.nvim"
         use "apzelos/blamer.nvim"
