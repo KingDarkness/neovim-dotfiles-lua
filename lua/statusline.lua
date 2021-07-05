@@ -1,7 +1,8 @@
 local gl = require("galaxyline")
 local gls = gl.section
+local condition = require("galaxyline.condition")
 
-gl.short_line_list = {" "} -- keeping this table { } as empty will show inactive statuslines
+gl.short_line_list = {"packer", "NvimTree", "Outline", "LspTrouble"} -- keeping this table { } as empty will show inactive statuslines
 
 local colors = {
     bg = "#1e222a",
@@ -27,7 +28,7 @@ gls.left[1] = {
 gls.left[2] = {
     statusIcon = {
         provider = function()
-            return "   "
+            return "   "
         end,
         highlight = {colors.bg, colors.nord},
         separator = " ",
@@ -38,7 +39,7 @@ gls.left[2] = {
 gls.left[3] = {
     FileIcon = {
         provider = "FileIcon",
-        condition = buffer_not_empty,
+        condition = condition.buffer_not_empty,
         highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.lightbg}
     }
 }
@@ -46,7 +47,7 @@ gls.left[3] = {
 gls.left[4] = {
     FileName = {
         provider = {"FileName", "FileSize"},
-        condition = buffer_not_empty,
+        condition = condition.buffer_not_empty,
         highlight = {colors.fg, colors.lightbg}
     }
 }
@@ -194,5 +195,37 @@ gls.right[6] = {
             return ""
         end,
         highlight = {colors.fg, colors.bg}
+    }
+}
+
+-- -------------------------Short status line---------------------------------------
+gls.short_line_left[1] = {
+    BufferType = {
+        provider = "FileTypeName",
+        separator = " ",
+        separator_highlight = {"NONE", colors.line_bg},
+        highlight = {colors.blue, colors.line_bg, "bold"}
+    }
+}
+
+gls.short_line_left[2] = {
+    SFileIcon = {
+        provider = "FileIcon",
+        highlight = {colors.fg, colors.bg}
+    }
+}
+
+gls.short_line_left[3] = {
+    SFileName = {
+        provider = "SFileName",
+        condition = condition.buffer_not_empty,
+        highlight = {colors.white, colors.line_bg, "bold"}
+    }
+}
+
+gls.short_line_right[1] = {
+    BufferIcon = {
+        provider = "BufferIcon",
+        highlight = {colors.white, colors.line_bg}
     }
 }

@@ -12,11 +12,14 @@ g.nvim_tree_follow = 1
 g.nvim_tree_indent_markers = 1
 g.nvim_tree_hide_dotfiles = 0
 g.nvim_tree_git_hl = 1
+g.nvim_tree_highlight_opened_files = 1
 g.nvim_tree_root_folder_modifier = ":t"
 g.nvim_tree_tab_open = 0
 g.nvim_tree_allow_resize = 1
-g.nvim_tree_lsp_diagnostics = 1
-g.nvim_tree_update_cwd = 1
+g.nvim_tree_lsp_diagnostics = 0
+g.nvim_tree_update_cwd = 0
+g.nvim_tree_auto_resize = 1
+g.nvim_tree_disable_netrw = 1
 
 g.nvim_tree_show_icons = {
     git = 1,
@@ -32,12 +35,17 @@ g.nvim_tree_icons = {
         staged = "✓",
         unmerged = "",
         renamed = "➜",
-        untracked = "★"
+        untracked = "★",
+        ignored = "◌",
+        deleted = ""
     },
     folder = {
         default = "",
-        open = "",
-        symlink = ""
+        open = "",
+        empty = "",
+        empty_open = "",
+        symlink = "",
+        symlink_open = ""
     }
 }
 
@@ -52,6 +60,7 @@ vim.api.nvim_set_keymap(
         silent = true
     }
 )
+g.nvim_tree_disable_default_keybindings = 1
 
 local tree_cb = require "nvim-tree.config".nvim_tree_callback
 g.nvim_tree_bindings = {
@@ -87,3 +96,12 @@ g.nvim_tree_bindings = {
     {key = "q", cb = tree_cb("close")},
     {key = "?", cb = tree_cb("toggle_help")}
 }
+
+vim.api.nvim_exec(
+    [[
+    augroup NvimTreeOptions
+        autocmd BufEnter NvimTree set cursorline
+    augroup END
+]],
+    false
+)
