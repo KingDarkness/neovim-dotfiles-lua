@@ -5,6 +5,7 @@ g.mapleader = ","
 require "settings"
 require "key-maps"
 require "autosave"
+require "editorconfig"
 
 -- themes
 require "file-icons"
