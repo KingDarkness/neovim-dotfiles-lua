@@ -10,7 +10,7 @@ vim.api.nvim_exec(
   endfunction
 
   let g:grepper               = {}
-  let g:grepper.tools         = ['rg']
+  let g:grepper.tools         = ['ag']
 
   nnoremap <silent> <leader>FA :Grepper -cword -noprompt<CR><CR>
   nnoremap <silent> <leader>F :Grepper <CR><CR>
