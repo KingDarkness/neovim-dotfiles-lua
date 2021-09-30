@@ -20,7 +20,7 @@ require "bufferline".setup {
         view = "multiwindow",
         show_buffer_close_icons = false,
         separator_style = "thin",
-        sort_by = "directory"
+        sort_by = "id"
     },
     -- bar colors!!
     highlights = {
