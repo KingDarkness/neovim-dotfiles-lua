@@ -111,6 +111,6 @@ g.neoformat_enabled_lua = {"luafmt"}
 vim.api.nvim_exec([[
   augroup fmt
     autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
+    autocmd BufWritePre * | Neoformat
   augroup END
 ]], false)

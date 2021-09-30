@@ -29,6 +29,7 @@ return require("packer").startup(
 
         -- file managing , picker, theme, etc
         use "kyazdani42/nvim-tree.lua"
+
         use "kyazdani42/nvim-web-devicons"
         use "ryanoasis/vim-devicons"
         use "norcalli/nvim-base16.lua"
@@ -57,7 +58,6 @@ return require("packer").startup(
         use "folke/which-key.nvim"
         use "tweekmonster/startuptime.vim"
         use "schickling/vim-bufonly"
-        use "terryma/vim-multiple-cursors"
         use "tpope/vim-surround"
         use "mechatroner/rainbow_csv"
         -- doc generate

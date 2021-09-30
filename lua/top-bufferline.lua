@@ -21,7 +21,7 @@ require "bufferline".setup {
         show_buffer_close_icons = false,
         separator_style = "thin",
         mappings = "true",
-        sort_by = "directory",
+        sort_by = "directory"
         -- custom_areas = {
         --   right = function()
         --     local result = {}
@@ -47,8 +47,8 @@ require "bufferline".setup {
         --   end
         --   return result
         -- end
-      -- }
-    }, 
+        -- }
+    },
     -- bar colors!!
     highlights = {
         fill = {
@@ -112,4 +112,3 @@ require "bufferline".setup {
 }
 
 vim.api.nvim_set_keymap("n", "gb", [[<Cmd> BufferLinePick <CR>]], {})
-
