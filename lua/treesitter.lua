@@ -39,5 +39,9 @@ ts_config.setup {
                 html = "<!-- %s -->"
             }
         }
+    },
+    autotag = {
+        enable = true,
+        filetypes = {"html", "xml"}
     }
 }
