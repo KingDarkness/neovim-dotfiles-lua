@@ -106,6 +106,16 @@ vim.api.nvim_set_keymap(
 
 vim.api.nvim_set_keymap(
     "n",
+    "<leader>t",
+    ":NvimTreeToggle<CR>",
+    {
+        noremap = true,
+        silent = true
+    }
+)
+
+vim.api.nvim_set_keymap(
+    "n",
     "<leader>1",
     ":BufferLineGoToBuffer 1<CR>",
     {
@@ -217,6 +227,13 @@ g.nvim_tree_icons = {
 }
 
 g.nvim_tree_quit_on_open = 1
+
+g.nvim_tree_special_files = {
+    ["README.md"] = 1,
+    ["readme.md"] = 1,
+    Makefile = 1,
+    MAKEFILE = 1
+}
 
 vim.api.nvim_exec(
     [[
