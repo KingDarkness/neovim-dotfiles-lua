@@ -34,7 +34,8 @@ function on_attach(client)
     -- buf_set_keymap("n", "]g", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
     buf_set_keymap("n", "]g", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", opts)
     buf_set_keymap("n", "<F10>", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-    buf_set_keymap("n", "ca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
+    -- buf_set_keymap("n", "ca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
+    buf_set_keymap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
     buf_set_keymap("n", "<C-t>", "<cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>", opts)
 
@@ -77,6 +78,15 @@ for _, lang in ipairs(servers) do
     }
 end
 
+lspconf.phpactor.setup {
+    cmd = {vim.fn.stdpath("data") .. "/site/pack/packer/start/phpactor/bin/phpactor", "language-server"},
+    on_attach = on_attach,
+    root_dir = vim.loop.cwd,
+    capabilities = capabilities
+}
+
+vim.g.phpactorPhpBin = "/usr/local/bin/php"
+
 -- replace the default lsp diagnostic letters with prettier symbols
 vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
 vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
@@ -116,6 +126,7 @@ require("trouble").setup {
 vim.api.nvim_set_keymap("n", "<F8>", "<cmd>Trouble<cr>", {silent = true, noremap = true})
 vim.api.nvim_set_keymap("n", "<F9>", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
 vim.api.nvim_set_keymap("n", "<F7>", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
+vim.api.nvim_set_keymap("n", ",php", "<cmd>PhpactorContextMenu<CR>", {silent = true, noremap = true})
 
 require("flutter-tools").setup {
     widget_guides = {
