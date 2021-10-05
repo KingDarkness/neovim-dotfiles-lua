@@ -16,7 +16,14 @@ return require("packer").startup(
         use "neovim/nvim-lspconfig"
         use "kabouzeid/nvim-lspinstall"
         use "glepnir/lspsaga.nvim"
-        use "hrsh7th/nvim-compe"
+        -- use "hrsh7th/nvim-compe"
+
+        use "hrsh7th/nvim-cmp"
+        use "hrsh7th/cmp-nvim-lsp"
+        use "hrsh7th/cmp-buffer"
+        use "hrsh7th/cmp-path"
+        use "ray-x/cmp-treesitter"
+
         use "onsails/lspkind-nvim"
         use "sbdchd/neoformat"
         use "nvim-lua/plenary.nvim"
@@ -24,9 +31,10 @@ return require("packer").startup(
         use "akinsho/flutter-tools.nvim"
         use {"phpactor/phpactor", run = "composer install"}
         -- snippet support
+        use "hrsh7th/cmp-vsnip"
         use "hrsh7th/vim-vsnip"
-        use "hrsh7th/vim-vsnip-integ"
-        use "rafamadriz/friendly-snippets"
+        -- use "L3MON4D3/LuaSnip"
+        -- use "saadparwaiz1/cmp_luasnip"
 
         -- file managing , picker, theme, etc
         use "kyazdani42/nvim-tree.lua"

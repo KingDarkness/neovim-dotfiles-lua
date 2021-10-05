@@ -57,16 +57,6 @@ end
 local lspconf = require("lspconfig")
 require "lspinstall".setup()
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdits"
-    }
-}
-
 -- these langs require same lspconfig so put em all in a table and loop through!
 local servers = require "lspinstall".installed_servers()
 
@@ -74,7 +64,7 @@ for _, lang in ipairs(servers) do
     lspconf[lang].setup {
         on_attach = on_attach,
         root_dir = vim.loop.cwd,
-        capabilities = capabilities
+        capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
     }
 end
 
@@ -82,7 +72,7 @@ lspconf.phpactor.setup {
     cmd = {vim.fn.stdpath("data") .. "/site/pack/packer/start/phpactor/bin/phpactor", "language-server"},
     on_attach = on_attach,
     root_dir = vim.loop.cwd,
-    capabilities = capabilities
+    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
 
 vim.g.phpactorPhpBin = "/usr/local/bin/php"
