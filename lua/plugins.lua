@@ -59,6 +59,7 @@ return require("packer").startup(
         use "907th/vim-auto-save"
         use "junegunn/vim-easy-align"
         use "vim-test/vim-test"
+        use "tpope/vim-sleuth"
         use "editorconfig/editorconfig-vim"
         use "windwp/nvim-autopairs"
         use "alvan/vim-closetag"
