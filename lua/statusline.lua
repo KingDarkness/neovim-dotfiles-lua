@@ -5,15 +5,25 @@ local condition = require("galaxyline.condition")
 gl.short_line_list = {"packer", "NvimTree", "Outline", "LspTrouble"} -- keeping this table { } as empty will show inactive statuslines
 
 local colors = {
-    bg = "#1e222a",
+    bg = "#1E2334",
     line_bg = "#1e222a",
     fg = "#D8DEE9",
-    green = "#BBE67E",
-    orange = "#FF8800",
-    red = "#DF8890",
+    green = "#9FCF6A",
+    orange = "#FF9E64",
+    red = "#F6778E",
     lightbg = "#282c34",
-    nord = "#81A1C1",
+    nord = "#7BA2F6",
     greenYel = "#EBCB8B"
+}
+
+local mode_color = {
+    n = colors.nord,
+    i = colors.orange,
+    c = colors.greenYel,
+    V = colors.green,
+    [""] = colors.green,
+    v = colors.green,
+    R = colors.orange
 }
 
 gls.left[1] = {
@@ -166,13 +176,13 @@ gls.right[4] = {
     ViMode = {
         provider = function()
             local alias = {
-                n = "NORMAL",
-                i = "INSERT",
-                c = "COMMAND",
-                V = "VISUAL",
-                [""] = "VISUAL",
-                v = "VISUAL",
-                R = "REPLACE"
+                n = " 🅝 NORMAL ",
+                i = " 🅘 INSERT ",
+                c = " 🅒 COMMAND ",
+                V = " 🅥 VISUAL ",
+                [""] = " 🅥 VISUAL ",
+                v = " 🅥 VISUAL ",
+                R = " 🅡 REPLACE "
             }
             return alias[vim.fn.mode()]
         end,
@@ -181,20 +191,29 @@ gls.right[4] = {
 }
 
 gls.right[5] = {
-    PerCent = {
-        provider = "LinePercent",
-        separator = " ",
-        separator_highlight = {colors.red, colors.red},
+    LineInfo = {
+        provider = "LineColumn",
+        separator = "  ",
+        separator_highlight = {colors.bg, colors.fg},
         highlight = {colors.bg, colors.fg}
     }
 }
 
 gls.right[6] = {
+    PerCent = {
+        provider = "LinePercent",
+        separator = "  ",
+        separator_highlight = {colors.bg, colors.red},
+        highlight = {colors.bg, colors.red}
+    }
+}
+
+gls.right[7] = {
     rightRounded = {
         provider = function()
             return ""
         end,
-        highlight = {colors.fg, colors.bg}
+        highlight = {colors.red, colors.bg}
     }
 }
 
