@@ -14,7 +14,7 @@ local function opt(scope, key, value)
 end
 
 local base16 = require "base16"
-base16(base16.themes["onedark"], true)
+base16(base16.themes["ocean"], true)
 cmd "syntax on"
 cmd "set nowrap"
 
@@ -105,9 +105,6 @@ vim.cmd(
 
   set clipboard=unnamed,unnamedplus
   set fileformats=unix,dos,mac
-
-  highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
-  highlight link multiple_cursors_visual Visual
 
   set shortmess+=c
 ]]

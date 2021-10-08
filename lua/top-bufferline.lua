@@ -1,7 +1,23 @@
 -- define some colors
 
-local bar_fg = "#565c64"
-local activeBuffer_fg = "#c8ccd4"
+local colors = {
+    base00 = "#2b303b",
+    base01 = "#343d46",
+    base02 = "#4f5b66",
+    base03 = "#65737e",
+    base04 = "#a7adba",
+    base05 = "#c0c5ce",
+    base06 = "#dfe1e8",
+    base07 = "#eff1f5",
+    base08 = "#bf616a",
+    base09 = "#d08770",
+    base0A = "#ebcb8b",
+    base0B = "#a3be8c",
+    base0C = "#96b5b4",
+    base0D = "#8fa1b3",
+    base0E = "#b48ead",
+    base0F = "#ab7967"
+}
 
 require "bufferline".setup {
     options = {
@@ -22,64 +38,10 @@ require "bufferline".setup {
         separator_style = "thin",
         sort_by = "id"
     },
-    -- bar colors!!
     highlights = {
         fill = {
-            guifg = bar_fg,
-            guibg = "#252931"
-        },
-        background = {
-            guifg = bar_fg,
-            guibg = "#252931"
-        },
-        -- buffer
-        buffer_selected = {
-            guifg = activeBuffer_fg,
-            guibg = "#1e222a",
-            gui = "bold"
-        },
-        buffer_visible = {
-            guifg = "#9298a0",
-            guibg = "#252931"
-        },
-        -- tabs over right
-        tab = {
-            guifg = "#9298a0",
-            guibg = "#30343c"
-        },
-        tab_selected = {
-            guifg = "#30343c",
-            guibg = "#9298a0"
-        },
-        tab_close = {
-            guifg = "#f9929b",
-            guibg = "#252931"
-        },
-        -- buffer separators
-        separator = {
-            guifg = "#252931",
-            guibg = "#252931"
-        },
-        separator_selected = {
-            guifg = "#1e222a",
-            guibg = "#1e222a"
-        },
-        separator_visible = {
-            guifg = "#252931",
-            guibg = "#252931"
-        },
-        indicator_selected = {
-            guifg = "#252931",
-            guibg = "#252931"
-        },
-        -- modified files (but not saved)
-        modified_selected = {
-            guifg = "#A3BE8C",
-            guibg = "#1e222a"
-        },
-        modified_visible = {
-            guifg = "#BF616A",
-            guibg = "#23272f"
+            guifg = colors.base01,
+            guibg = colors.base01
         }
     }
 }

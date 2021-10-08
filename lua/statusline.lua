@@ -10,54 +10,51 @@ local function spacing(num)
     end
 end
 
+-- base16 ocean
 local colors = {
-    bg = "#1E2334",
-    line_bg = "#1e222a",
-    fg = "#D8DEE9",
-    green = "#9FCF6A",
-    orange = "#FF9E64",
-    red = "#F6778E",
-    lightbg = "#282c34",
-    nord = "#7BA2F6",
-    greenYel = "#EBCB8B"
+    base00 = "#2b303b",
+    base01 = "#343d46",
+    base02 = "#4f5b66",
+    base03 = "#65737e",
+    base04 = "#a7adba",
+    base05 = "#c0c5ce",
+    base06 = "#dfe1e8",
+    base07 = "#eff1f5",
+    base08 = "#bf616a",
+    base09 = "#d08770",
+    base0A = "#ebcb8b",
+    base0B = "#a3be8c",
+    base0C = "#96b5b4",
+    base0D = "#8fa1b3",
+    base0E = "#b48ead",
+    base0F = "#ab7967"
 }
 
 local mode_color = {
-    n = colors.nord,
-    i = colors.green,
-    v = colors.orange,
-    V = colors.green,
-    c = colors.greenYel,
-    no = colors.nord,
-    s = colors.orange,
-    S = colors.orange,
-    [""] = colors.orange,
-    ic = colors.red,
-    R = colors.red,
-    Rv = colors.red,
-    cv = colors.nord,
-    ce = colors.nord,
-    r = colors.red,
-    rm = colors.red,
-    ["r?"] = colors.green,
-    ["!"] = colors.red,
-    t = colors.red
+    n = colors.base0D,
+    i = colors.base0B,
+    v = colors.base09,
+    V = colors.base0B,
+    c = colors.base0BYel,
+    no = colors.base0D,
+    s = colors.base09,
+    S = colors.base09,
+    [""] = colors.base09,
+    ic = colors.base08,
+    R = colors.base08,
+    Rv = colors.base08,
+    cv = colors.base0D,
+    ce = colors.base0D,
+    r = colors.base08,
+    rm = colors.base08,
+    ["r?"] = colors.base0B,
+    ["!"] = colors.base08,
+    t = colors.base08
 }
 
 gls.left[1] = {
-    leftRounded = {
+    ViMode = {
         provider = function()
-            vim.api.nvim_command("hi GalaxyleftRounded guifg=" .. mode_color[vim.fn.mode()])
-            return ""
-        end,
-        highlight = {colors.nord, colors.bg}
-    }
-}
-
-gls.left[2] = {
-    statusIcon = {
-        provider = function()
-            vim.api.nvim_command("hi GalaxystatusIcon guibg=" .. mode_color[vim.fn.mode()])
             local alias = {
                 n = " 🅝 NORMAL ",
                 i = " 🅘 INSERT ",
@@ -67,30 +64,38 @@ gls.left[2] = {
                 v = " 🅥 VISUAL ",
                 R = " 🅡 REPLACE "
             }
-            return alias[vim.fn.mode()]
+
+            vim.api.nvim_command("hi GalaxyViMode guibg=" .. mode_color[vim.fn.mode()])
+            vim.api.nvim_command("hi GalaxyPerCent guibg=" .. mode_color[vim.fn.mode()])
+            vim.api.nvim_command("hi GalaxyPerCentSeparator guibg=" .. mode_color[vim.fn.mode()])
+            vim.api.nvim_command("hi GalaxyPerCent guibg=" .. mode_color[vim.fn.mode()])
+            vim.api.nvim_command("hi GalaxyLineInfo guibg=" .. mode_color[vim.fn.mode()])
+            vim.api.nvim_command("hi GalaxyFileEncode guibg=" .. mode_color[vim.fn.mode()])
+
+            return "   " .. alias[vim.fn.mode()]
         end,
-        highlight = {colors.bg, colors.nord},
+        highlight = {colors.base01, colors.base0D},
         separator = " ",
-        separator_highlight = {colors.lightbg, colors.lightbg}
+        separator_highlight = {colors.base02, colors.base02}
+    }
+}
+
+gls.left[2] = {
+    FileIcon = {
+        provider = "FileIcon",
+        condition = condition.buffer_not_empty,
+        highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.base02}
     }
 }
 
 gls.left[3] = {
-    FileIcon = {
-        provider = "FileIcon",
-        condition = condition.buffer_not_empty,
-        highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.lightbg}
-    }
-}
-
-gls.left[4] = {
     FileName = {
         provider = {
             "FileName",
             "FileSize"
         },
         condition = condition.buffer_not_empty,
-        highlight = {colors.fg, colors.lightbg}
+        highlight = {colors.base05, colors.base02}
     }
 }
 
@@ -102,7 +107,7 @@ local checkwidth = function()
     return false
 end
 
-gls.left[5] = {
+gls.left[4] = {
     GetLspClient = {
         provider = {
             spacing(2),
@@ -137,34 +142,34 @@ gls.left[5] = {
             end,
             spacing(1)
         },
-        highlight = {colors.green, colors.bg},
+        highlight = {colors.base0B, colors.base01},
         icon = ""
     }
 }
 
-gls.left[6] = {
+gls.left[5] = {
     DiagnosticError = {
         provider = "DiagnosticError",
         icon = "  ",
-        highlight = {colors.red, colors.bg}
+        highlight = {colors.base08, colors.base01}
     }
 }
 
-gls.left[7] = {
+gls.left[6] = {
     DiagnosticWarn = {
         provider = "DiagnosticWarn",
         icon = "  ",
-        highlight = {colors.orange, colors.bg}
+        highlight = {colors.base09, colors.base01}
     }
 }
 
 gls.right[1] = {
     GitIcon = {
         provider = function()
-            return "   "
+            return "    "
         end,
         condition = require("galaxyline.provider_vcs").check_git_workspace,
-        highlight = {colors.green, colors.line_bg}
+        highlight = {colors.base0B, colors.base01}
     }
 }
 
@@ -172,7 +177,7 @@ gls.right[2] = {
     GitBranch = {
         provider = {"GitBranch", spacing(1)},
         condition = require("galaxyline.provider_vcs").check_git_workspace,
-        highlight = {colors.green, colors.line_bg}
+        highlight = {colors.base0B, colors.base01}
     }
 }
 
@@ -181,7 +186,7 @@ gls.right[3] = {
         provider = "DiffAdd",
         condition = checkwidth,
         icon = "   ",
-        highlight = {colors.greenYel, colors.line_bg}
+        highlight = {colors.base0BYel, colors.base01}
     }
 }
 
@@ -190,7 +195,7 @@ gls.right[4] = {
         provider = "DiffModified",
         condition = checkwidth,
         icon = " ",
-        highlight = {colors.orange, colors.line_bg}
+        highlight = {colors.base09, colors.base01}
     }
 }
 
@@ -199,7 +204,7 @@ gls.right[5] = {
         provider = "DiffRemove",
         condition = checkwidth,
         icon = " ",
-        highlight = {colors.red, colors.line_bg}
+        highlight = {colors.base08, colors.base01}
     }
 }
 
@@ -222,7 +227,7 @@ gls.right[6] = {
                 return "  " .. vim.fn.shiftwidth()
             end
         },
-        highlight = {colors.bg, colors.red}
+        highlight = {colors.base01, colors.base08}
     }
 }
 
@@ -230,39 +235,25 @@ gls.right[7] = {
     LineInfo = {
         provider = function()
             local cursor = vim.api.nvim_win_get_cursor(0)
-            vim.api.nvim_command("hi GalaxyFileEncode guibg=" .. mode_color[vim.fn.mode()])
-            vim.api.nvim_command("hi GalaxyLineInfo guibg=" .. mode_color[vim.fn.mode()])
-            return "   " .. cursor[1] .. ":" .. cursor[2] .. "/" .. vim.api.nvim_buf_line_count(0) .. " "
+            return "   " .. cursor[1] .. ":" .. cursor[2] .. "/" .. vim.api.nvim_buf_line_count(0)
         end,
-        highlight = {colors.bg, colors.fg}
+        highlight = {colors.base01, colors.base05}
     }
 }
 
 gls.right[8] = {
     PerCentSeparator = {
         provider = function()
-            vim.api.nvim_command("hi GalaxyPerCentSeparator guibg=" .. mode_color[vim.fn.mode()])
-            vim.api.nvim_command("hi GalaxyPerCent guibg=" .. mode_color[vim.fn.mode()])
             return "   "
         end,
-        highlight = {colors.bg, colors.red}
+        highlight = {colors.base01, colors.base08}
     }
 }
 
 gls.right[9] = {
     PerCent = {
         provider = "LinePercent",
-        highlight = {colors.bg, colors.red}
-    }
-}
-
-gls.right[10] = {
-    rightRounded = {
-        provider = function()
-            vim.api.nvim_command("hi GalaxyrightRounded guifg=" .. mode_color[vim.fn.mode()])
-            return ""
-        end,
-        highlight = {colors.red, colors.bg}
+        highlight = {colors.base01, colors.base08}
     }
 }
 
@@ -271,15 +262,15 @@ gls.short_line_left[1] = {
     BufferType = {
         provider = "FileTypeName",
         separator = " ",
-        separator_highlight = {"NONE", colors.line_bg},
-        highlight = {colors.blue, colors.line_bg, "bold"}
+        separator_highlight = {"NONE", colors.base03},
+        highlight = {colors.blue, colors.base03, "bold"}
     }
 }
 
 gls.short_line_left[2] = {
     SFileIcon = {
         provider = "FileIcon",
-        highlight = {colors.fg, colors.bg}
+        highlight = {colors.base05, colors.base01}
     }
 }
 
@@ -287,13 +278,13 @@ gls.short_line_left[3] = {
     SFileName = {
         provider = "SFileName",
         condition = condition.buffer_not_empty,
-        highlight = {colors.white, colors.line_bg, "bold"}
+        highlight = {colors.white, colors.base03, "bold"}
     }
 }
 
 gls.short_line_right[1] = {
     BufferIcon = {
         provider = "BufferIcon",
-        highlight = {colors.white, colors.line_bg}
+        highlight = {colors.white, colors.base03}
     }
 }
