@@ -232,7 +232,7 @@ gls.right[7] = {
             local cursor = vim.api.nvim_win_get_cursor(0)
             vim.api.nvim_command("hi GalaxyFileEncode guibg=" .. mode_color[vim.fn.mode()])
             vim.api.nvim_command("hi GalaxyLineInfo guibg=" .. mode_color[vim.fn.mode()])
-            return "   " .. cursor[1] .. "/" .. vim.api.nvim_buf_line_count(0) .. ":" .. cursor[2] .. " "
+            return "   " .. cursor[1] .. ":" .. cursor[2] .. "/" .. vim.api.nvim_buf_line_count(0) .. " "
         end,
         highlight = {colors.bg, colors.fg}
     }
