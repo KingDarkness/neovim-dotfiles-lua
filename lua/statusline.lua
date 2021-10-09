@@ -65,13 +65,12 @@ gls.left[1] = {
                 R = " 🅡 REPLACE "
             }
 
-            vim.api.nvim_command("hi GalaxyViMode guibg=" .. mode_color[vim.fn.mode()])
+            --[[ vim.api.nvim_command("hi GalaxyViMode guibg=" .. mode_color[vim.fn.mode()])
             vim.api.nvim_command("hi GalaxyPerCent guibg=" .. mode_color[vim.fn.mode()])
             vim.api.nvim_command("hi GalaxyPerCentSeparator guibg=" .. mode_color[vim.fn.mode()])
             vim.api.nvim_command("hi GalaxyPerCent guibg=" .. mode_color[vim.fn.mode()])
             vim.api.nvim_command("hi GalaxyLineInfo guibg=" .. mode_color[vim.fn.mode()])
-            vim.api.nvim_command("hi GalaxyFileEncode guibg=" .. mode_color[vim.fn.mode()])
-
+            vim.api.nvim_command("hi GalaxyFileEncode guibg=" .. mode_color[vim.fn.mode()]) ]]
             return "   " .. alias[vim.fn.mode()]
         end,
         highlight = {colors.base01, colors.base0D},
@@ -227,7 +226,7 @@ gls.right[6] = {
                 return "  " .. vim.fn.shiftwidth()
             end
         },
-        highlight = {colors.base01, colors.base08}
+        highlight = {colors.base01, colors.base0D}
     }
 }
 
@@ -237,7 +236,7 @@ gls.right[7] = {
             local cursor = vim.api.nvim_win_get_cursor(0)
             return "   " .. cursor[1] .. ":" .. cursor[2] .. "/" .. vim.api.nvim_buf_line_count(0)
         end,
-        highlight = {colors.base01, colors.base05}
+        highlight = {colors.base01, colors.base0D}
     }
 }
 
@@ -246,14 +245,14 @@ gls.right[8] = {
         provider = function()
             return "   "
         end,
-        highlight = {colors.base01, colors.base08}
+        highlight = {colors.base01, colors.base0D}
     }
 }
 
 gls.right[9] = {
     PerCent = {
         provider = "LinePercent",
-        highlight = {colors.base01, colors.base08}
+        highlight = {colors.base01, colors.base0D}
     }
 }
 
@@ -261,16 +260,14 @@ gls.right[9] = {
 gls.short_line_left[1] = {
     BufferType = {
         provider = "FileTypeName",
-        separator = " ",
-        separator_highlight = {"NONE", colors.base03},
-        highlight = {colors.blue, colors.base03, "bold"}
+        highlight = {colors.base0B, colors.base01}
     }
 }
 
 gls.short_line_left[2] = {
     SFileIcon = {
-        provider = "FileIcon",
-        highlight = {colors.base05, colors.base01}
+        provider = {spacing(2), "FileIcon"},
+        highlight = {colors.base0B, colors.base01}
     }
 }
 
@@ -278,13 +275,13 @@ gls.short_line_left[3] = {
     SFileName = {
         provider = "SFileName",
         condition = condition.buffer_not_empty,
-        highlight = {colors.white, colors.base03, "bold"}
+        highlight = {colors.base0B, colors.base01}
     }
 }
 
 gls.short_line_right[1] = {
     BufferIcon = {
         provider = "BufferIcon",
-        highlight = {colors.white, colors.base03}
+        highlight = {colors.base0B, colors.base01}
     }
 }
