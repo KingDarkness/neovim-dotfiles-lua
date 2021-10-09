@@ -1,15 +1,4 @@
-local gl = require("galaxyline")
-local gls = gl.section
-local condition = require("galaxyline.condition")
-
-gl.short_line_list = {"packer", "NvimTree", "Outline", "LspTrouble"} -- keeping this table { } as empty will show inactive statuslines
-
-local function spacing(num)
-    return function()
-        return string.rep(" ", num)
-    end
-end
-
+local lualine = require "lualine"
 -- base16 ocean
 local colors = {
     base00 = "#2b303b",
@@ -30,258 +19,230 @@ local colors = {
     base0F = "#ab7967"
 }
 
-local mode_color = {
-    n = colors.base0D,
-    i = colors.base0B,
-    v = colors.base09,
-    V = colors.base0B,
-    c = colors.base0BYel,
-    no = colors.base0D,
-    s = colors.base09,
-    S = colors.base09,
-    [""] = colors.base09,
-    ic = colors.base08,
-    R = colors.base08,
-    Rv = colors.base08,
-    cv = colors.base0D,
-    ce = colors.base0D,
-    r = colors.base08,
-    rm = colors.base08,
-    ["r?"] = colors.base0B,
-    ["!"] = colors.base08,
-    t = colors.base08
-}
-
-gls.left[1] = {
-    ViMode = {
-        provider = function()
-            local alias = {
-                n = " 🅝 NORMAL ",
-                i = " 🅘 INSERT ",
-                c = " 🅒 COMMAND ",
-                V = " 🅥 VISUAL ",
-                [""] = " 🅥 VISUAL ",
-                v = " 🅥 VISUAL ",
-                R = " 🅡 REPLACE "
-            }
-
-            --[[ vim.api.nvim_command("hi GalaxyViMode guibg=" .. mode_color[vim.fn.mode()])
-            vim.api.nvim_command("hi GalaxyPerCent guibg=" .. mode_color[vim.fn.mode()])
-            vim.api.nvim_command("hi GalaxyPerCentSeparator guibg=" .. mode_color[vim.fn.mode()])
-            vim.api.nvim_command("hi GalaxyPerCent guibg=" .. mode_color[vim.fn.mode()])
-            vim.api.nvim_command("hi GalaxyLineInfo guibg=" .. mode_color[vim.fn.mode()])
-            vim.api.nvim_command("hi GalaxyFileEncode guibg=" .. mode_color[vim.fn.mode()]) ]]
-            return "   " .. alias[vim.fn.mode()]
-        end,
-        highlight = {colors.base01, colors.base0D},
-        separator = " ",
-        separator_highlight = {colors.base02, colors.base02}
+local ocean = {
+    normal = {
+        a = {bg = colors.base0D, fg = colors.base00, gui = "bold"},
+        b = {bg = colors.base01, fg = colors.base0B},
+        c = {bg = colors.base01, fg = colors.base0B}
+    },
+    insert = {
+        a = {bg = colors.base0B, fg = colors.base00, gui = "bold"},
+        b = {bg = colors.base01, fg = colors.base0B},
+        c = {bg = colors.base01, fg = colors.base0B}
+    },
+    visual = {
+        a = {bg = colors.base09, fg = colors.base00, gui = "bold"},
+        b = {bg = colors.base01, fg = colors.base0B},
+        c = {bg = colors.base01, fg = colors.base0B}
+    },
+    replace = {
+        a = {bg = colors.base08, fg = colors.base00, gui = "bold"},
+        b = {bg = colors.base01, fg = colors.base0B},
+        c = {bg = colors.base01, fg = colors.base0B}
+    },
+    command = {
+        a = {bg = colors.base0A, fg = colors.base00, gui = "bold"},
+        b = {bg = colors.base01, fg = colors.base0B},
+        c = {bg = colors.base01, fg = colors.base0B}
+    },
+    inactive = {
+        a = {bg = colors.base0E, fg = colors.base00, gui = "bold"},
+        b = {bg = colors.base01, fg = colors.base0B},
+        c = {bg = colors.base01, fg = colors.base0B}
     }
 }
 
-gls.left[2] = {
-    FileIcon = {
-        provider = "FileIcon",
-        condition = condition.buffer_not_empty,
-        highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.base02}
-    }
-}
-
-gls.left[3] = {
-    FileName = {
-        provider = {
-            "FileName",
-            "FileSize"
-        },
-        condition = condition.buffer_not_empty,
-        highlight = {colors.base05, colors.base02}
-    }
-}
-
-local checkwidth = function()
-    local squeeze_width = vim.fn.winwidth(0) / 2
-    if squeeze_width > 40 then
-        return true
+local condition = {
+    buffer_not_empty = function()
+        return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
+    end,
+    hide_in_width = function()
+        return vim.fn.winwidth(0) > 80
+    end,
+    check_git_workspace = function()
+        local filepath = vim.fn.expand("%:p:h")
+        local gitdir = vim.fn.finddir(".git", filepath .. ";")
+        return gitdir and #gitdir > 0 and #gitdir < #filepath
+    end,
+    checkwidth = function()
+        local squeeze_width = vim.fn.winwidth(0) / 2
+        if squeeze_width > 40 then
+            return true
+        end
+        return false
     end
-    return false
+}
+
+local function vi_mode()
+    local alias = {
+        n = " 🅝 NORMAL ",
+        i = " 🅘 INSERT ",
+        c = " 🅒 COMMAND ",
+        V = " 🅥 VISUAL ",
+        [""] = " 🅥 VISUAL ",
+        v = " 🅥 VISUAL ",
+        R = " 🅡 REPLACE "
+    }
+
+    return "   " .. alias[vim.fn.mode()]
 end
 
-gls.left[4] = {
-    GetLspClient = {
-        provider = {
-            spacing(2),
-            function()
-                local get_lsp_client = function(msg)
-                    msg = msg or "No LSP"
-                    local clients = vim.lsp.buf_get_clients()
-                    if next(clients) == nil then
-                        return msg
-                    end
+local function filesize()
+    local function format_file_size(file)
+        local size = vim.fn.getfsize(file)
+        if size <= 0 then
+            return ""
+        end
+        local sufixes = {"b", "k", "m", "g"}
+        local i = 1
+        while size > 1024 do
+            size = size / 1024
+            i = i + 1
+        end
+        return string.format("%.1f%s", size, sufixes[i])
+    end
 
-                    local client_names = ""
-                    for _, client in pairs(clients) do
-                        if string.len(client_names) < 1 then
-                            client_names = client_names .. client.name
-                        else
-                            client_names = client_names .. ", " .. client.name
-                        end
-                    end
-                    return string.len(client_names) > 0 and client_names or msg
-                end
+    local file = vim.fn.expand("%:p")
+    if string.len(file) == 0 then
+        return ""
+    end
 
-                local icon = "  "
-                local active_lsp = get_lsp_client()
+    return format_file_size(file)
+end
 
-                if active_lsp == "No Active Lsp" then
-                    icon = ""
-                    active_lsp = ""
-                end
+local function lsp_info()
+    local get_lsp_client = function(msg)
+        msg = msg or "No LSP"
+        local clients = vim.lsp.buf_get_clients()
+        if next(clients) == nil then
+            return msg
+        end
 
-                return icon .. active_lsp .. " "
-            end,
-            spacing(1)
-        },
-        highlight = {colors.base0B, colors.base01},
-        icon = ""
-    }
-}
-
-gls.left[5] = {
-    DiagnosticError = {
-        provider = "DiagnosticError",
-        icon = "  ",
-        highlight = {colors.base08, colors.base01}
-    }
-}
-
-gls.left[6] = {
-    DiagnosticWarn = {
-        provider = "DiagnosticWarn",
-        icon = "  ",
-        highlight = {colors.base09, colors.base01}
-    }
-}
-
-gls.right[1] = {
-    GitIcon = {
-        provider = function()
-            return "    "
-        end,
-        condition = require("galaxyline.provider_vcs").check_git_workspace,
-        highlight = {colors.base0B, colors.base01}
-    }
-}
-
-gls.right[2] = {
-    GitBranch = {
-        provider = {"GitBranch", spacing(1)},
-        condition = require("galaxyline.provider_vcs").check_git_workspace,
-        highlight = {colors.base0B, colors.base01}
-    }
-}
-
-gls.right[3] = {
-    DiffAdd = {
-        provider = "DiffAdd",
-        condition = checkwidth,
-        icon = "   ",
-        highlight = {colors.base0BYel, colors.base01}
-    }
-}
-
-gls.right[4] = {
-    DiffModified = {
-        provider = "DiffModified",
-        condition = checkwidth,
-        icon = " ",
-        highlight = {colors.base09, colors.base01}
-    }
-}
-
-gls.right[5] = {
-    DiffRemove = {
-        provider = "DiffRemove",
-        condition = checkwidth,
-        icon = " ",
-        highlight = {colors.base08, colors.base01}
-    }
-}
-
-gls.right[6] = {
-    FileEncode = {
-        provider = {
-            spacing(2),
-            function()
-                return ""
-            end,
-            "FileEncode",
-            function()
-                return "["
-            end,
-            "FileFormat",
-            function()
-                return "]"
-            end,
-            function()
-                return "  " .. vim.fn.shiftwidth()
+        local client_names = ""
+        for _, client in pairs(clients) do
+            if string.len(client_names) < 1 then
+                client_names = client_names .. client.name
+            else
+                client_names = client_names .. ", " .. client.name
             end
+        end
+        return string.len(client_names) > 0 and client_names or msg
+    end
+
+    local icon = "  "
+    local active_lsp = get_lsp_client()
+
+    if active_lsp == "No Active Lsp" then
+        icon = ""
+        active_lsp = ""
+    end
+
+    return icon .. active_lsp .. " "
+end
+
+local function get_nvim_lsp_diagnostic(diag_type)
+    if next(vim.lsp.buf_get_clients(0)) == nil then
+        return ""
+    end
+    local active_clients = vim.lsp.get_active_clients()
+
+    if active_clients then
+        local count = 0
+
+        for _, client in ipairs(active_clients) do
+            count = count + vim.lsp.diagnostic.get_count(vim.api.nvim_get_current_buf(), diag_type, client.id)
+        end
+
+        if count ~= 0 then
+            return count .. " "
+        end
+    end
+end
+
+local function get_diagnostic_error()
+    if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
+        return get_nvim_lsp_diagnostic("Error")
+    end
+    return ""
+end
+
+function get_diagnostic_warn()
+    if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
+        return get_nvim_lsp_diagnostic("Warning")
+    end
+    return ""
+end
+
+local config = {
+    options = {
+        -- Disable sections and component separators
+        component_separators = "",
+        section_separators = "",
+        theme = ocean
+    },
+    sections = {
+        -- these are to remove the defaults
+        lualine_a = {{vi_mode}},
+        lualine_b = {
+            {"filename", condition = condition.buffer_not_empty},
+            {filesize, condition = condition.buffer_not_empty}
         },
-        highlight = {colors.base01, colors.base0D}
+        lualine_c = {
+            {lsp_info},
+            {
+                get_diagnostic_error,
+                icon = "  ",
+                color = {fg = colors.base08}
+            },
+            {
+                get_diagnostic_warn,
+                icon = "  ",
+                color = {fg = colors.base09}
+            }
+        },
+        lualine_x = {
+            {"branch", icon = "", condition = condition.check_git_workspace}
+        },
+        lualine_y = {
+            {
+                "diff",
+                symbols = {added = " ", modified = "柳 ", removed = " "},
+                color_added = colors.base0B,
+                color_modified = colors.base09,
+                color_removed = colors.base08,
+                condition = condition.hide_in_width
+            }
+        },
+        lualine_z = {
+            {"encoding", condition = condition.buffer_not_empty},
+            {"fileformat", condition = condition.buffer_not_empty},
+            {
+                function()
+                    return " " .. vim.fn.shiftwidth()
+                end,
+                condition = condition.buffer_not_empty
+            },
+            {
+                function()
+                    local cursor = vim.api.nvim_win_get_cursor(0)
+                    return cursor[1] .. ":" .. cursor[2] .. "/" .. vim.api.nvim_buf_line_count(0)
+                end,
+                condition = condition.buffer_not_empty,
+                icon = ""
+            },
+            {"progress", condition = condition.buffer_not_empty, icon = ""}
+        }
+    },
+    extensions = {
+        "quickfix",
+        {
+            sections = {
+                lualine_a = {{"filename", icon = "פּ"}},
+                lualine_z = {{"branch", icon = "", condition = condition.check_git_workspace}}
+            },
+            filetypes = {"NvimTree"}
+        }
     }
 }
 
-gls.right[7] = {
-    LineInfo = {
-        provider = function()
-            local cursor = vim.api.nvim_win_get_cursor(0)
-            return "   " .. cursor[1] .. ":" .. cursor[2] .. "/" .. vim.api.nvim_buf_line_count(0)
-        end,
-        highlight = {colors.base01, colors.base0D}
-    }
-}
-
-gls.right[8] = {
-    PerCentSeparator = {
-        provider = function()
-            return "   "
-        end,
-        highlight = {colors.base01, colors.base0D}
-    }
-}
-
-gls.right[9] = {
-    PerCent = {
-        provider = "LinePercent",
-        highlight = {colors.base01, colors.base0D}
-    }
-}
-
--- -------------------------Short status line---------------------------------------
-gls.short_line_left[1] = {
-    BufferType = {
-        provider = "FileTypeName",
-        highlight = {colors.base0B, colors.base01}
-    }
-}
-
-gls.short_line_left[2] = {
-    SFileIcon = {
-        provider = {spacing(2), "FileIcon"},
-        highlight = {colors.base0B, colors.base01}
-    }
-}
-
-gls.short_line_left[3] = {
-    SFileName = {
-        provider = "SFileName",
-        condition = condition.buffer_not_empty,
-        highlight = {colors.base0B, colors.base01}
-    }
-}
-
-gls.short_line_right[1] = {
-    BufferIcon = {
-        provider = "BufferIcon",
-        highlight = {colors.base0B, colors.base01}
-    }
-}
+lualine.setup(config)

@@ -42,7 +42,7 @@ return require("packer").startup(
         use "kyazdani42/nvim-web-devicons"
         use "ryanoasis/vim-devicons"
         use "norcalli/nvim-base16.lua"
-        use "glepnir/galaxyline.nvim"
+        use "hoob3rt/lualine.nvim"
         use "akinsho/nvim-bufferline.lua"
         use "norcalli/nvim-colorizer.lua"
         use {
