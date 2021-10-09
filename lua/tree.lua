@@ -106,7 +106,7 @@ vim.api.nvim_set_keymap(
 
 vim.api.nvim_set_keymap(
     "n",
-    "<leader>t",
+    "tt",
     ":NvimTreeToggle<CR>",
     {
         noremap = true,
