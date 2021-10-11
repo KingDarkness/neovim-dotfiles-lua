@@ -40,8 +40,47 @@ require "bufferline".setup {
     },
     highlights = {
         fill = {
-            guifg = colors.base01,
+            guifg = colors.base06,
             guibg = colors.base01
+        },
+        group_separator = {
+            guifg = colors.base06,
+            guibg = colors.base01
+        },
+        background = {
+            guifg = colors.base0F,
+            guibg = colors.base01
+        },
+        separator = {
+            guifg = colors.base08,
+            guibg = colors.base01
+        },
+        separator_selected = {
+            guifg = colors.base0C,
+            guibg = colors.base00
+        },
+        group_label = {
+            guifg = colors.base06,
+            guibg = colors.base01
+        },
+        duplicate = {
+            guifg = colors.base0F,
+            gui = "italic",
+            guibg = colors.base01
+        },
+        duplicate_selected = {
+            guifg = colors.base0C,
+            gui = "italic",
+            guibg = colors.base00
+        },
+        indicator_selected = {
+            guifg = colors.base0C,
+            guibg = colors.base00
+        },
+        buffer_selected = {
+            guifg = colors.base0C,
+            guibg = colors.base00,
+            gui = "bold,italic"
         }
     }
 }
