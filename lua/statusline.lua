@@ -1,22 +1,22 @@
 local lualine = require "lualine"
--- base16 ocean
+-- base16 onedark
 local colors = {
-    base00 = "#2b303b",
-    base01 = "#343d46",
-    base02 = "#4f5b66",
-    base03 = "#65737e",
-    base04 = "#a7adba",
-    base05 = "#c0c5ce",
-    base06 = "#dfe1e8",
-    base07 = "#eff1f5",
-    base08 = "#bf616a",
-    base09 = "#d08770",
-    base0A = "#ebcb8b",
-    base0B = "#a3be8c",
-    base0C = "#96b5b4",
-    base0D = "#8fa1b3",
-    base0E = "#b48ead",
-    base0F = "#ab7967"
+    base00 = "#282c34",
+    base01 = "#353b45",
+    base02 = "#3e4451",
+    base03 = "#545862",
+    base04 = "#565c64",
+    base05 = "#abb2bf",
+    base06 = "#b6bdca",
+    base07 = "#c8ccd4",
+    base08 = "#e06c75",
+    base09 = "#d19a66",
+    base0A = "#e5c07b",
+    base0B = "#98c379",
+    base0C = "#56b6c2",
+    base0D = "#61afef",
+    base0E = "#c678dd",
+    base0F = "#be5046"
 }
 
 local ocean = {

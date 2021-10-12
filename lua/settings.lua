@@ -14,7 +14,7 @@ local function opt(scope, key, value)
 end
 
 local base16 = require "base16"
-base16(base16.themes["ocean"], true)
+base16(base16.themes["onedark"], true)
 cmd "syntax on"
 cmd "set nowrap"
 
