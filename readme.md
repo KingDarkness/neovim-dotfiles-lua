@@ -1,4 +1,5 @@
 # Screenshots
+
 On macos with iterm2 & FiraCode Nerd Font
 
 <img src ="screenshots/lspkind-nvim.png"><hr>
@@ -28,9 +29,10 @@ $ ./install.sh
 [https://github.com/kabouzeid/nvim-lspinstall](https://github.com/kabouzeid/nvim-lspinstall)
 
 Exp:
+
 ```vim
 LspInstall php
-````
+```
 
 # Features
 

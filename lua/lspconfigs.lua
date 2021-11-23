@@ -55,25 +55,34 @@ function on_attach(client)
 end
 
 local lspconf = require("lspconfig")
-require "lspinstall".setup()
+local lsp_installer = require("nvim-lsp-installer")
 
--- these langs require same lspconfig so put em all in a table and loop through!
-local servers = require "lspinstall".installed_servers()
-
-for _, lang in ipairs(servers) do
-    lspconf[lang].setup {
-        on_attach = on_attach,
-        root_dir = vim.loop.cwd,
-        capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+lsp_installer.settings(
+    {
+        ui = {
+            icons = {
+                server_installed = "✓",
+                server_pending = "➜",
+                server_uninstalled = "✗"
+            }
+        }
     }
-end
+)
 
-lspconf.phpactor.setup {
-    cmd = {vim.fn.stdpath("data") .. "/site/pack/packer/start/phpactor/bin/phpactor", "language-server"},
-    on_attach = on_attach,
-    root_dir = vim.loop.cwd,
-    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-}
+lsp_installer.on_server_ready(
+    function(server)
+        local opts = {}
+
+        -- (optional) Customize the options passed to the server
+        -- if server.name == "tsserver" then
+        --     opts.root_dir = function() ... end
+        -- end
+
+        -- This setup() function is exactly the same as lspconfig's setup function.
+        -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+        server:setup(opts)
+    end
+)
 
 vim.g.phpactorPhpBin = "/usr/local/bin/php"
 
