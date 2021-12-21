@@ -15,7 +15,6 @@ return require("packer").startup(
         -- lsp stuff
         use "neovim/nvim-lspconfig"
         use "williamboman/nvim-lsp-installer"
-        use "glepnir/lspsaga.nvim"
         -- use "hrsh7th/nvim-compe"
 
         use "hrsh7th/nvim-cmp"

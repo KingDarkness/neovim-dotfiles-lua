@@ -144,31 +144,20 @@ local function get_nvim_lsp_diagnostic(diag_type)
     if next(vim.lsp.buf_get_clients(0)) == nil then
         return ""
     end
-    local active_clients = vim.lsp.get_active_clients()
 
-    if active_clients then
-        local count = 0
-
-        for _, client in ipairs(active_clients) do
-            count = count + vim.lsp.diagnostic.get_count(vim.api.nvim_get_current_buf(), diag_type, client.id)
-        end
-
-        if count ~= 0 then
-            return count .. " "
-        end
-    end
+    return #vim.diagnostic.get(0, {severity = diag_type})
 end
 
 local function get_diagnostic_error()
     if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
-        return get_nvim_lsp_diagnostic("Error")
+        return get_nvim_lsp_diagnostic(vim.diagnostic.severity.ERROR)
     end
     return ""
 end
 
 function get_diagnostic_warn()
     if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
-        return get_nvim_lsp_diagnostic("Warning")
+        return get_nvim_lsp_diagnostic(vim.diagnostic.severity.WARN)
     end
     return ""
 end
