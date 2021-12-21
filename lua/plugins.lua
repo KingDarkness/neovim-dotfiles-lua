@@ -30,10 +30,23 @@ return require("packer").startup(
         use "akinsho/flutter-tools.nvim"
         use {"phpactor/phpactor", run = "composer install"}
         -- snippet support
-        use "hrsh7th/cmp-vsnip"
-        use "hrsh7th/vim-vsnip"
-        -- use "L3MON4D3/LuaSnip"
-        -- use "saadparwaiz1/cmp_luasnip"
+        use {
+            "hrsh7th/cmp-vsnip",
+            after = "nvim-cmp",
+            requires = {
+                "hrsh7th/vim-vsnip",
+                {
+                    "hrsh7th/vim-vsnip-integ",
+                    after = "vim-vsnip"
+                },
+                {
+                    "rafamadriz/friendly-snippets",
+                    after = "cmp-vsnip"
+                }
+            }
+        }
+        use "saadparwaiz1/cmp_luasnip"
+        use "L3MON4D3/LuaSnip"
 
         -- file managing , picker, theme, etc
         use "kyazdani42/nvim-tree.lua"
