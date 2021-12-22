@@ -27,6 +27,8 @@ return require("packer").startup(
         use "sbdchd/neoformat"
         use "nvim-lua/plenary.nvim"
         use "ray-x/lsp_signature.nvim"
+        use "RishabhRD/popfix"
+        use "RishabhRD/nvim-lsputils"
         use "akinsho/flutter-tools.nvim"
         use {"phpactor/phpactor", run = "composer install"}
         -- snippet support
