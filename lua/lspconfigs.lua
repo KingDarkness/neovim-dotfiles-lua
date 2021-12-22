@@ -8,15 +8,6 @@ function on_attach(client, bufnr)
 
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-    vim.lsp.handlers["textDocument/codeAction"] = require "lsputil.codeAction".code_action_handler
-    vim.lsp.handlers["textDocument/references"] = require "lsputil.locations".references_handler
-    vim.lsp.handlers["textDocument/definition"] = require "lsputil.locations".definition_handler
-    vim.lsp.handlers["textDocument/declaration"] = require "lsputil.locations".declaration_handler
-    vim.lsp.handlers["textDocument/typeDefinition"] = require "lsputil.locations".typeDefinition_handler
-    vim.lsp.handlers["textDocument/implementation"] = require "lsputil.locations".implementation_handler
-    vim.lsp.handlers["textDocument/documentSymbol"] = require "lsputil.symbols".document_handler
-    vim.lsp.handlers["workspace/symbol"] = require "lsputil.symbols".workspace_handler
-
     -- Mappings.
     local opts = {noremap = true, silent = true}
 
@@ -24,20 +15,26 @@ function on_attach(client, bufnr)
     -- buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
     buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
     buf_set_keymap("n", "<F12>", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    -- buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    buf_set_keymap("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
     buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
     buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     buf_set_keymap("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
     buf_set_keymap("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
     buf_set_keymap("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
     buf_set_keymap("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-    buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    -- buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    buf_set_keymap("n", "<leader>rn", "<cmd>Lspsaga rename<cr>", opts)
     buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
     buf_set_keymap("n", "<leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-    buf_set_keymap("n", "[g", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-    buf_set_keymap("n", "]g", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+    -- buf_set_keymap("n", "[g", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "[g", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
+    -- buf_set_keymap("n", "]g", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "]g", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
     buf_set_keymap("n", "<F10>", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-    buf_set_keymap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    -- buf_set_keymap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    buf_set_keymap("n", "ca", "<cmd>Lspsaga code_action<cr>", opts)
+    buf_set_keymap("x", "ca", ":<c-u>Lspsaga range_code_action<cr>", opts)
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
@@ -46,7 +43,7 @@ function on_attach(client, bufnr)
         buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
-    require "lsp_signature".on_attach({hint_prefix = " ", use_lspsaga = false})
+    require "lsp_signature".on_attach({hint_prefix = " ", use_lspsaga = true})
 end
 
 -- local lspconf = require("lspconfig")
@@ -137,4 +134,50 @@ require("flutter-tools").setup {
     lsp = {
         on_attach = on_attach
     }
+}
+
+-- saga
+local lspsaga = require "lspsaga"
+lspsaga.setup {
+    -- defaults ...
+    debug = false,
+    use_saga_diagnostic_sign = true,
+    -- diagnostic sign
+    error_sign = "",
+    warn_sign = "",
+    hint_sign = "",
+    infor_sign = "",
+    diagnostic_header_icon = "   ",
+    -- code action title icon
+    code_action_icon = " ",
+    code_action_prompt = {
+        enable = true,
+        sign = true,
+        sign_priority = 40,
+        virtual_text = true
+    },
+    finder_definition_icon = "  ",
+    finder_reference_icon = "  ",
+    max_preview_lines = 10,
+    finder_action_keys = {
+        open = "o",
+        vsplit = "s",
+        split = "i",
+        quit = "q",
+        scroll_down = "<C-f>",
+        scroll_up = "<C-b>"
+    },
+    code_action_keys = {
+        quit = "q",
+        exec = "<CR>"
+    },
+    rename_action_keys = {
+        quit = "<C-c>",
+        exec = "<CR>"
+    },
+    definition_preview_icon = "  ",
+    border_style = "single",
+    rename_prompt_prefix = "➤",
+    server_filetype_map = {},
+    diagnostic_prefix_format = "%d. "
 }
