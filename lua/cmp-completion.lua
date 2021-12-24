@@ -10,6 +10,16 @@ local feedkey = function(key, mode)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
+vim.api.nvim_exec(
+    [[
+    let g:vsnip_filetypes = {}
+    let g:vsnip_filetypes.javascriptreact = ['javascript']
+    let g:vsnip_filetypes.vue = [ 'vue', 'javascript', 'typescript' ]
+    let g:vsnip_filetypes.typescriptreact = [ 'typescript' ]
+    ]],
+    false
+)
+
 cmp.setup(
     {
         snippet = {
@@ -33,13 +43,7 @@ cmp.setup(
             ["<C-e>"] = cmp.mapping.close(),
             ["<CR>"] = cmp.mapping.confirm(
                 {
-                    select = false,
-                    behavior = cmp.ConfirmBehavior.Insert
-                }
-            ),
-            ["<Space>"] = cmp.mapping.confirm(
-                {
-                    select = false,
+                    select = true,
                     behavior = cmp.ConfirmBehavior.Insert
                 }
             ),
