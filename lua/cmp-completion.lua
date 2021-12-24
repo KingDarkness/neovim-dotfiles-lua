@@ -110,7 +110,8 @@ cmp.setup.cmdline(
     "/",
     {
         sources = {
-            {name = "buffer"}
+            {name = "buffer"},
+            {name = "path"}
         }
     }
 )
