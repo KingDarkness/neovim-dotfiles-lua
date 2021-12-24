@@ -46,9 +46,6 @@ return require("packer").startup(
                 }
             }
         }
-        use "saadparwaiz1/cmp_luasnip"
-        use "L3MON4D3/LuaSnip"
-
         -- file managing , picker, theme, etc
         use "kyazdani42/nvim-tree.lua"
 

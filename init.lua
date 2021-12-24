@@ -23,7 +23,7 @@ require "sessions"
 -- syntax highlight
 require "treesitter"
 -- lsp
-require "compe-completion"
+require "cmp-completion"
 require "lspconfigs"
 require("nvim-autopairs").setup()
 -- git
