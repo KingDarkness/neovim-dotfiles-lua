@@ -25,7 +25,6 @@ require "treesitter"
 -- lsp
 require "cmp-completion"
 require "lspconfigs"
-require("nvim-autopairs").setup()
 -- git
 require "gitsigns-settings"
 -- setup for TrueZen.nvim

@@ -1,9 +1,6 @@
 local packer = require("packer")
 local use = packer.use
 
--- ReplaceNotWorking
--- pizza
-
 return require("packer").startup(
     function()
         -- Packer can manage itself
@@ -43,7 +40,8 @@ return require("packer").startup(
                 {
                     "rafamadriz/friendly-snippets",
                     after = "cmp-vsnip"
-                }
+                },
+                "hrsh7th/cmp-nvim-lsp-document-symbol"
             }
         }
         -- file managing , picker, theme, etc
@@ -68,10 +66,23 @@ return require("packer").startup(
         -- other
         use "907th/vim-auto-save"
         use "junegunn/vim-easy-align"
+        use "chaoren/vim-wordmotion"
         use "vim-test/vim-test"
         use "tpope/vim-sleuth"
         use "editorconfig/editorconfig-vim"
-        use "windwp/nvim-autopairs"
+        use {
+            "windwp/nvim-autopairs",
+            run = "make",
+            config = function()
+                require("nvim-autopairs").setup {}
+            end
+        }
+        use {
+            "windwp/nvim-ts-autotag",
+            config = function()
+                require("nvim-ts-autotag").setup {enable = true}
+            end
+        }
         use "alvan/vim-closetag"
         use "karb94/neoscroll.nvim"
         use "kdav5758/TrueZen.nvim"
@@ -83,9 +94,11 @@ return require("packer").startup(
         -- doc generate
         use {
             "kkoomen/vim-doge",
-            run = function()
-                vim.fn["doge#install"](0)
-            end
+            run = ":call doge#install()",
+            config = function()
+                require("config.doge").setup()
+            end,
+            event = "VimEnter"
         }
         -- comment
         use "JoosepAlviste/nvim-ts-context-commentstring"

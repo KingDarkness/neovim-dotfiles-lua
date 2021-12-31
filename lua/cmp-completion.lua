@@ -47,6 +47,26 @@ cmp.setup(
                     behavior = cmp.ConfirmBehavior.Insert
                 }
             ),
+            ["<Space>"] = cmp.mapping.confirm(
+                {
+                    select = true,
+                    behavior = cmp.ConfirmBehavior.Insert
+                }
+            ),
+            ["<Down>"] = cmp.mapping(
+                function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    elseif vim.fn["vsnip#available"](1) == 1 then
+                        feedkey("<Plug>(vsnip-expand-or-jump)", "")
+                    elseif has_words_before() then
+                        cmp.complete()
+                    else
+                        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+                    end
+                end,
+                {"i", "s"}
+            ),
             ["<Tab>"] = cmp.mapping(
                 function(fallback)
                     if cmp.visible() then
@@ -109,23 +129,12 @@ cmp.setup(
 cmp.setup.cmdline(
     "/",
     {
-        sources = {
-            {name = "buffer"},
-            {name = "path"}
-        }
-    }
-)
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(
-    ":",
-    {
         sources = cmp.config.sources(
             {
-                {name = "path"}
+                {name = "nvim_lsp_document_symbol"}
             },
             {
-                {name = "cmdline"}
+                {name = "buffer"}
             }
         )
     }
