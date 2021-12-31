@@ -1,5 +1,5 @@
 local g = vim.g -- a table to access global variables
-require "plugins"
+require("plugins").setup()
 g.mapleader = ","
 -- global settings
 require "settings"

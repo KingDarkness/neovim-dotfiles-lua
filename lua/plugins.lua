@@ -1,8 +1,39 @@
-local packer = require("packer")
-local use = packer.use
+local M = {}
 
-return require("packer").startup(
-    function()
+local packer_bootstrap = false
+
+local function packer_init()
+    local fn = vim.fn
+    local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+    if fn.empty(fn.glob(install_path)) > 0 then
+        packer_bootstrap =
+            fn.system {
+            "git",
+            "clone",
+            "--depth",
+            "1",
+            "https://github.com/wbthomason/packer.nvim",
+            install_path
+        }
+        vim.cmd [[packadd packer.nvim]]
+    end
+    vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
+end
+
+packer_init()
+
+function M.setup()
+    local conf = {
+        compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
+        display = {
+            open_fn = function()
+                return require("packer.util").float {border = "rounded"}
+            end
+        }
+    }
+
+    local function plugins(use)
+        use {"lewis6991/impatient.nvim"}
         -- Packer can manage itself
         use "wbthomason/packer.nvim"
         -- highlighting
@@ -94,11 +125,7 @@ return require("packer").startup(
         -- doc generate
         use {
             "kkoomen/vim-doge",
-            run = ":call doge#install()",
-            config = function()
-                require("config.doge").setup()
-            end,
-            event = "VimEnter"
+            run = ":call doge#install()"
         }
         -- comment
         use "JoosepAlviste/nvim-ts-context-commentstring"
@@ -111,10 +138,17 @@ return require("packer").startup(
         use "mhinz/vim-grepper"
         -- html
         use "mattn/emmet-vim"
-    end,
-    {
-        display = {
-            border = {"┌", "─", "┐", "│", "┘", "─", "└", "│"}
-        }
-    }
-)
+
+        if packer_bootstrap then
+            print "Setting up Neovim. Restart required after installation!"
+            require("packer").sync()
+        end
+    end
+
+    pcall(require, "impatient")
+    pcall(require, "packer_compiled")
+    require("packer").init(conf)
+    require("packer").startup(plugins)
+end
+
+return M
