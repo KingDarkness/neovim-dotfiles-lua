@@ -27,8 +27,6 @@ require "cmp-completion"
 require "lspconfigs"
 -- git
 require "gitsigns-settings"
--- setup for TrueZen.nvim
-require "zenmode"
 -- test runer
 require "test"
 -- comment

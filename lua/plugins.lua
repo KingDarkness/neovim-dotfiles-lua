@@ -116,7 +116,6 @@ function M.setup()
         }
         use "alvan/vim-closetag"
         use "karb94/neoscroll.nvim"
-        use "kdav5758/TrueZen.nvim"
         use "folke/which-key.nvim"
         use "tweekmonster/startuptime.vim"
         use "schickling/vim-bufonly"
