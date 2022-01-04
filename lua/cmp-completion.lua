@@ -104,6 +104,14 @@ cmp.setup(
         completion = {completeopt = "menu,menuone,noinsert"}
     }
 )
+require "cmp".setup.cmdline(
+    ":",
+    {
+        sources = {
+            {name = "cmdline"}
+        }
+    }
+)
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(

@@ -50,6 +50,7 @@ function M.setup()
         use "hrsh7th/cmp-buffer"
         use "hrsh7th/cmp-path"
         use "ray-x/cmp-treesitter"
+        use "hrsh7th/cmp-cmdline"
 
         use "onsails/lspkind-nvim"
         use "sbdchd/neoformat"
