@@ -43,7 +43,7 @@ map("v", "<leader>r", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
 map("v", "<leader>R", [[:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>]], opt)
 map("n", "<leader>R", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
 
-map("n", "<leader>F", [[:lua require('spectre').open()<CR>]], opt)
+map("n", "<leader>F", [[:lua require('spectre').open_visual({select_word=true})<CR>]], opt)
 map("n", "<leader>f", [[:lua require('spectre').open_file_search()<CR>]], opt)
 
 -- search
