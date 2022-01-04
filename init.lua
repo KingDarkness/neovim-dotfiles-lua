@@ -30,7 +30,7 @@ require "gitsigns-settings"
 -- test runer
 require "test"
 -- comment
-require "comment"
+require "comment-config"
 -- search & replace
 require "grepper"
 -- format code

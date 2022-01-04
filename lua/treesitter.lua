@@ -31,6 +31,10 @@ ts_config.setup {
     },
     context_commentstring = {
         enable = true,
+        context_commentstring = {
+            enable = true,
+            enable_autocmd = false
+        },
         config = {
             vue = {
                 __default = "// %s",

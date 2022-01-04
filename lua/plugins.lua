@@ -77,6 +77,7 @@ function M.setup()
         }
         -- file managing , picker, theme, etc
         use "kyazdani42/nvim-tree.lua"
+        use "nathom/filetype.nvim"
 
         use "kyazdani42/nvim-web-devicons"
         use "ryanoasis/vim-devicons"
@@ -128,8 +129,8 @@ function M.setup()
         }
         -- comment
         use "JoosepAlviste/nvim-ts-context-commentstring"
-        use "b3nj5m1n/kommentary"
         use "folke/todo-comments.nvim"
+        use "numToStr/Comment.nvim"
         -- workspace & dashboard
         use "rmagatti/auto-session"
         use "rmagatti/session-lens"

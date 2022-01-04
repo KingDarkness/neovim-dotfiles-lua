@@ -15,8 +15,9 @@ end
 
 local base16 = require "base16"
 base16(base16.themes["onedark"], true)
-cmd "syntax on"
-cmd "set nowrap"
+
+-- cmd("syntax on")
+-- cmd("set nowrap")
 
 opt("o", "encoding", "utf-8")
 opt("o", "fileencoding", "utf-8")
@@ -93,7 +94,7 @@ vim.api.nvim_command(
 ]]
 )
 
-vim.cmd(
+cmd(
     [[
   filetype plugin indent on
   set smartindent

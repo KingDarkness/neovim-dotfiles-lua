@@ -69,6 +69,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["Comment.nvim"] = {
+    loaded = true,
+    path = "/Users/kingdarkness/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    url = "https://github.com/numToStr/Comment.nvim"
+  },
   ["auto-session"] = {
     loaded = true,
     path = "/Users/kingdarkness/.local/share/nvim/site/pack/packer/start/auto-session",
@@ -123,6 +128,11 @@ _G.packer_plugins = {
     path = "/Users/kingdarkness/.local/share/nvim/site/pack/packer/start/emmet-vim",
     url = "https://github.com/mattn/emmet-vim"
   },
+  ["filetype.nvim"] = {
+    loaded = true,
+    path = "/Users/kingdarkness/.local/share/nvim/site/pack/packer/start/filetype.nvim",
+    url = "https://github.com/nathom/filetype.nvim"
+  },
   ["flutter-tools.nvim"] = {
     loaded = true,
     path = "/Users/kingdarkness/.local/share/nvim/site/pack/packer/start/flutter-tools.nvim",
@@ -149,11 +159,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/kingdarkness/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
-  },
-  kommentary = {
-    loaded = true,
-    path = "/Users/kingdarkness/.local/share/nvim/site/pack/packer/start/kommentary",
-    url = "https://github.com/b3nj5m1n/kommentary"
   },
   ["lsp_signature.nvim"] = {
     loaded = true,
@@ -394,25 +399,25 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-ts-autotag
-time([[Config for nvim-ts-autotag]], true)
-try_loadstring("\27LJ\2\nL\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\venable\2\nsetup\20nvim-ts-autotag\frequire\0", "config", "nvim-ts-autotag")
-time([[Config for nvim-ts-autotag]], false)
--- Config for: nvim-spectre
-time([[Config for nvim-spectre]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19spectre-config\frequire\0", "config", "nvim-spectre")
-time([[Config for nvim-spectre]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
+-- Config for: nvim-spectre
+time([[Config for nvim-spectre]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19spectre-config\frequire\0", "config", "nvim-spectre")
+time([[Config for nvim-spectre]], false)
+-- Config for: nvim-ts-autotag
+time([[Config for nvim-ts-autotag]], true)
+try_loadstring("\27LJ\2\nL\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\venable\2\nsetup\20nvim-ts-autotag\frequire\0", "config", "nvim-ts-autotag")
+time([[Config for nvim-ts-autotag]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
+vim.cmd [[ packadd vim-vsnip ]]
+vim.cmd [[ packadd vim-vsnip-integ ]]
 vim.cmd [[ packadd nvim-cmp ]]
 vim.cmd [[ packadd cmp-vsnip ]]
 vim.cmd [[ packadd friendly-snippets ]]
-vim.cmd [[ packadd vim-vsnip ]]
-vim.cmd [[ packadd vim-vsnip-integ ]]
 time([[Sequenced loading]], false)
 if should_profile then save_profiles() end
 
