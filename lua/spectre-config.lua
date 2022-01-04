@@ -12,7 +12,7 @@ function M.setup()
             line_sep = "└-----------------------------------------",
             highlight = {
                 ui = "String",
-                search = "DiffChange",
+                search = "DiffAdd",
                 replace = "DiffDelete"
             },
             find_engine = {
