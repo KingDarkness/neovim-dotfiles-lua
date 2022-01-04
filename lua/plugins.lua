@@ -135,6 +135,12 @@ function M.setup()
         use "rmagatti/session-lens"
         -- search & replace
         use "mhinz/vim-grepper"
+        use {
+            "windwp/nvim-spectre",
+            config = function()
+                require("spectre-config").setup()
+            end
+        }
         -- html
         use "mattn/emmet-vim"
 

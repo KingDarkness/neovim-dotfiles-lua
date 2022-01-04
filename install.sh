@@ -24,7 +24,7 @@ BREW=$(which brew)
 if [[ ! -z $APT_GET_CMD ]]; then
     apt-get install -y ripgrep bat fd-find silversearcher-ag
 elif [[ ! -z BREW ]]; then
-    brew install ripgrep bat fd editorconfig luajit tree-sitter the_silver_searcher
+    brew install ripgrep bat fd editorconfig luajit tree-sitter the_silver_searcher gnu-sed
 else
     echo "error can't find package manager"
     exit 1
