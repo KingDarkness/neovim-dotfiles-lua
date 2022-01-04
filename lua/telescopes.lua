@@ -39,6 +39,9 @@ require("telescope").setup {
     pickers = {
         find_files = {
             theme = "ivy"
+        },
+        treesitter = {
+            theme = "ivy"
         }
     }
 }
@@ -56,7 +59,12 @@ vim.api.nvim_set_keymap(
     [[<Cmd>lua require('telescope.builtin').find_files({find_command={'rg','--ignore','--hidden','--files'}})<CR>]],
     opt
 )
-vim.api.nvim_set_keymap("n", "<Leader>r", [[<Cmd>lua require('telescope.builtin').treesitter()<CR>]], opt)
+vim.api.nvim_set_keymap(
+    "n",
+    "<Leader>r",
+    [[<Cmd>lua require('telescope.builtin').treesitter({default_text = ':method:'})<CR>]],
+    opt
+)
 vim.api.nvim_set_keymap(
     "n",
     "<Leader>fp",

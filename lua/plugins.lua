@@ -71,8 +71,7 @@ function M.setup()
                 {
                     "rafamadriz/friendly-snippets",
                     after = "cmp-vsnip"
-                },
-                "hrsh7th/cmp-nvim-lsp-document-symbol"
+                }
             }
         }
         -- file managing , picker, theme, etc
