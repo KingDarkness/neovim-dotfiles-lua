@@ -1,3 +1,4 @@
 sessions/*
 plugins/formatter/*/vendor
 plugins/formatter/*/node_modules
+lua/packer_compiled.lua
