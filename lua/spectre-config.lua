@@ -11,8 +11,11 @@ function M.setup()
             result_padding = "¦  ",
             line_sep = "└-----------------------------------------",
             highlight = {
-                ui = "String",
-                search = "DiffAdd",
+                ui = "Constant",
+                filename = "Keyword",
+                filedirectory = "Comment",
+                search = "String",
+                border = "Comment",
                 replace = "DiffDelete"
             },
             find_engine = {
