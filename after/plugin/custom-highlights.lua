@@ -4,7 +4,7 @@ local cmd = vim.cmd
 cmd "hi IndentBlanklineChar guifg=#383c44"
 
 -- misc --
-cmd "hi LineNr guifg=#42464e"
+cmd "hi LineNr guifg=#be5046"
 cmd "hi Comment guifg=#42464e"
 cmd "hi NvimInternalError guifg=#f9929b"
 cmd "hi VertSplit guifg=#2a2e36"
