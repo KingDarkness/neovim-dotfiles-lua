@@ -1,7 +1,6 @@
 local M = {}
 
 function M.setup()
-    print("spectre")
     require("spectre").setup(
         {
             color_devicons = true,
@@ -96,6 +95,9 @@ function M.setup()
             is_insert_mode = true -- start open panel on is_insert_mode
         }
     )
+
+    vim.api.nvim_set_keymap("n", "<leader>F", [[:lua require('spectre').open_visual({select_word=true})<CR>]], {})
+    vim.api.nvim_set_keymap("n", "<leader>f", [[:lua require('spectre').open_file_search()<CR>]], {})
 end
 
 return M

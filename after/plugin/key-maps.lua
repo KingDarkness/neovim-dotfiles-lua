@@ -16,11 +16,9 @@ map("t", "<C-n>", [[<C-\><C-n>]], {silent = true})
 map("n", "<leader>ya", [[ <Cmd> %y+<CR>]], opt)
 -- save
 map("n", "<C-s>", [[ <Cmd> w <CR>]], opt)
--- toggle numbers ---
-map("n", "<leader>n", [[ <Cmd> set nu!<CR>]], opt)
 -- Close buffer
-map("n", "<leader>c", [[ <Cmd> bdelete <CR>]], opt)
-map("n", "<leader>ca", [[ <Cmd> BOnly <CR>]], opt)
+map("n", "<C-w>", [[ <Cmd> bdelete <CR>]], opt)
+map("n", "<C-W>", [[ <Cmd> BOnly <CR>]], opt)
 -- Clean search (highlight)
 map("n", "<leader><space>", [[ <Cmd> noh <CR>]], opt)
 -- Switching windows
@@ -42,10 +40,6 @@ map("n", "<leader>v", [[<Cmd>vsplit<CR>]], opt)
 map("v", "<leader>r", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
 map("v", "<leader>R", [[:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>]], opt)
 map("n", "<leader>R", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
-
-map("n", "<leader>F", [[:lua require('spectre').open_visual({select_word=true})<CR>]], opt)
-map("n", "<leader>f", [[:lua require('spectre').open_file_search()<CR>]], opt)
-
 -- search
 map(
     "v",
@@ -55,14 +49,7 @@ map(
 )
 map("n", "<leader>f", [[:/<C-r><C-w><CR>]], opt)
 
--- EasyAlign
-vim.api.nvim_exec([[
-  xmap <leader>a <Plug>(EasyAlign)
-  nmap <leader>a <Plug>(EasyAlign)
-]], false)
-
 -- Vmap for maintain Visual Mode after shifting > and <
--- Move visual block
 vim.api.nvim_exec(
     [[
   vmap < <gv

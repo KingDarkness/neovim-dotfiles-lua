@@ -1,4 +1,4 @@
-local lualine = require "lualine"
+local M = {}
 -- base16 onedark
 local colors = {
     base00 = "#282c34",
@@ -234,4 +234,8 @@ local config = {
     }
 }
 
-lualine.setup(config)
+function M.setup()
+    require("lualine").setup(config)
+end
+
+return M

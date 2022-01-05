@@ -1,39 +1,7 @@
-local g = vim.g -- a table to access global variables
 require("plugins").setup()
-g.mapleader = ","
--- global settings
-require "settings"
-require "key-maps"
-require "autosave"
-require "editorconfig"
+
+vim.g.mapleader = ","
 
 -- themes
-require "file-icons"
-require "statusline"
-require "tree"
-require "top-bufferline"
-require "custom-highlights"
-require "blankline"
-require("colorizer").setup()
-require("neoscroll").setup() -- smooth scroll
--- file manager
-require "telescopes"
--- workspace
-require "sessions"
--- syntax highlight
-require "treesitter"
--- lsp
-require "cmp-completion"
-require "lspconfigs"
--- git
-require "gitsigns-settings"
--- test runer
-require "test"
--- comment
-require "comment-config"
--- search & replace
-require "grepper"
--- format code
-require "autoformats"
--- emmet
-require "emmet"
+local base16 = require "base16"
+base16(base16.themes["onedark"], true)
