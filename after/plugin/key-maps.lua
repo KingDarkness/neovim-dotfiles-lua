@@ -18,7 +18,7 @@ map("n", "<leader>ya", [[ <Cmd> %y+<CR>]], opt)
 map("n", "<C-s>", [[ <Cmd> w <CR>]], opt)
 -- Close buffer
 map("n", "<C-w>", [[ <Cmd> bdelete <CR>]], opt)
-map("n", "<C-W>", [[ <Cmd> BOnly <CR>]], opt)
+map("n", "<S-W>", [[ <Cmd> BOnly <CR>]], opt)
 -- Clean search (highlight)
 map("n", "<leader><space>", [[ <Cmd> noh <CR>]], opt)
 -- Switching windows
