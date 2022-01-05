@@ -9,9 +9,9 @@ On macos with iterm2 & FiraCode Nerd Font
 
 # Install
 
-Install neovim-nightly , also use a nerdfont on your terminal.
+Install neovim ^`0.5.0` , also use a nerdfont on your terminal.
 
-[neovim-nightly](https://github.com/neovim/neovim/releases)
+[neovim](https://github.com/neovim/neovim/releases)
 
 [nerdfont](https://www.nerdfonts.com/)
 
@@ -26,12 +26,12 @@ $ ./install.sh
 
 # Install lsp
 
-[https://github.com/kabouzeid/nvim-lspinstall](https://github.com/kabouzeid/nvim-lspinstall)
+[https://github.com/williamboman/nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
 
 Exp:
 
 ```vim
-LspInstall php
+LspInstall intelephense phpactor bashls cssls dartls dockerls dotls eslint html jsonls tsserver zk pyright vuels mlls sumneko_lua
 ```
 
 # Features
@@ -61,6 +61,19 @@ LspInstall php
 # Config structure
 
 ```
+nvim
+├── after
+│   └── plugin
+│       └── autoload.lua
+├── init.lua
+├── install.sh
+├── lua
+│   └── anything.lua
+├── plugins
+    ├── formatter
+    │   └── formatter
+    └── install-formatter.sh
+
      nvim
       ├──init.lua
       └──lua
@@ -74,15 +87,11 @@ LspInstall php
 
 # Guides to migrate your nvim configs to init.lua -
 
-- https://github.com/nanotee/nvim-lua-guide
+- [https://github.com/nanotee/nvim-lua-guide](https://github.com/nanotee/nvim-lua-guide)
 
-- https://alpha2phi.medium.com/neovim-init-lua-e80f4f136030
+- [https://alpha2phi.medium.com/neovim-init-lua-e80f4f136030](https://alpha2phi.medium.com/neovim-init-lua-e80f4f136030)
 
-- https://oroques.dev/notes/neovim-init/
-
-- https://icyphox.sh/blog/nvim-lua/
-
-- https://github.com/rafamadriz/friendly-snippets/wiki
+- [https://oroques.dev/notes/neovim-init](https://oroques.dev/notes/neovim-init)
 
 ## alias vi as nvim (optional)
 
