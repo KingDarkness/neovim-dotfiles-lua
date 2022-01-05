@@ -17,7 +17,7 @@ local function packer_init()
         }
         vim.cmd [[packadd packer.nvim]]
     end
-    vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
+    -- vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
 end
 
 packer_init()
@@ -277,7 +277,7 @@ function M.setup()
                 vim.g.EditorConfig_core_mode = "external_command"
             end
         }
-        use "alvan/vim-closetag"
+        use {"alvan/vim-closetag", event = "BufWinEnter", ft = {"html", "php", "vue", "jsx", "xhtml", "htm", "jsx"}}
         use {
             "karb94/neoscroll.nvim",
             event = "BufWinEnter",
@@ -291,10 +291,10 @@ function M.setup()
                 require("config.whichkey").setup()
             end
         }
-        use "tweekmonster/startuptime.vim"
-        use "schickling/vim-bufonly"
-        use "tpope/vim-surround"
-        use "mechatroner/rainbow_csv"
+        use {"tweekmonster/startuptime.vim", cmd = "StartupTime"}
+        use {"schickling/vim-bufonly", event = "VimEnter"}
+        use {"tpope/vim-surround", event = "BufWinEnter"}
+        use {"mechatroner/rainbow_csv", event = "BufWinEnter", ft = "csv"}
         -- doc generate
         use {
             "kkoomen/vim-doge",

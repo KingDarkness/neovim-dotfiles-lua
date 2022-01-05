@@ -15,8 +15,8 @@ map("t", "<C-n>", [[<C-\><C-n>]], {silent = true})
 -- save
 map("n", "<C-s>", [[ <Cmd> w <CR>]], opt)
 -- Close buffer
-map("n", "<C-w>", [[ <Cmd> bdelete <CR>]], opt)
-map("n", "<S-W>", [[ <Cmd> BOnly <CR>]], opt)
+map("n", "<C-w>", [[ <Cmd>bd<CR>]], opt)
+map("n", "<S-W>", [[ <Cmd>BOnly<CR>]], opt)
 -- Switching windows
 map("n", "<A-Up>", [[ <Cmd> wincmd k <CR>]], opt)
 map("n", "<A-Down>", [[ <Cmd> wincmd j <CR>]], opt)
