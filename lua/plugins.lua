@@ -285,7 +285,12 @@ function M.setup()
                 require("neoscroll").setup() -- smooth scroll
             end
         }
-        use "folke/which-key.nvim"
+        use {
+            "folke/which-key.nvim",
+            config = function()
+                require("config.whichkey").setup()
+            end
+        }
         use "tweekmonster/startuptime.vim"
         use "schickling/vim-bufonly"
         use "tpope/vim-surround"
