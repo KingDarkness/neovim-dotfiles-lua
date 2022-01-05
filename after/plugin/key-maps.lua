@@ -12,15 +12,11 @@ local opt = {}
 -- map("n", "<C-T>", [[<Cmd> split term://$SHELL | resize 10 <CR>]], opt) --  bottom
 -- back to nomal mode on terminal
 map("t", "<C-n>", [[<C-\><C-n>]], {silent = true})
--- COPY EVERYTHING in the file--
-map("n", "<leader>ya", [[ <Cmd> %y+<CR>]], opt)
 -- save
 map("n", "<C-s>", [[ <Cmd> w <CR>]], opt)
 -- Close buffer
 map("n", "<C-w>", [[ <Cmd> bdelete <CR>]], opt)
 map("n", "<S-W>", [[ <Cmd> BOnly <CR>]], opt)
--- Clean search (highlight)
-map("n", "<leader><space>", [[ <Cmd> noh <CR>]], opt)
 -- Switching windows
 map("n", "<A-Up>", [[ <Cmd> wincmd k <CR>]], opt)
 map("n", "<A-Down>", [[ <Cmd> wincmd j <CR>]], opt)
@@ -32,14 +28,10 @@ map("n", "<S-x>", [[<Cmd>bdelete<CR>]], opt) -- close tab
 -- move between tabs
 map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
 map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
--- Split
-map("n", "<leader>h", [[<Cmd>split<CR>]], opt)
-map("n", "<leader>v", [[<Cmd>vsplit<CR>]], opt)
-
 -- replace
 map("v", "<leader>r", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
-map("v", "<leader>R", [[:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>]], opt)
 map("n", "<leader>R", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
+map("v", "<leader>R", [[:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>]], opt)
 -- search
 map(
     "v",

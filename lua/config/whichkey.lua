@@ -3,6 +3,9 @@ local M = {}
 local mappings = {
     ["w"] = {"<Cmd>w!<Cr>", "Save"},
     ["q"] = {"<Cmd>q!<Cr>", "Quit"},
+    ["v"] = {"<Cmd>vsplit<CR>", "V split"},
+    ["h"] = {"<Cmd>split<CR>", "H split"},
+    ["<space>"] = {"<Cmd>noh<CR>", "Clear search highlight"},
     ["z"] = {
         name = "System",
         t = {"<Cmd>Telescope colorscheme<Cr>", "Color scheme"},
@@ -12,6 +15,11 @@ local mappings = {
         p = {"<Cmd>messages clear<Cr>", "Clear messages"},
         u = {"<Cmd>PackerUpdate<Cr>", "Packer update"},
         c = {"<Cmd>PackerCompile<Cr>", "Packer update"}
+    },
+    -- copy
+    ["y"] = {
+        name = "Copy",
+        a = {"[[ <Cmd> %y+<CR>]]", "Copy All"}
     },
     -- Buffer
     b = {
