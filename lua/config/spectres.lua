@@ -92,12 +92,12 @@ function M.setup()
             },
             replace_vim_cmd = "cdo",
             is_open_target_win = true, --open file on opener window
-            is_insert_mode = true -- start open panel on is_insert_mode
+            is_insert_mode = false -- start open panel on is_insert_mode
         }
     )
 
     vim.api.nvim_set_keymap("n", "<leader>F", [[:lua require('spectre').open_visual({select_word=true})<CR>]], {})
-    vim.api.nvim_set_keymap("n", "<leader>f", [[:lua require('spectre').open_file_search()<CR>]], {})
+    vim.api.nvim_set_keymap("n", "<leader>f", [[:lua require('spectre').open_file_search({select_word=true})<CR>]], {})
 end
 
 return M
