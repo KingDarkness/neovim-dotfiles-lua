@@ -73,11 +73,6 @@ nvim
     ├── formatter
     │   └── formatter
     └── install-formatter.sh
-
-     nvim
-      ├──init.lua
-      └──lua
-          └──anything.lua
 ```
 
 - The init.lua is used instead of init.vim.
