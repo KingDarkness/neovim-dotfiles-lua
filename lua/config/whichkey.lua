@@ -23,6 +23,12 @@ local mappings = {
         n = {"<Cmd>bn<Cr>", "Next buffer"},
         p = {"<Cmd>bp<Cr>", "Previous buffer"},
         f = {"<Cmd>bd!<Cr>", "Force delete current buffer"}
+    },
+    -- number
+    n = {
+        name = "Line Number",
+        r = {"<Cmd>set relativenumber<Cr>", "Set relativenumber"},
+        n = {"<Cmd>set norelativenumber<Cr>", "Set norelativenumber"}
     }
 }
 
