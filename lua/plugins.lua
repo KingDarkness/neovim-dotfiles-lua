@@ -17,7 +17,7 @@ local function packer_init()
         }
         vim.cmd [[packadd packer.nvim]]
     end
-    -- vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
+    vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
 end
 
 packer_init()
