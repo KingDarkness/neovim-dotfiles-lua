@@ -9,7 +9,6 @@ local fmt = string.format
 function M.setup_commands(cmds, require_file)
     for _, cmd in ipairs(cmds) do
         local nargs = cmd.nargs and fmt("-nargs=%d", cmd.nargs) or ""
-        print(fmt('command! %s %s lua require("%s").%s', nargs, cmd.name, require_file, cmd.cmd))
         vim.cmd(fmt('command! %s %s lua require("%s").%s', nargs, cmd.name, require_file, cmd.cmd))
     end
 end
@@ -28,6 +27,10 @@ end
 
 function M.get_absolute_path()
     return vim.api.nvim_exec([[echo substitute(expand('%"d'), getcwd(), '', '')]], true)
+end
+
+function M.isMacOs()
+    return vim.loop.os_uname().sysname == "Darwin"
 end
 
 return M

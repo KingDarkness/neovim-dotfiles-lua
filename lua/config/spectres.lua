@@ -1,5 +1,6 @@
 local M = {}
 local utils = require("utils")
+local replace_tool = utils.isMacOs() and "gsed" or "sed"
 
 function M.setup()
     require("spectre").setup(
@@ -68,7 +69,7 @@ function M.setup()
             },
             replace_engine = {
                 ["sed"] = {
-                    cmd = "gsed",
+                    cmd = replace_tool,
                     args = nil
                 },
                 options = {
