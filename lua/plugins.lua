@@ -266,7 +266,7 @@ function M.setup()
             "vim-test/vim-test",
             event = "BufWinEnter",
             config = function()
-                require("config.test")
+                require("config.test").setup()
             end
         }
         use "tpope/vim-sleuth"
