@@ -5,23 +5,15 @@ cmd "hi IndentBlanklineChar guifg=#383c44"
 
 -- misc --
 cmd "hi LineNr guifg=#be5046"
-cmd "hi Comment guifg=#42464e"
 cmd "hi NvimInternalError guifg=#f9929b"
 cmd "hi VertSplit guifg=#2a2e36"
 cmd "hi EndOfBuffer guifg=#1e222a"
-
--- Pmenu
-cmd "hi PmenuSel guibg=#98c379"
-cmd "hi Pmenu  guibg=#282c34"
-cmd "hi PmenuSbar guibg =#353b45"
-cmd "hi PmenuThumb guibg =#81A1C1"
-
 -- inactive statuslines as thin splitlines
 cmd("highlight! StatusLineNC gui=underline guifg=#383c44")
 
 -- line n.o
 cmd "hi clear CursorLine"
-cmd "hi cursorlinenr guifg=#abb2bf"
+cmd "hi cursorlinenr guifg=#A3BE8C"
 
 -- git signs ---
 cmd "hi DiffAdd guifg=#81A1C1 guibg = none"

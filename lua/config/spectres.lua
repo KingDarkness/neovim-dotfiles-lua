@@ -83,7 +83,7 @@ function M.setup()
             default = {
                 find = {
                     --pick one of item in find_engine
-                    cmd = "rg",
+                    cmd = "ag",
                     options = {"ignore-case", "hidden"}
                 },
                 replace = {
