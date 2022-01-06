@@ -329,6 +329,7 @@ function M.setup()
         -- search & replace
         use {
             "mhinz/vim-grepper",
+            event = "BufWinEnter",
             config = function()
                 require("config.grepper").setup()
             end

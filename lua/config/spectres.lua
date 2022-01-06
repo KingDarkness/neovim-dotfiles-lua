@@ -68,7 +68,7 @@ function M.setup()
             replace_engine = {
                 ["sed"] = {
                     cmd = "sed",
-                    args = {}
+                    args = nil
                 },
                 options = {
                     ["ignore-case"] = {
@@ -81,7 +81,7 @@ function M.setup()
             default = {
                 find = {
                     --pick one of item in find_engine
-                    cmd = "ag",
+                    cmd = "rg",
                     options = {"ignore-case", "hidden"}
                 },
                 replace = {
