@@ -6,10 +6,13 @@ local mappings = {
     ["v"] = {"<Cmd>vsplit<CR>", "V split"},
     ["h"] = {"<Cmd>split<CR>", "H split"},
     ["<space>"] = {"<Cmd>noh<CR>", "Clear search highlight"},
+    ["f"] = {[[:/<C-r><C-w><CR>]], "Search current word in file"},
+    ["R"] = {
+        name = "Replace"
+    },
     ["z"] = {
         name = "System",
         t = {"<Cmd>Telescope colorscheme<Cr>", "Color scheme"},
-        h = {"<Cmd>15sp +term<CR>", "New horizontal terminal"},
         r = {"<Cmd>luafile %<Cr>", "Reload lua file"},
         m = {"<Cmd>messages<Cr>", "Messages"},
         p = {"<Cmd>messages clear<Cr>", "Clear messages"},
@@ -30,7 +33,8 @@ local mappings = {
         l = {"<Cmd>ls<Cr>", "List buffers"},
         n = {"<Cmd>bn<Cr>", "Next buffer"},
         p = {"<Cmd>bp<Cr>", "Previous buffer"},
-        f = {"<Cmd>bd!<Cr>", "Force delete current buffer"}
+        f = {"<Cmd>bd!<Cr>", "Force delete current buffer"},
+        h = {"<Cmd>15sp +term<CR>", "New horizontal terminal"}
     },
     -- number
     n = {

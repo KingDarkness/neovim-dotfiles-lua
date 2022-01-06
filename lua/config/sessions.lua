@@ -1,4 +1,5 @@
 local M = {}
+local utils = require("utils")
 
 function M.setup()
     require("auto-session").setup(
@@ -18,9 +19,9 @@ function M.setup()
         }
     )
 
-    vim.api.nvim_set_keymap("n", "<Leader>fs", [[<Cmd>:SearchSession<CR>]], {})
-    vim.api.nvim_set_keymap("n", "<Leader>ss", [[<Cmd>:SaveSession<CR>]], {})
-    vim.api.nvim_set_keymap("n", "<Leader>ds", [[<Cmd>:DeleteSession<CR>]], {})
+    utils.map_key("n", "<Leader>fs", [[<Cmd>:SearchSession<CR>]], {})
+    utils.map_key("n", "<Leader>ss", [[<Cmd>:SaveSession<CR>]], {})
+    utils.map_key("n", "<Leader>ds", [[<Cmd>:DeleteSession<CR>]], {})
 end
 
 return M

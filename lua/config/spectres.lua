@@ -1,4 +1,5 @@
 local M = {}
+local utils = require("utils")
 
 function M.setup()
     require("spectre").setup(
@@ -96,8 +97,14 @@ function M.setup()
         }
     )
 
-    vim.api.nvim_set_keymap("n", "<leader>F", [[:lua require('spectre').open_visual({select_word=true})<CR>]], {})
-    vim.api.nvim_set_keymap("n", "<leader>f", [[:lua require('spectre').open_file_search({select_word=true})<CR>]], {})
+    utils.setup_commands(
+        {
+            {name = "SpectreSearchAll", cmd = "open_visual({select_word=true})"}
+        },
+        "spectre"
+    )
+
+    utils.map_key("n", "<leader>F", "<CMD>SpectreSearchAll<CR>", {})
 end
 
 return M

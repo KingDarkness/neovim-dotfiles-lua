@@ -1,6 +1,6 @@
 local M = {}
 local g = vim.g
-
+local utils = require("utils")
 vim.o.termguicolors = true
 
 function M.setup()
@@ -110,7 +110,7 @@ function M.setup()
 
     -- Mappings for nvimtree
 
-    vim.api.nvim_set_keymap(
+    utils.map_key(
         "n",
         "<F3>",
         ":NvimTreeToggle<CR>",
@@ -120,7 +120,7 @@ function M.setup()
         }
     )
 
-    vim.api.nvim_set_keymap(
+    utils.map_key(
         "n",
         "tt",
         ":NvimTreeToggle<CR>",
@@ -130,7 +130,7 @@ function M.setup()
         }
     )
 
-    vim.api.nvim_set_keymap(
+    utils.map_key(
         "n",
         "<leader>1",
         ":BufferLineGoToBuffer 1<CR>",
@@ -140,7 +140,7 @@ function M.setup()
         }
     )
 
-    vim.api.nvim_set_keymap(
+    utils.map_key(
         "n",
         "<leader>2",
         ":BufferLineGoToBuffer 2<CR>",
@@ -150,7 +150,7 @@ function M.setup()
         }
     )
 
-    vim.api.nvim_set_keymap(
+    utils.map_key(
         "n",
         "<leader>3",
         ":BufferLineGoToBuffer 3<CR>",
@@ -159,7 +159,7 @@ function M.setup()
             silent = true
         }
     )
-    vim.api.nvim_set_keymap(
+    utils.map_key(
         "n",
         "<leader>4",
         ":BufferLineGoToBuffer 4<CR>",
@@ -168,7 +168,7 @@ function M.setup()
             silent = true
         }
     )
-    vim.api.nvim_set_keymap(
+    utils.map_key(
         "n",
         "<leader>5",
         ":BufferLineGoToBuffer 5<CR>",
@@ -177,7 +177,7 @@ function M.setup()
             silent = true
         }
     )
-    vim.api.nvim_set_keymap(
+    utils.map_key(
         "n",
         "<leader>6",
         ":BufferLineGoToBuffer 6<CR>",
@@ -186,7 +186,7 @@ function M.setup()
             silent = true
         }
     )
-    vim.api.nvim_set_keymap(
+    utils.map_key(
         "n",
         "<leader>7",
         ":BufferLineGoToBuffer 7<CR>",
@@ -195,7 +195,7 @@ function M.setup()
             silent = true
         }
     )
-    vim.api.nvim_set_keymap(
+    utils.map_key(
         "n",
         "<leader>8",
         ":BufferLineGoToBuffer 8<CR>",
@@ -204,7 +204,7 @@ function M.setup()
             silent = true
         }
     )
-    vim.api.nvim_set_keymap(
+    utils.map_key(
         "n",
         "<leader>9",
         ":BufferLineGoToBuffer 9<CR>",

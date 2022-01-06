@@ -1,45 +1,37 @@
-local function map(mode, lhs, rhs, opts)
-    local options = {noremap = true}
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+local utils = require("utils")
 
 local opt = {}
 
 -- open terminal
--- map("n", "<C-T>", [[<Cmd> split term://$SHELL | resize 10 <CR>]], opt) --  bottom
+-- utils.map_key("n", "<C-T>", [[<Cmd> split term://$SHELL | resize 10 <CR>]], opt) --  bottom
 -- back to nomal mode on terminal
-map("t", "<C-n>", [[<C-\><C-n>]], {silent = true})
+utils.map_key("t", "<C-n>", [[<C-\><C-n>]], {silent = true})
 -- save
-map("n", "<C-s>", [[ <Cmd> w <CR>]], opt)
+utils.map_key("n", "<C-s>", [[ <Cmd> w <CR>]], opt)
 -- Close buffer
-map("n", "<C-w>", [[ <Cmd>bd<CR>]], opt)
-map("n", "<S-W>", [[ <Cmd>BOnly<CR>]], opt)
+utils.map_key("n", "<C-w>", [[ <Cmd>bd<CR>]], opt)
+utils.map_key("n", "<S-W>", [[ <Cmd>BOnly<CR>]], opt)
 -- Switching windows
-map("n", "<A-Up>", [[ <Cmd> wincmd k <CR>]], opt)
-map("n", "<A-Down>", [[ <Cmd> wincmd j <CR>]], opt)
-map("n", "<A-Left>", [[ <Cmd> wincmd h <CR>]], opt)
-map("n", "<A-Right>", [[ <Cmd> wincmd l <CR>]], opt)
+utils.map_key("n", "<A-Up>", [[ <Cmd> wincmd k <CR>]], opt)
+utils.map_key("n", "<A-Down>", [[ <Cmd> wincmd j <CR>]], opt)
+utils.map_key("n", "<A-Left>", [[ <Cmd> wincmd h <CR>]], opt)
+utils.map_key("n", "<A-Right>", [[ <Cmd> wincmd l <CR>]], opt)
 -- tab
-map("n", "<S-t>", [[<Cmd>tabnew<CR>]], opt) -- new tab
-map("n", "<S-x>", [[<Cmd>bdelete<CR>]], opt) -- close tab
+utils.map_key("n", "<S-t>", [[<Cmd>tabnew<CR>]], opt) -- new tab
+utils.map_key("n", "<S-x>", [[<Cmd>bdelete<CR>]], opt) -- close tab
 -- move between tabs
-map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
-map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
+utils.map_key("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
+utils.map_key("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
 -- replace
-map("v", "<leader>r", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
-map("n", "<leader>R", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
-map("v", "<leader>R", [[:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>]], opt)
+utils.map_key("n", "<leader>R", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
+
 -- search
-map(
+utils.map_key(
     "v",
     "<leader>f",
     [[:<C-U> let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR> gvy/<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>gVzv:call setreg('"', old_reg, old_regtype)<CR>]],
     {silent = true}
 )
-map("n", "<leader>f", [[:/<C-r><C-w><CR>]], opt)
 
 -- Vmap for maintain Visual Mode after shifting > and <
 vim.api.nvim_exec(

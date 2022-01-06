@@ -1,4 +1,5 @@
 local M = {}
+local utils = require("utils")
 function M.setup()
     require("telescope").setup {
         defaults = {
@@ -57,28 +58,26 @@ function M.setup()
 
     local opt = {noremap = true, silent = true}
 
-    -- mappings
-    vim.api.nvim_set_keymap(
-        "n",
-        "<Leader>p",
-        [[<Cmd>lua require('telescope.builtin').find_files({find_command={'rg','--ignore','--hidden','--files'}})<CR>]],
-        opt
+    utils.setup_commands(
+        {
+            {name = "TelescopeFile", cmd = "find_files({find_command={'rg','--ignore','--hidden','--files'}})"},
+            {name = "TelescopeTreesitter", cmd = "treesitter({default_text = ':method:'})"}
+        },
+        "telescope.builtin"
     )
-    vim.api.nvim_set_keymap(
-        "n",
-        "<Leader>r",
-        [[<Cmd>lua require('telescope.builtin').treesitter({default_text = ':method:'})<CR>]],
-        opt
-    )
-    vim.api.nvim_set_keymap(
-        "n",
-        "<Leader>fp",
-        [[<Cmd>lua require('telescope').extensions.media_files.media_files()<CR>]],
-        opt
+    utils.setup_commands(
+        {
+            {name = "TelescopeMediaFile", cmd = "extensions.media_files.media_files()"},
+            {name = "FlutterTool", cmd = "extensions.flutter.commands()"}
+        },
+        "telescope"
     )
 
-    vim.api.nvim_set_keymap("n", "<Leader>fb", [[<Cmd>lua require('telescope.builtin').buffers()<CR>]], opt)
-    vim.api.nvim_set_keymap("n", "<Leader>ff", [[<Cmd>lua require('telescope').extensions.flutter.commands()<CR>]], opt)
+    -- mappings
+    utils.map_key("n", "<Leader>p", [[<Cmd>TelescopeFile<CR>]], opt)
+    utils.map_key("n", "<Leader>r", [[<Cmd>TelescopeTreesitter<CR>]], opt)
+    utils.map_key("n", "<Leader>m", [[<Cmd>TelescopeMediaFile<CR>]], opt)
+    utils.map_key("n", "<Leader>lf", [[<Cmd>FlutterTool<CR>]], opt)
 end
 
 return M

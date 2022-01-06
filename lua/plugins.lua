@@ -103,7 +103,7 @@ function M.setup()
             ft = "php",
             run = "composer install",
             config = function()
-                vim.api.nvim_set_keymap("n", ",php", "<cmd>PhpactorContextMenu<CR>", {silent = true, noremap = true})
+                require("utils").map_key("n", ",lp", "<cmd>PhpactorContextMenu<CR>", {silent = true, noremap = true})
             end
         }
 
@@ -305,8 +305,8 @@ function M.setup()
         use {
             "folke/todo-comments.nvim",
             config = function()
-                require("todo-comments").setup {}
-                vim.api.nvim_set_keymap("n", "<leader>ft", ":TodoTelescope<cr>", {})
+                require("utils").map_key("n", "<leader>ft", ":TodoTelescope<cr>", {})
+                require("todo-comments").setup()
             end
         }
         use {
@@ -327,13 +327,6 @@ function M.setup()
             end
         }
         -- search & replace
-        use {
-            "mhinz/vim-grepper",
-            event = "BufWinEnter",
-            config = function()
-                require("config.grepper").setup()
-            end
-        }
         use {
             "windwp/nvim-spectre",
             event = "VimEnter",

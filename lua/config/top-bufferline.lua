@@ -1,4 +1,5 @@
 local M = {}
+local utils = require("utils")
 
 -- base16 onedark
 local colors = {
@@ -87,7 +88,7 @@ function M.setup()
         }
     }
 
-    vim.api.nvim_set_keymap("n", "gb", [[<Cmd> BufferLinePick <CR>]], {})
+    utils.map_key("n", "gb", [[<Cmd> BufferLinePick <CR>]], {})
 end
 
 return M
