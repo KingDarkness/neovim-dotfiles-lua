@@ -1,8 +1,10 @@
 local M = {}
 
 local mappings = {
-    ["w"] = {"<Cmd>w!<Cr>", "Save"},
-    ["q"] = {"<Cmd>q!<Cr>", "Quit"},
+    ["w"] = {"<Cmd>w<Cr>", "Save"},
+    ["W"] = {"<Cmd>w!<Cr>", "Force save"},
+    ["q"] = {"<Cmd>q<Cr>", "Quit"},
+    ["Q"] = {"<Cmd>q!<Cr>", "Force quit"},
     ["v"] = {"<Cmd>vsplit<CR>", "V split"},
     ["h"] = {"<Cmd>split<CR>", "H split"},
     ["<space>"] = {"<Cmd>noh<CR>", "Clear search highlight"},
