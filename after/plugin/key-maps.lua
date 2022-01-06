@@ -25,14 +25,6 @@ utils.map_key("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
 -- replace
 utils.map_key("n", "<leader>R", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
 
--- search
-utils.map_key(
-    "v",
-    "<leader>f",
-    [[:<C-U> let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR> gvy/<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>gVzv:call setreg('"', old_reg, old_regtype)<CR>]],
-    {silent = true}
-)
-
 -- Vmap for maintain Visual Mode after shifting > and <
 vim.api.nvim_exec(
     [[

@@ -6,7 +6,10 @@ local mappings = {
     ["v"] = {"<Cmd>vsplit<CR>", "V split"},
     ["h"] = {"<Cmd>split<CR>", "H split"},
     ["<space>"] = {"<Cmd>noh<CR>", "Clear search highlight"},
-    ["f"] = {[[:/<C-r><C-w><CR>]], "Search current word in file"},
+    ["f"] = {
+        name = "Search",
+        w = {[[:/<C-r><C-w><CR>]], "Search current word in file"}
+    },
     ["R"] = {
         name = "Replace"
     },
@@ -41,7 +44,9 @@ local mappings = {
         name = "Line Number",
         r = {"<Cmd>set relativenumber<Cr>", "Set relativenumber"},
         n = {"<Cmd>set norelativenumber<Cr>", "Set norelativenumber"}
-    }
+    },
+    l = {name = "Extra language action"},
+    t = {name = "Test"}
 }
 
 local opts = {

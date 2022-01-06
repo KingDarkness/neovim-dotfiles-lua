@@ -100,12 +100,40 @@ function M.setup()
 
     utils.setup_commands(
         {
-            {name = "SpectreSearchAll", cmd = "open_visual({select_word=true})"}
+            {name = "SearchInProject", cmd = "open_visual()"},
+            {name = "SearchInFile", cmd = "open_file_search()"},
+            {name = "SeachCurrentWordInProject", cmd = "open_visual({select_word=true})"}
         },
         "spectre"
     )
 
-    utils.map_key("n", "<leader>F", "<CMD>SpectreSearchAll<CR>", {})
+    utils.setup_commands(
+        {
+            {name = "SearchInDirectory", cmd = "search_on_directory()"},
+            {name = "SearchCurrentWordInDirectory", cmd = "search_on_directory({select_word = true})"}
+        },
+        "config.spectres"
+    )
+
+    utils.map_key("n", "<leader>F", "<CMD>SearchInProject<CR>", {})
+    utils.map_key("n", "<leader>fF", "<CMD>SearchInProject<CR>", {})
+    utils.map_key("v", "<leader>F", "<CMD>SearchInProject<CR>", {})
+    utils.map_key("n", "<leader>fW", "<CMD>SeachCurrentWordInProject<CR>", {})
+    utils.map_key("n", "<leader>fd", "<CMD>SearchCurrentWordInDirectory<CR>", {})
+    utils.map_key("n", "<leader>fD", "<CMD>SearchInDirectory<CR>", {})
+    utils.map_key("v", "<leader>fD", "<CMD>SearchInDirectory<CR>", {})
+end
+
+function M.search_on_directory(opts)
+    opts = opts or {}
+    opts.path = utils.get_absolute_forder_path()
+    if opts.select_word then
+        opts.search_text = vim.fn.expand("<cword>")
+    else
+        opts.search_text = require("spectre.utils").get_visual_selection()
+    end
+
+    require("spectre").open(opts)
 end
 
 return M

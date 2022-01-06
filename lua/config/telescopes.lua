@@ -78,6 +78,7 @@ function M.setup()
     utils.map_key("n", "<Leader>r", [[<Cmd>TelescopeTreesitter<CR>]], opt)
     utils.map_key("n", "<Leader>m", [[<Cmd>TelescopeMediaFile<CR>]], opt)
     utils.map_key("n", "<Leader>lf", [[<Cmd>FlutterTool<CR>]], opt)
+    utils.map_key("n", "<leader>lt", "<cmd>TodoTelescope<cr>", opt)
 end
 
 return M
