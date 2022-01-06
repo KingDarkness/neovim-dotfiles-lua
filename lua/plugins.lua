@@ -357,6 +357,16 @@ function M.setup()
             end
         }
 
+        use {
+            "sindrets/diffview.nvim",
+            cmd = {
+                "DiffviewOpen",
+                "DiffviewClose",
+                "DiffviewToggleFiles",
+                "DiffviewFocusFiles"
+            }
+        }
+
         if packer_bootstrap then
             print "Setting up Neovim. Restart required after installation!"
             require("packer").sync()

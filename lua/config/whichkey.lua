@@ -48,7 +48,13 @@ local mappings = {
         n = {"<Cmd>set norelativenumber<Cr>", "Set norelativenumber"}
     },
     l = {name = "Extra language action"},
-    t = {name = "Test"}
+    t = {name = "Test"},
+    g = {
+        name = "Git",
+        d = {"<Cmd>DiffviewOpen<Cr>", "Diffview open"},
+        c = {"<Cmd>DiffviewClose<Cr>", "Diffview close"},
+        h = {"<Cmd>DiffviewFileHistory<Cr>", "File history"}
+    }
 }
 
 local opts = {
