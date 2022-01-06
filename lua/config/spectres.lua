@@ -68,8 +68,8 @@ function M.setup()
             },
             replace_engine = {
                 ["sed"] = {
-                    cmd = "sed",
-                    args = {"-i", "''", "-E"}
+                    cmd = "gsed",
+                    args = nil
                 },
                 options = {
                     ["ignore-case"] = {
@@ -105,23 +105,6 @@ function M.setup()
     )
 
     utils.map_key("n", "<leader>F", "<CMD>SpectreSearchAll<CR>", {})
-end
-
-function M.spectretest()
-    local pattern = "%s,%ss/%s/%s/g"
-    pattern = pattern .. "i"
-
-    local t_sed = string.format(pattern, 10, 10, "spectretest", "spectretest")
-    local args =
-        vim.tbl_flatten(
-        {
-            {"-i", "''", "-E"},
-            t_sed,
-            "test.txt"
-        }
-    )
-
-    print("replace cmd: " .. "sed" .. " " .. table.concat(args, " "))
 end
 
 return M
