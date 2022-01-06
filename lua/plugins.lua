@@ -364,7 +364,18 @@ function M.setup()
                 "DiffviewClose",
                 "DiffviewToggleFiles",
                 "DiffviewFocusFiles"
-            }
+            },
+            config = function()
+                require("diffview").setup(
+                    {
+                        diff_binaries = false,
+                        DiffviewFileHistoryenhanced_diff_hl = false,
+                        file_panel = {
+                            position = "bottom" -- One of 'left', 'right', 'top', 'bottom'
+                        }
+                    }
+                )
+            end
         }
 
         if packer_bootstrap then
