@@ -23,7 +23,7 @@ utils.map_key("n", "<S-x>", [[<Cmd>bdelete<CR>]], opt) -- close tab
 utils.map_key("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
 utils.map_key("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
 -- replace
-utils.map_key("n", "<leader>rw", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
+utils.map_key("n", "<leader>Rw", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
 
 -- Vmap for maintain Visual Mode after shifting > and <
 vim.api.nvim_exec(

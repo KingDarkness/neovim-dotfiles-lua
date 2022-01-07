@@ -10,7 +10,7 @@ local mappings = {
     ["<space>"] = {"<Cmd>noh<CR>", "Clear search highlight"},
     ["f"] = {
         name = "Search",
-        w = {[[:/<C-r><C-w><CR>]], "Search current word in file"}
+        w = {[[:/<C-r><C-w><CR>]], "Search current word in file(default)"}
     },
     ["R"] = {
         name = "Replace"

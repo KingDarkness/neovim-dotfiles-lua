@@ -230,7 +230,8 @@ local config = {
                 lualine_z = {{"branch", icon = "", condition = condition.check_git_workspace}}
             },
             filetypes = {"NvimTree"}
-        }
+        },
+        require("config.spectres").lualine({})
     }
 }
 
