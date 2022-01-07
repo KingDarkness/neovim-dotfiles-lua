@@ -77,19 +77,22 @@ function M.setup()
     opt("o", "wildmode", "list:longest,list:full")
 
     -- hide line numbers in terminal windows
-    vim.api.nvim_exec([[
-  au BufEnter term://* setlocal nonumber
-]], false)
-    -- fix autoindent not working
-    vim.api.nvim_command(
+    vim.api.nvim_exec(
         [[
-  au TermEnter * setlocal scrolloff=0
-  au TermLeave * setlocal scrolloff=3
+    au BufEnter term://* setlocal nonumber
+    au TermEnter * setlocal scrolloff=0
+    au TermLeave * setlocal scrolloff=3
 
-  augroup AutoIndent
-    autocmd BufEnter * :set smartindent autoindent
-  augroup END
-]]
+    augroup highlight_yank
+        autocmd!
+        au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=700})
+    augroup END
+
+    augroup AutoIndent
+        autocmd BufEnter * :set smartindent autoindent
+    augroup END
+    ]],
+        false
     )
 
     cmd(
