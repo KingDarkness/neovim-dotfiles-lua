@@ -8,6 +8,7 @@ cmd "hi LineNr guifg=#be5046"
 cmd "hi NvimInternalError guifg=#f9929b"
 cmd "hi VertSplit guifg=#2a2e36"
 cmd "hi EndOfBuffer guifg=#1e222a"
+cmd "highlight default link HighlightedyankRegion IncSearch"
 -- inactive statuslines as thin splitlines
 cmd("highlight! StatusLineNC gui=underline guifg=#383c44")
 
