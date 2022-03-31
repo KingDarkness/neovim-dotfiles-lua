@@ -24,6 +24,9 @@ utils.map_key("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
 utils.map_key("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
 -- replace
 utils.map_key("n", "<leader>Rw", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
+utils.map_key("n", "<leader>Rcw", [[:%s/<C-r><C-w>//gc<Left><Left><Left>]], opt)
+utils.map_key("n", "<leader>Rl", [[:s/<C-r><C-w>//g<Left><Left>]], opt)
+utils.map_key("n", "<leader>Rcl", [[:s/<C-r><C-w>//gc<Left><Left><Left>]], opt)
 
 -- Vmap for maintain Visual Mode after shifting > and <
 vim.api.nvim_exec(

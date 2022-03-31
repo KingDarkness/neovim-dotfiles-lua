@@ -109,7 +109,7 @@ function M.setup()
 
     g.neoformat_enabled_lua = {"luafmt"}
 
-    -- auto format on save
+    auto format on save
     vim.api.nvim_exec(
         [[
       augroup fmt

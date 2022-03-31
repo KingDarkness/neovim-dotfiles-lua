@@ -91,6 +91,11 @@ function M.setup()
             -- the command arguments as a list
             args = {}
         },
+        git = {
+            enable = true,
+            ignore = false,
+            timeout = 400
+        },
         view = {
             -- width of the window, can be either a number (columns) or a string in `%`
             width = 30,
@@ -104,6 +109,24 @@ function M.setup()
                 custom_only = false,
                 -- list of mappings to set on the tree manually
                 list = list
+            }
+        },
+        actions = {
+            change_dir = {
+                enable = true,
+                global = false
+            },
+            open_file = {
+                quit_on_open = true,
+                resize_window = false,
+                window_picker = {
+                    enable = true,
+                    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+                    exclude = {
+                        filetype = {"notify", "packer", "qf", "diff", "fugitive", "fugitiveblame"},
+                        buftype = {"nofile", "terminal", "help"}
+                    }
+                }
             }
         }
     }

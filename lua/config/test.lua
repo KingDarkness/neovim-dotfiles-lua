@@ -16,7 +16,7 @@ function M.setup()
         let test#neovim#term_position = "vert botright 100"
         let g:docker_container_name = ''
 
-        function DoTest(type)
+        function! DoTest(type)
             if g:docker_container_name == ''
                 let name = input('Enter docker container name: ')
                 let g:docker_container_name = name
