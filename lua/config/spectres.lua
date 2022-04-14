@@ -85,12 +85,12 @@ function M.setup()
                 find = {
                     --pick one of item in find_engine
                     cmd = "ag",
-                    options = {"ignore-case", "hidden"}
+                    options = {"hidden"}
                 },
                 replace = {
                     --pick one of item in replace_engine
-                    cmd = "sed",
-                    options = {"ignore-case"}
+                    cmd = "sed"
+                    -- options = {"ignore-case"}
                 }
             },
             replace_vim_cmd = "cdo",

@@ -1,3 +1,6 @@
+-- enable log
+-- _G.__is_log = true
+
 require("plugins").setup()
 
 vim.g.mapleader = ","

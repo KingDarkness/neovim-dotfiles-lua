@@ -35,8 +35,8 @@ function M.setup()
         endfunction
 
         function! DockerTransform(cmd) abort
-        let phpunit_xml = '/var/www/html/phpunit.xml'
-        return 'docker exec ' . g:docker_container_name . ' phpdbg -qrr ' . a:cmd . ' -c ' . phpunit_xml . ' --debug --colors=always'
+            let phpunit_xml = '/var/www/html/phpunit.xml'
+            return 'docker exec ' . g:docker_container_name . ' phpdbg -qrr ' . a:cmd . ' -c ' . phpunit_xml . ' --debug --colors=always'
         endfunction
 
         let g:test#custom_transformations = {'docker': function('DockerTransform')}
