@@ -27,6 +27,10 @@ utils.map_key("n", "<leader>Rw", [[:%s/<C-r><C-w>//g<Left><Left>]], opt)
 utils.map_key("n", "<leader>Rcw", [[:%s/<C-r><C-w>//gc<Left><Left><Left>]], opt)
 utils.map_key("n", "<leader>Rl", [[:s/<C-r><C-w>//g<Left><Left>]], opt)
 utils.map_key("n", "<leader>Rcl", [[:s/<C-r><C-w>//gc<Left><Left><Left>]], opt)
+utils.map_key("n", "<leader>Re", [[:.,$s/<C-r><C-w>//g<Left><Left>]], opt)
+utils.map_key("n", "<leader>Rce", [[:.,$s/<C-r><C-w>//gc<Left><Left><Left>]], opt)
+utils.map_key("n", "<leader>Rr", [[:lua ReplaceCurrentWordFromCurrentLine(false)<CR>]], opt)
+utils.map_key("n", "<leader>Rcr", [[:lua ReplaceCurrentWordFromCurrentLine(true)<CR>]], opt)
 
 -- Vmap for maintain Visual Mode after shifting > and <
 vim.api.nvim_exec(
@@ -46,3 +50,30 @@ vim.api.nvim_exec(
 ]],
     false
 )
+
+function ReplaceCurrentWordFromCurrentLine(confirm)
+    vim.ui.input(
+        {prompt = "Enter number next line: "},
+        function(input)
+            if confirm then
+                vim.fn.feedkeys(
+                    vim.api.nvim_replace_termcodes(
+                        [[:.,+]] .. input .. [[s/<C-r><C-w>//gc<Left><Left><Left>]],
+                        true,
+                        false,
+                        true
+                    )
+                )
+            else
+                vim.fn.feedkeys(
+                    vim.api.nvim_replace_termcodes(
+                        [[:.,+]] .. input .. [[s/<C-r><C-w>//g<Left><Left>]],
+                        true,
+                        false,
+                        true
+                    )
+                )
+            end
+        end
+    )
+end
