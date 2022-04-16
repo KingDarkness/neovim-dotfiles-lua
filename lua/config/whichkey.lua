@@ -1,6 +1,6 @@
 local M = {}
 
-local mappings = {
+local nmapings = {
     ["w"] = {"<Cmd>w<Cr>", "Save"},
     ["W"] = {"<Cmd>w!<Cr>", "Force save"},
     ["q"] = {"<Cmd>q<Cr>", "Quit"},
@@ -10,10 +10,33 @@ local mappings = {
     ["<space>"] = {"<Cmd>noh<CR>", "Clear search highlight"},
     ["f"] = {
         name = "Search",
-        w = {[[:/<C-r><C-w><CR>]], "Search current word in file(default)"}
+        w = {[[:/<C-r><C-w><CR>]], "Current word in file"}
     },
     ["R"] = {
-        name = "Replace"
+        name = "Replace",
+        w = {[[:lua require("utils").normalReplace("all")<CR>]], "Current word in file"},
+        l = {[[:lua require("utils").normalReplace("line")<CR>]], "Current word in line"},
+        n = {
+            [[:lua require("utils").normalReplace("here_next_lines")<CR>]],
+            "Current word from pos to next ? lines"
+        },
+        e = {
+            [[:lua require("utils").normalReplace("here_to_end")<CR>]],
+            "Current word from pos to end of file"
+        },
+        c = {
+            name = "With confirm",
+            w = {[[:lua require("utils").normalReplace("all", "confirm")<CR>]], "Current word in file"},
+            l = {[[:lua require("utils").normalReplace("line", "confirm")<CR>]], "Current word in line"},
+            n = {
+                [[:lua require("utils").normalReplace("here_next_lines", "confirm")<CR>]],
+                "Current word from pos to next ? lines"
+            },
+            e = {
+                [[:lua require("utils").normalReplace("here_to_end", "confirm")<CR>]],
+                "Current word from pos to end of file"
+            }
+        }
     },
     ["z"] = {
         name = "System",
@@ -57,8 +80,50 @@ local mappings = {
     }
 }
 
-local opts = {
+local vmapings = {
+    ["f"] = {
+        name = "Search",
+        w = {[[:lua require("utils").visualSearch()<CR>]], "Current selected in file"}
+    },
+    ["R"] = {
+        name = "Replace",
+        w = {[[:lua require("utils").visualReplace("all")<CR>]], "Current selected in file"},
+        l = {[[:lua require("utils").visualReplace("line")<CR>]], "Current selected in line"},
+        n = {
+            [[:lua require("utils").visualReplace("here_next_lines")<CR>]],
+            "Current selected from pos to next ? lines"
+        },
+        e = {
+            [[:lua require("utils").visualReplace("here_to_end")<CR>]],
+            "Current selected from pos to end of file"
+        },
+        c = {
+            name = "With confirm",
+            w = {[[:lua require("utils").visualReplace("all", "confirm")<CR>]], "Current selected in file"},
+            l = {[[:lua require("utils").visualReplace("line", "confirm")<CR>]], "Current selected in line"},
+            n = {
+                [[:lua require("utils").visualReplace("here_next_lines", "confirm")<CR>]],
+                "Current selected from pos to next ? lines"
+            },
+            e = {
+                [[:lua require("utils").visualReplace("here_to_end", "confirm")<CR>]],
+                "Current selected from pos to end of file"
+            }
+        }
+    }
+}
+
+local nopts = {
     mode = "n",
+    prefix = "<leader>",
+    buffer = nil,
+    silent = true,
+    noremap = true,
+    nowait = true
+}
+
+local vopts = {
+    mode = "v",
     prefix = "<leader>",
     buffer = nil,
     silent = true,
@@ -69,7 +134,8 @@ local opts = {
 function M.setup()
     local wk = require "which-key"
     wk.setup {}
-    wk.register(mappings, opts)
+    wk.register(nmapings, nopts)
+    wk.register(vmapings, vopts)
 end
 
 return M
