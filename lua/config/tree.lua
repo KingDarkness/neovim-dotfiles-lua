@@ -49,8 +49,6 @@ function M.setup()
         open_on_setup = false,
         -- will not open on setup if the filetype is in this list
         ignore_ft_on_setup = {".git", "node_modules", ".cache"},
-        -- closes neovim automatically when the tree is the last **WINDOW** in the view
-        auto_close = true,
         -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
         open_on_tab = false,
         -- hijack the cursor in the tree to put it at the start of the filename
