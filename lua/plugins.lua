@@ -192,7 +192,8 @@ function M.setup()
             end
         }
         use "nathom/filetype.nvim"
-        use "norcalli/nvim-base16.lua"
+        -- use "norcalli/nvim-base16.lua"
+        use "KingDarkness/nvim-base16.lua"
         use {
             "hoob3rt/lualine.nvim",
             after = "nvim-treesitter",
