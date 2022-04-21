@@ -1,6 +1,6 @@
 local M = {}
 local base16 = require "base16"
-local colors = base16.themes["gruvbox-dark-medium"]
+local colors = base16.themes["material"]
 
 local ocean = {
     normal = {
