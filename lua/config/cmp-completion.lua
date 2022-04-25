@@ -88,7 +88,8 @@ function M.setup()
                     -- { name = 'ultisnips' },
                     {name = "treesitter"},
                     {name = "path"},
-                    {name = "buffer"}
+                    {name = "buffer"},
+                    {name = "nvim_lsp_signature_help"}
                 }
             ),
             formatting = {

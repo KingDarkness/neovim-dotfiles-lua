@@ -75,15 +75,14 @@ function M.setup()
             end
         }
         -- lsp stuff
-        use {"williamboman/nvim-lsp-installer"}
+        use {
+            "williamboman/nvim-lsp-installer"
+        }
         use {
             "neovim/nvim-lspconfig",
             as = "nvim-lspconfig",
             after = "nvim-treesitter",
             opt = true,
-            requires = {
-                "ray-x/lsp_signature.nvim"
-            },
             config = function()
                 require("config.lsp").setup(require("nvim-lsp-installer"))
             end
@@ -145,7 +144,8 @@ function M.setup()
                 "hrsh7th/cmp-buffer",
                 "hrsh7th/cmp-path",
                 "ray-x/cmp-treesitter",
-                "hrsh7th/cmp-cmdline"
+                "hrsh7th/cmp-cmdline",
+                "hrsh7th/cmp-nvim-lsp-signature-help"
             },
             config = function()
                 require("config.cmp-completion").setup()
