@@ -11,7 +11,7 @@ function M.setup()
 
         let test#strategy='neovim'
 
-        let g:test#neovim#start_normal = 1
+        let g:test#neovim#start_normal = 0
         let test#neovim#term_position = "topleft"
         let test#neovim#term_position = "vert"
         let test#neovim#term_position = "vert botright 100"
@@ -35,6 +35,10 @@ function M.setup()
             endif
         endfunction
 
+        function! TestWithNormal(state)
+            let g:test#neovim#start_normal = a:state
+        endfunction
+
         function! DockerTransform(cmd) abort
             let phpunit_xml = '/var/www/html/phpunit.xml'
             return 'docker exec ' . g:docker_container_name . ' phpdbg -qrr ' . a:cmd . ' -c ' . phpunit_xml . ' --debug --colors=always'
@@ -47,6 +51,8 @@ function M.setup()
         nmap <silent> <leader>tf :call DoTest("TestFile")<cr>
         nmap <silent> <leader>ta :call DoTest("TestSuite")<cr>
         nmap <silent> <leader>tp :call DoTest("TestLast")<cr>
+        nmap <silent> <leader>tn :call TestWithNormal(1)<cr>
+        nmap <silent> <leader>tw :call TestWithNormal(0)<cr>
     ]],
         false
     )
