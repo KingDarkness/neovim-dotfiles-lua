@@ -9,7 +9,7 @@ function M.setup()
         set shell=/bin/sh
         endif
 
-        let test#strategy='neovim'
+        let test#strategy='harpoon'
 
         let g:test#neovim#start_normal = 0
         let test#neovim#term_position = "topleft"

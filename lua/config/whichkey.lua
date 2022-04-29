@@ -77,6 +77,16 @@ local nmapings = {
         d = {"<Cmd>DiffviewOpen<Cr>", "Diffview open"},
         c = {"<Cmd>DiffviewClose<Cr>", "Diffview close"},
         h = {"<Cmd>DiffviewFileHistory<Cr>", "File history"}
+    },
+    -- Jump
+    j = {
+        name = "Jump",
+        a = {"<Cmd>lua require('harpoon.mark').add_file()<Cr>", "Add"},
+        m = {"<Cmd>lua require('harpoon.ui').toggle_quick_menu()<Cr>", "Menu"},
+        p = {"<Cmd>Telescope harpoon marks <CR>", "Telescope Menu"},
+        n = {"<Cmd>lua require('harpoon.ui').nav_next() <Cr>", "Jump next"},
+        l = {"<Cmd>lua require('harpoon.ui').nav_prev() <Cr>", "Jump previous"},
+        t = {"<Cmd>lua require('harpoon.term').gotoTerminal(1)<Cr>", "Terminal"}
     }
 }
 

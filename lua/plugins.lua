@@ -228,6 +228,13 @@ function M.setup()
             end
         }
         use {
+            "ThePrimeagen/harpoon",
+            event = "VimEnter",
+            config = function()
+                require("config.harpoon").setup()
+            end
+        }
+        use {
             "lukas-reineke/indent-blankline.nvim",
             branch = "master",
             config = function()
