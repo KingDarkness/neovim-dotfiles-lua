@@ -75,7 +75,6 @@ function M.setup()
     opt("w", "cul", true)
 
     opt("o", "wildmode", "list:longest,list:full")
-
     -- hide line numbers in terminal windows
     vim.api.nvim_exec(
         [[
@@ -107,6 +106,9 @@ function M.setup()
 
   set clipboard=unnamed,unnamedplus
   set fileformats=unix,dos,mac
+
+  set foldmethod=expr
+  set foldexpr=nvim_treesitter#foldexpr()
 
   set shortmess+=c
 ]]
