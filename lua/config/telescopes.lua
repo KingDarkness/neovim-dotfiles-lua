@@ -3,12 +3,6 @@ local utils = require("utils")
 function M.setup()
     require("telescope").setup {
         defaults = {
-            vimgrep_arguments = {
-                "rg",
-                "--ignore",
-                "--hidden",
-                "--files"
-            },
             layout_config = {
                 prompt_position = "bottom"
             },
@@ -60,7 +54,7 @@ function M.setup()
 
     utils.setup_commands(
         {
-            {name = "TelescopeFile", cmd = "find_files({find_command={'rg','--ignore','--hidden','--files'}})"},
+            {name = "TelescopeFile", cmd = "find_files({hidden = true})"},
             {name = "TelescopeTreesitter", cmd = "treesitter()"}
         },
         "telescope.builtin"
