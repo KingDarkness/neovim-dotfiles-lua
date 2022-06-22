@@ -107,6 +107,7 @@ function M.setup()
   set clipboard=unnamed,unnamedplus
   set fileformats=unix,dos,mac
 
+  set nofoldenable
   set foldmethod=expr
   set foldexpr=nvim_treesitter#foldexpr()
 
