@@ -53,7 +53,6 @@ function M.setup()
     opt("o", "mousemodel", "popup")
     opt("o", "wildmenu", true)
     -- Wait to redraw
-    opt("o", "lazyredraw", true)
     opt("o", "ttyfast", true)
     -- Scroll 8 lines at a time at bottom/top
     opt("o", "scrolljump", 8)
@@ -110,6 +109,9 @@ function M.setup()
   set nofoldenable
   set foldmethod=expr
   set foldexpr=nvim_treesitter#foldexpr()
+
+  set lazyredraw
+  set shada=NONE
 
   set shortmess+=c
 ]]
