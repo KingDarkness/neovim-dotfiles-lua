@@ -111,7 +111,6 @@ function M.setup()
   set foldexpr=nvim_treesitter#foldexpr()
 
   set lazyredraw
-  set shada=NONE
 
   set shortmess+=c
 ]]
