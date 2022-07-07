@@ -58,6 +58,24 @@ function M.setup()
                 "JoosepAlviste/nvim-ts-context-commentstring",
                 {
                     "windwp/nvim-ts-autotag",
+                    ft = {
+                        "html",
+                        "javascript",
+                        "typescript",
+                        "javascriptreact",
+                        "typescriptreact",
+                        "svelte",
+                        "vue",
+                        "tsx",
+                        "jsx",
+                        "rescript",
+                        "xml",
+                        "php",
+                        "markdown",
+                        "glimmer",
+                        "handlebars",
+                        "hbs"
+                    },
                     config = function()
                         require("nvim-ts-autotag").setup {enable = true}
                     end
@@ -301,6 +319,20 @@ function M.setup()
         }
         use {
             "folke/which-key.nvim",
+            keys = {
+                "<leader>",
+                "g",
+                "d",
+                "y",
+                "!",
+                "z",
+                ">",
+                "<",
+                "]",
+                "[",
+                "v",
+                "c"
+            },
             config = function()
                 require("config.whichkey").setup()
             end
