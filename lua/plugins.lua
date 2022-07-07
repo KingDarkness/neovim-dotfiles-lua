@@ -221,7 +221,8 @@ function M.setup()
             event = "VimEnter",
             requires = {
                 {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
-                {"nvim-telescope/telescope-media-files.nvim"}
+                {"nvim-telescope/telescope-media-files.nvim"},
+                {"nvim-telescope/telescope-ui-select.nvim"}
             },
             config = function()
                 require("config.telescopes").setup()
