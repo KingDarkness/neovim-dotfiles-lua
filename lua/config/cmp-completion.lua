@@ -15,10 +15,27 @@ end
 function M.setup()
     vim.api.nvim_exec(
         [[
-    let g:vsnip_filetypes = {}
-    let g:vsnip_filetypes.javascriptreact = ['javascript']
-    let g:vsnip_filetypes.vue = [ 'vue', 'javascript', 'typescript' ]
-    let g:vsnip_filetypes.typescriptreact = [ 'typescript' ]
+            let g:vsnip_filetypes = {}
+            let g:vsnip_filetypes.javascriptreact = ['javascript']
+            let g:vsnip_filetypes.vue = [ 'vue', 'javascript', 'typescript' ]
+            let g:vsnip_filetypes.typescriptreact = [ 'typescript' ]
+
+            " gray
+            highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
+            " blue
+            highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+            highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
+            " light blue
+            highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
+            highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
+            highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
+            " pink
+            highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
+            highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
+            " front
+            highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
+            highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
+            highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
     ]],
         false
     )
@@ -109,7 +126,17 @@ function M.setup()
                     return vim_item
                 end
             },
-            completion = {completeopt = "menu,menuone,noinsert"}
+            completion = {completeopt = "menu,menuone,noinsert"},
+            enabled = function()
+                -- disable completion in comments
+                local context = require "cmp.config.context"
+                -- keep command mode completion enabled when cursor is in a comment
+                if vim.api.nvim_get_mode().mode == "c" then
+                    return true
+                else
+                    return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+                end
+            end
         }
     )
     require "cmp".setup.cmdline(
