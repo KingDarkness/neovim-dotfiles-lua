@@ -58,7 +58,7 @@ function M.setup()
     opt("o", "scrolljump", 8)
 
     -- Status bar
-    opt("o", "laststatus", 2)
+    opt("o", "laststatus", 3)
 
     -- Use modeline overrides
     opt("o", "modeline", true)
