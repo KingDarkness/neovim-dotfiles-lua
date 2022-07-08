@@ -11,6 +11,8 @@ cmd(string.format("hi NvimInternalError guifg=#%s", colors.base08))
 cmd(string.format("hi VertSplit guifg=#%s", colors.base03))
 cmd(string.format("hi EndOfBuffer guifg=%s", colors.base03))
 cmd "highlight default link HighlightedyankRegion IncSearch"
+cmd "hi WinSeparator guibg=none"
+cmd "hi VertSplit guibg=none"
 -- inactive statuslines as thin splitlines
 cmd(string.format("highlight! StatusLineNC gui=underline guifg=#%s", colors.base03))
 
