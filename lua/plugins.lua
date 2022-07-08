@@ -185,6 +185,14 @@ function M.setup()
                 require("config.autoformats").setup()
             end
         }
+        use {
+            "j-hui/fidget.nvim",
+            after = "nvim-lspconfig",
+            event = "VimEnter",
+            config = function()
+                require("fidget").setup()
+            end
+        }
         -- snippet support
         use {
             "hrsh7th/cmp-vsnip",
@@ -319,20 +327,6 @@ function M.setup()
         }
         use {
             "folke/which-key.nvim",
-            keys = {
-                "<leader>",
-                "g",
-                "d",
-                "y",
-                "!",
-                "z",
-                ">",
-                "<",
-                "]",
-                "[",
-                "v",
-                "c"
-            },
             config = function()
                 require("config.whichkey").setup()
             end

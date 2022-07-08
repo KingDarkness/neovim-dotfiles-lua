@@ -88,7 +88,7 @@ function M.setup()
         }
     }
 
-    utils.map_key("n", "gb", [[<Cmd> BufferLinePick <CR>]], {})
+    utils.map_key("n", "<leader>bc", [[<Cmd> BufferLinePick <CR>]], {})
 end
 
 return M
