@@ -69,7 +69,7 @@ function M.setup()
     utils.setup_commands(
         {
             {name = "TelescopeFile", cmd = "find_files({hidden = true})"},
-            {name = "TelescopeTreesitter", cmd = [[treesitter()]]}
+            {name = "TelescopeTreesitter", cmd = [[treesitter({default_text=":method:"})]]}
         },
         "telescope.builtin"
     )
