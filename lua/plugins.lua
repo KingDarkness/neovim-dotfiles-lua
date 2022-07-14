@@ -40,6 +40,13 @@ function M.setup()
         use {"nvim-lua/plenary.nvim", module = "plenary"}
         use {"nvim-lua/popup.nvim", module = "popup"}
         use {
+            "rcarriga/nvim-notify",
+            module = "notify",
+            config = function()
+                vim.notify = require("notify")
+            end
+        }
+        use {
             "kyazdani42/nvim-web-devicons",
             module = "nvim-web-devicons",
             config = function()
@@ -131,20 +138,25 @@ function M.setup()
 
         use {
             "akinsho/flutter-tools.nvim",
-            event = "VimEnter",
-            ft = {"dart"},
+            event = "BufWinEnter",
+            ft = "dart",
             after = "nvim-lspconfig",
             config = function()
                 require("flutter-tools").setup {
                     widget_guides = {
                         enabled = false
                     },
+                    fvm = true,
                     experimental = {
                         -- map of feature flags
                         lsp_derive_paths = true -- EXPERIMENTAL: Attempt to find the user's flutter SDK
                     },
                     outline = {
                         open_cmd = "30vnew" -- command to use to open the outline buffer
+                    },
+                    dev_log = {
+                        enabled = true,
+                        open_cmd = "tabedit" -- command to use to open the log buffer
                     },
                     lsp = {
                         on_attach = require("config.lsp").on_attach
