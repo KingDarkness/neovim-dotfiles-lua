@@ -9,9 +9,9 @@ function M.setup()
         set shell=/bin/sh
         endif
 
-        let test#strategy='harpoon'
+        let test#strategy='neovim'
 
-        let g:test#neovim#start_normal = 0
+        let g:test#neovim#start_normal = 1
         let test#neovim#term_position = "topleft"
         let test#neovim#term_position = "vert"
         let test#neovim#term_position = "vert botright 100"
