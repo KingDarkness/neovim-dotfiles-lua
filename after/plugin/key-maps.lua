@@ -11,6 +11,13 @@ utils.map_key("n", "<C-s>", [[ <Cmd> w <CR>]], opt)
 -- Close buffer
 utils.map_key("n", "<C-w>", [[ <Cmd>bd<CR>]], opt)
 utils.map_key("n", "<S-W>", [[ <Cmd>BOnly<CR>]], opt)
+-- ưindow size
+utils.map_key("n", "+", [[<Cmd>resize+5<CR>]], opt)
+utils.map_key("n", "_", [[<Cmd>resize-5<CR>]], opt)
+utils.map_key("n", "F", [[<Cmd>resize 100<CR>]], opt)
+utils.map_key("n", "=", [[<Cmd>vertical resize+5<CR>]], opt)
+utils.map_key("n", "-", [[<Cmd>vertical resize-5<CR>]], opt)
+
 -- Switching windows
 utils.map_key("n", "<A-Up>", [[ <Cmd> wincmd k <CR>]], opt)
 utils.map_key("n", "<A-Down>", [[ <Cmd> wincmd j <CR>]], opt)

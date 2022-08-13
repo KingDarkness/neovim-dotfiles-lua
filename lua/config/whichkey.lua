@@ -1,12 +1,21 @@
 local M = {}
 
 local nmapings = {
-    ["w"] = {"<Cmd>w<Cr>", "Save"},
+    ["w"] = {
+        name = "Window",
+        ["+"] = {"<Cmd>resize+5<CR>+", "+ height"},
+        ["-"] = {"<Cmd>resize-5<CR>", "- height"},
+        [">"] = {"<Cmd>vertical resize+5<CR>", "+ width"},
+        ["<"] = {"<Cmd>vertical resize-5<CR>", "- width"},
+        v = {"<Cmd>vsplit<CR>", "V split"},
+        h = {"<Cmd>split<CR>", "H split"},
+        q = {"<Cmd>bd<CR>", "Close window"},
+        Q = {"<Cmd>Bonly<CR>", "Close other window"},
+        F = {"<Cmd>resize 100<CR>+", "Full height"}
+    },
     ["W"] = {"<Cmd>w!<Cr>", "Force save"},
     ["q"] = {"<Cmd>q<Cr>", "Quit"},
     ["Q"] = {"<Cmd>q!<Cr>", "Force quit"},
-    ["v"] = {"<Cmd>vsplit<CR>", "V split"},
-    ["h"] = {"<Cmd>split<CR>", "H split"},
     ["<space>"] = {"<Cmd>noh<CR>", "Clear search highlight"},
     ["f"] = {
         name = "Search",
