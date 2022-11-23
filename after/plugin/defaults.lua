@@ -113,6 +113,8 @@ function M.setup()
   set lazyredraw
 
   set shortmess+=c
+  set cmdheight=0
+  set mouse=
 ]]
     )
 end
