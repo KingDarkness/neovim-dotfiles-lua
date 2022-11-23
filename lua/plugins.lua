@@ -379,9 +379,13 @@ function M.setup()
             end
         }
         -- search & replace
-        use {"kevinhwang91/nvim-hlslens", config = function()
+        use {
+            "kevinhwang91/nvim-hlslens",
+            event = "VimEnter",
+            config = function()
                 require("hlslens").setup()
-            end}
+            end
+        }
         use {
             "windwp/nvim-spectre",
             event = "VimEnter",
