@@ -243,6 +243,7 @@ function M.setup()
             "akinsho/nvim-bufferline.lua",
             after = "nvim-treesitter",
             event = "BufReadPre",
+            tag = "v3.*",
             config = function()
                 require("config.top-bufferline").setup()
             end

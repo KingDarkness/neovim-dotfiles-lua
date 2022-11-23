@@ -43,47 +43,48 @@ function M.setup()
         },
         highlights = {
             fill = {
-                guifg = colors.base06,
-                guibg = colors.base01
+                fg = colors.base06,
+                bg = colors.base01
             },
             group_separator = {
-                guifg = colors.base06,
-                guibg = colors.base01
+                fg = colors.base06,
+                bg = colors.base01
             },
             background = {
-                guifg = colors.base0F,
-                guibg = colors.base01
+                fg = colors.base0F,
+                bg = colors.base01
             },
             separator = {
-                guifg = colors.base08,
-                guibg = colors.base01
+                fg = colors.base08,
+                bg = colors.base01
             },
             separator_selected = {
-                guifg = colors.base0C,
-                guibg = colors.base00
+                fg = colors.base0C,
+                bg = colors.base00
             },
             group_label = {
-                guifg = colors.base06,
-                guibg = colors.base01
+                fg = colors.base06,
+                bg = colors.base01
             },
             duplicate = {
-                guifg = colors.base0F,
-                gui = "italic",
-                guibg = colors.base01
+                fg = colors.base0F,
+                bg = colors.base01,
+                italic = true
             },
             duplicate_selected = {
-                guifg = colors.base0C,
-                gui = "italic",
-                guibg = colors.base00
+                fg = colors.base0C,
+                italic = true,
+                bg = colors.base00
             },
             indicator_selected = {
-                guifg = colors.base0C,
-                guibg = colors.base00
+                fg = colors.base0C,
+                bg = colors.base00
             },
             buffer_selected = {
-                guifg = colors.base0C,
-                guibg = colors.base00,
-                gui = "bold,italic"
+                fg = colors.base0C,
+                bg = colors.base00,
+                bold = true,
+                italic = true
             }
         }
     }
