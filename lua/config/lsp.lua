@@ -183,6 +183,8 @@ function M.setup(lsp_installer)
     vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
     vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
     vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
+
+    vim.lsp.set_log_level(vim.log.levels.ERROR)
 end
 
 return M
