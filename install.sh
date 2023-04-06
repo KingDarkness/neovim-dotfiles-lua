@@ -2,11 +2,11 @@
 
 get_platform() {
     case "$(uname -s)" in
-        Linux*) platform=Linux ;;
-        Darwin*) platform=Mac ;;
-        CYGWIN*) platform=Cygwin ;;
-        MINGW*) platform=MinGw ;;
-        *) platform="UNKNOWN:${unameOut}" ;;
+    Linux*) platform=Linux ;;
+    Darwin*) platform=Mac ;;
+    CYGWIN*) platform=Cygwin ;;
+    MINGW*) platform=MinGw ;;
+    *) platform="UNKNOWN:${unameOut}" ;;
     esac
     echo $platform
 }
@@ -29,10 +29,6 @@ else
     echo "error can't find package manager"
     exit 1
 fi
-
-echo "Install formmater"
-chmod a+x ~/.config/nvim/plugins/install-formatter.sh
-sh -c ~/.config/nvim/plugins/install-formatter.sh
 
 echo "Open vim install packer"
 nvim +PackerInstall

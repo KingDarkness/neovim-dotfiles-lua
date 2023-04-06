@@ -16,7 +16,8 @@ function M.setup()
             "toml",
             "typescript",
             "vue",
-            "yaml"
+            "yaml",
+            "tsx"
         },
         highlight = {
             enable = true,

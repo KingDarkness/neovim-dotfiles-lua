@@ -1,5 +1,6 @@
 local M = {}
 local cmp = require "cmp"
+local lspkind = require("lspkind")
 
 vim.o.completeopt = "menu,menuone,noselect"
 
@@ -110,36 +111,14 @@ function M.setup()
                 }
             ),
             formatting = {
-                format = function(entry, vim_item)
-                    -- fancy icons and a name of kind
-                    vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
-                    -- set a name for each source
-                    vim_item.menu =
-                        ({
-                        buffer = "[Buffer]",
-                        nvim_lsp = "[LSP]",
-                        vsnip = "[Vsnip]",
-                        nvim_lua = "[Lua]",
-                        path = "[Path]",
-                        treesitter = "[Treesitter]"
-                    })[entry.source.name]
-                    return vim_item
-                end
-            },
-            completion = {completeopt = "menu,menuone,noinsert"},
-            enabled = function()
-                if vim.bo.buftype == "prompt" then
-                    return false
-                end
-                -- disable completion in comments
-                local context = require "cmp.config.context"
-                -- keep command mode completion enabled when cursor is in a comment
-                if vim.api.nvim_get_mode().mode == "c" then
-                    return true
-                else
-                    return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
-                end
-            end
+                format = lspkind.cmp_format(
+                    {
+                        mode = "symbol_text", -- show only symbol annotations
+                        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                        ellipsis_char = "..." -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                    }
+                )
+            }
         }
     )
     require "cmp".setup.cmdline(

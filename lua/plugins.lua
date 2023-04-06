@@ -53,40 +53,40 @@ function M.setup()
                 require("nvim-web-devicons").setup {default = true}
             end
         }
-        use(
-            {
-                "folke/noice.nvim",
-                requires = {"MunifTanjim/nui.nvim"},
-                config = function()
-                    require("noice").setup(
-                        {
-                            cmdline = {view = "cmdline"},
-                            notify = {enabled = false},
-                            messages = {enabled = false},
-                            health = {
-                                checker = false -- Disable if you don't want health checks to run
-                            },
-                            lsp = {
-                                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-                                override = {
-                                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                                    ["vim.lsp.util.stylize_markdown"] = true,
-                                    ["cmp.entry.get_documentation"] = true
-                                }
-                            },
-                            -- you can enable a preset for easier configuration
-                            presets = {
-                                bottom_search = true, -- use a classic bottom cmdline for search
-                                command_palette = true, -- position the cmdline and popupmenu together
-                                long_message_to_split = true, -- long messages will be sent to a split
-                                inc_rename = false, -- enables an input dialog for inc-rename.nvim
-                                lsp_doc_border = false -- add a border to hover docs and signature help
-                            }
-                        }
-                    )
-                end
-            }
-        )
+        -- use(
+        --     {
+        --         "folke/noice.nvim",
+        --         requires = {"MunifTanjim/nui.nvim"},
+        --         config = function()
+        --             require("noice").setup(
+        --                 {
+        --                     cmdline = {view = "cmdline"},
+        --                     notify = {enabled = false},
+        --                     messages = {enabled = false},
+        --                     health = {
+        --                         checker = false -- Disable if you don't want health checks to run
+        --                     },
+        --                     lsp = {
+        --                         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        --                         override = {
+        --                             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        --                             ["vim.lsp.util.stylize_markdown"] = true,
+        --                             ["cmp.entry.get_documentation"] = true
+        --                         }
+        --                     },
+        --                     -- you can enable a preset for easier configuration
+        --                     presets = {
+        --                         bottom_search = true, -- use a classic bottom cmdline for search
+        --                         command_palette = true, -- position the cmdline and popupmenu together
+        --                         long_message_to_split = true, -- long messages will be sent to a split
+        --                         inc_rename = false, -- enables an input dialog for inc-rename.nvim
+        --                         lsp_doc_border = false -- add a border to hover docs and signature help
+        --                     }
+        --                 }
+        --             )
+        --         end
+        --     }
+        -- )
         -- highlighting
         use {
             "nvim-treesitter/nvim-treesitter",
@@ -135,7 +135,17 @@ function M.setup()
         }
         -- lsp stuff
         use {
-            "williamboman/nvim-lsp-installer"
+            "williamboman/mason.nvim",
+            requires = {
+                "williamboman/mason-lspconfig.nvim",
+            },
+            run = ":MasonUpdate"
+        }
+        use {
+                "mhartington/formatter.nvim",
+            config = function()
+                require("config.autoformats").setup()
+            end
         }
         use {
             "neovim/nvim-lspconfig",
@@ -143,7 +153,7 @@ function M.setup()
             after = "nvim-treesitter",
             opt = true,
             config = function()
-                require("config.lsp").setup(require("nvim-lsp-installer"))
+                require("config.lsp").setup(require("mason"))
             end
         }
         use {
@@ -224,13 +234,6 @@ function M.setup()
         }
 
         use "onsails/lspkind-nvim"
-        use {
-            "sbdchd/neoformat",
-            event = "BufWinEnter",
-            config = function()
-                require("config.autoformats").setup()
-            end
-        }
         use {
             "j-hui/fidget.nvim",
             after = "nvim-lspconfig",

@@ -4,6 +4,9 @@ local utils = require("utils")
 vim.o.termguicolors = true
 
 function M.setup()
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+
     local tree_cb = require "nvim-tree.config".nvim_tree_callback
     local keymaps = {
         {key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit")},

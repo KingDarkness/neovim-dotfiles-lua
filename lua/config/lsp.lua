@@ -46,7 +46,7 @@ function M.on_attach(client, bufnr)
 end
 
 function M.setup(lsp_installer)
-    lsp_installer.settings(
+    lsp_installer.setup(
         {
             ui = {
                 icons = {
@@ -62,120 +62,122 @@ function M.setup(lsp_installer)
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-    lsp_installer.on_server_ready(
-        function(server)
-            local opts = {
-                on_attach = M.on_attach,
-                capabilities = capabilities
-            }
-
-            -- (optional) Customize the options passed to the server
-            -- if server.name == "tsserver" then
-            --     opts.root_dir = function() ... end
-            -- end
-            --
-            if server.name == "sumneko_lua" then
-                opts.settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = {"vim"}
+    require("mason-lspconfig").setup_handlers(
+        {
+            -- The first entry (without a key) will be the default handler
+            -- and will be called for each installed server that doesn't have
+            -- a dedicated handler.
+            function(server_name) -- default handler (optional)
+                require("lspconfig")[server_name].setup {
+                    on_attach = M.on_attach,
+                    capabilities = capabilities
+                }
+            end,
+            ["lua_ls"] = function()
+                require("lspconfig").lua_ls.setup {
+                    on_attach = M.on_attach,
+                    capabilities = capabilities,
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                globals = {"vim"}
+                            }
+                        }
+                    }
+                }
+            end,
+            ["intelephense"] = function()
+                require("lspconfig").intelephense.setup {
+                    on_attach = M.on_attach,
+                    capabilities = capabilities,
+                    settings = {
+                        intelephense = {
+                            environment = {phpVersion = "8.1"},
+                            stubs = {
+                                "apache",
+                                "bcmath",
+                                "bz2",
+                                "calendar",
+                                "com_dotnet",
+                                "Core",
+                                "ctype",
+                                "curl",
+                                "date",
+                                "dba",
+                                "dom",
+                                "enchant",
+                                "exif",
+                                "FFI",
+                                "fileinfo",
+                                "filter",
+                                "fpm",
+                                "ftp",
+                                "gd",
+                                "gettext",
+                                "gmp",
+                                "hash",
+                                "iconv",
+                                "imap",
+                                "intl",
+                                "json",
+                                "ldap",
+                                "libxml",
+                                "mbstring",
+                                "meta",
+                                "mysqli",
+                                "oci8",
+                                "odbc",
+                                "openssl",
+                                "pcntl",
+                                "pcre",
+                                "PDO",
+                                "pdo_ibm",
+                                "pdo_mysql",
+                                "pdo_pgsql",
+                                "pdo_sqlite",
+                                "pgsql",
+                                "Phar",
+                                "posix",
+                                "pspell",
+                                "readline",
+                                "Reflection",
+                                "session",
+                                "shmop",
+                                "SimpleXML",
+                                "snmp",
+                                "soap",
+                                "sockets",
+                                "sodium",
+                                "SPL",
+                                "sqlite3",
+                                "standard",
+                                "superglobals",
+                                "sysvmsg",
+                                "sysvsem",
+                                "sysvshm",
+                                "tidy",
+                                "tokenizer",
+                                "xml",
+                                "xmlreader",
+                                "xmlrpc",
+                                "xmlwriter",
+                                "xsl",
+                                "Zend OPcache",
+                                "zip",
+                                "zlib",
+                                "wordpress",
+                                "woocommerce",
+                                "acf-pro",
+                                "wordpress-globals",
+                                "wp-cli",
+                                "genesis"
+                            },
+                            files = {maxSize = 5000000}
                         }
                     }
                 }
             end
-
-            if server.name == "intelephense" then
-                opts.settings = {
-                    intelephense = {
-                        environment = {phpVersion = "8.1"},
-                        stubs = {
-                            "apache",
-                            "bcmath",
-                            "bz2",
-                            "calendar",
-                            "com_dotnet",
-                            "Core",
-                            "ctype",
-                            "curl",
-                            "date",
-                            "dba",
-                            "dom",
-                            "enchant",
-                            "exif",
-                            "FFI",
-                            "fileinfo",
-                            "filter",
-                            "fpm",
-                            "ftp",
-                            "gd",
-                            "gettext",
-                            "gmp",
-                            "hash",
-                            "iconv",
-                            "imap",
-                            "intl",
-                            "json",
-                            "ldap",
-                            "libxml",
-                            "mbstring",
-                            "meta",
-                            "mysqli",
-                            "oci8",
-                            "odbc",
-                            "openssl",
-                            "pcntl",
-                            "pcre",
-                            "PDO",
-                            "pdo_ibm",
-                            "pdo_mysql",
-                            "pdo_pgsql",
-                            "pdo_sqlite",
-                            "pgsql",
-                            "Phar",
-                            "posix",
-                            "pspell",
-                            "readline",
-                            "Reflection",
-                            "session",
-                            "shmop",
-                            "SimpleXML",
-                            "snmp",
-                            "soap",
-                            "sockets",
-                            "sodium",
-                            "SPL",
-                            "sqlite3",
-                            "standard",
-                            "superglobals",
-                            "sysvmsg",
-                            "sysvsem",
-                            "sysvshm",
-                            "tidy",
-                            "tokenizer",
-                            "xml",
-                            "xmlreader",
-                            "xmlrpc",
-                            "xmlwriter",
-                            "xsl",
-                            "Zend OPcache",
-                            "zip",
-                            "zlib",
-                            "wordpress",
-                            "woocommerce",
-                            "acf-pro",
-                            "wordpress-globals",
-                            "wp-cli",
-                            "genesis"
-                        },
-                        files = {maxSize = 5000000}
-                    }
-                }
-            end
-
-            -- This setup() function is exactly the same as lspconfig's setup function.
-            -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-            server:setup(opts)
-        end
+        }
     )
 
     -- replace the default lsp diagnostic letters with prettier symbols

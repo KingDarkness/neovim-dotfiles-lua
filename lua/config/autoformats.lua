@@ -1,120 +1,61 @@
 local M = {}
 local g = vim.g -- a table to access global variables
+local util = require("formatter.util")
 
 function M.setup()
-    g.neoformat_only_msg_on_error = 1
-    -- open to debug
-    -- g.neoformat_verbose = 1
-
-    g.shfmt_opt = "-ci"
-
-    g.neoformat_php_phpcsfix = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/php-cs-fixer/vendor/bin/php-cs-fixer",
-        args = {
-            "fix",
-            "-q",
-            "--using-cache=no",
-            "--config=" .. vim.fn.stdpath("config") .. "/plugins/formatter/php-cs-fixer/.php-cs-fixer.dist.php"
+    require("formatter").setup({
+        -- Enable or disable logging
+        logging = true,
+        -- Set the log level
+        log_level = vim.log.levels.WARN,
+        -- All formatter configurations are opt-in
+        filetype = {
+            -- Formatter configurations for filetype "lua" go here
+            -- and will be executed in order
+            lua = { require("formatter.filetypes.lua").stylua },
+            php = {
+                function()
+                    return {
+                        exe = "php-cs-fixer",
+                        args = {
+                            "fix",
+                            "-q",
+                            "--using-cache=no",
+                            "--config="
+                                .. vim.fn.stdpath("config")
+                                .. "/plugins/formatter/php-cs-fixer/.php-cs-fixer.dist.php",
+                        },
+                        stdin = false,
+                        ignore_exitcode = true,
+                    }
+                end,
+            },
+            css = { require("formatter.filetypes.css").prettier },
+            scss = { require("formatter.filetypes.css").prettier },
+            html = { require("formatter.filetypes.html").prettier },
+            javascript = { require("formatter.filetypes.javascript").prettier },
+            javascriptreact = { require("formatter.filetypes.javascriptreact").prettier },
+            typescript = { require("formatter.filetypes.typescript").prettier },
+            typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
+            vue = { require("formatter.filetypes.vue").prettier },
+            yaml = { require("formatter.filetypes.yaml").prettier },
+            json = { require("formatter.filetypes.json").prettier },
+            markdown = { require("formatter.filetypes.markdown").prettier },
+            sh = { require("formatter.filetypes.sh").shfmt },
+            -- Use the special "*" filetype for defining formatter configurations on
+            -- any filetype
+            ["*"] = {
+                -- "formatter.filetypes.any" defines default configurations for any
+                -- filetype
+                require("formatter.filetypes.any").remove_trailing_whitespace,
+            },
         },
-        replace = 1
-    }
-
-    g.neoformat_enabled_php = {"phpcsfix"}
-
-    g.neoformat_javascript_prettier = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
-        args = {"--write", "--config .prettierrc.json"},
-        replace = 1
-    }
-
-    g.neoformat_enabled_javascript = {"prettier"}
-
-    g.neoformat_typescript_prettier = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
-        args = {"--write", "--config .prettierrc.json"},
-        replace = 1
-    }
-
-    g.neoformat_enabled_typescript = {"prettier"}
-
-    g.neoformat_vue_prettier = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
-        args = {"--write", "--config .prettierrc.json"},
-        replace = 1
-    }
-
-    g.neoformat_enabled_vue = {"prettier"}
-
-    g.neoformat_html_prettier = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
-        args = {"--write"},
-        replace = 1
-    }
-
-    g.neoformat_enabled_html = {"prettier"}
-
-    g.neoformat_json_prettier = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
-        args = {"--write"},
-        replace = 1
-    }
-
-    g.neoformat_enabled_json = {"prettier"}
-
-    g.neoformat_less_prettier = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
-        args = {"--write"},
-        replace = 1
-    }
-
-    g.neoformat_enabled_less = {"prettier"}
-
-    g.neoformat_css_prettier = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
-        args = {"--write"},
-        replace = 1
-    }
-
-    g.neoformat_enabled_css = {"prettier"}
-
-    g.neoformat_scss_prettier = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
-        args = {"--write"},
-        replace = 1
-    }
-
-    g.neoformat_enabled_scss = {"prettier"}
-
-    g.neoformat_markdown_prettier = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
-        args = {"--write"},
-        replace = 1
-    }
-
-    g.neoformat_enabled_markdown = {"prettier"}
-
-    g.neoformat_yaml_prettier = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/prettier/node_modules/.bin/prettier",
-        args = {"--write"},
-        replace = 1
-    }
-
-    g.neoformat_enabled_yaml = {"prettier"}
-
-    g.neoformat_lua_luafmt = {
-        exe = vim.fn.stdpath("config") .. "/plugins/formatter/lua-fmt/node_modules/.bin/luafmt",
-        args = {"-w replace"},
-        replace = 1
-    }
-
-    g.neoformat_enabled_lua = {"luafmt"}
-
-    -- auto format on save
+    })
     vim.api.nvim_exec(
         [[
       augroup fmt
         autocmd!
-        autocmd BufWritePre * | Neoformat
+        autocmd BufWritePost * FormatWrite
       augroup END
     ]],
         false
