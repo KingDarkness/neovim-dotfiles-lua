@@ -26,13 +26,7 @@ $ ./install.sh
 
 # Install lsp
 
-[https://github.com/williamboman/nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
-
-Exp:
-
-```vim
-LspInstall intelephense phpactor bashls cssls dartls dockerls dotls eslint html jsonls tsserver zk pyright vuels mlls sumneko_lua
-```
+[https://github.com/williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
 
 # Features
 
