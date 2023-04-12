@@ -11,7 +11,7 @@ function M.on_attach(client, bufnr)
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
     -- Mappings.
-    local opts = {noremap = true, silent = true}
+    local opts = { noremap = true, silent = true }
 
     buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
     buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -46,145 +46,140 @@ function M.on_attach(client, bufnr)
 end
 
 function M.setup(lsp_installer)
-    lsp_installer.setup(
-        {
-            ui = {
-                icons = {
-                    server_installed = "✓",
-                    server_pending = "➜",
-                    server_uninstalled = "✗"
-                }
-            }
-        }
-    )
+    lsp_installer.setup({
+        ui = {
+            icons = {
+                server_installed = "✓",
+                server_pending = "➜",
+                server_uninstalled = "✗",
+            },
+        },
+    })
 
     -- nvim-cmp supports additional completion capabilities
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    require("mason-lspconfig").setup_handlers(
-        {
-            -- The first entry (without a key) will be the default handler
-            -- and will be called for each installed server that doesn't have
-            -- a dedicated handler.
-            function(server_name) -- default handler (optional)
-                require("lspconfig")[server_name].setup {
-                    on_attach = M.on_attach,
-                    capabilities = capabilities
-                }
-            end,
-            ["lua_ls"] = function()
-                require("lspconfig").lua_ls.setup {
-                    on_attach = M.on_attach,
-                    capabilities = capabilities,
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = {"vim"}
-                            }
-                        }
-                    }
-                }
-            end,
-            ["intelephense"] = function()
-                require("lspconfig").intelephense.setup {
-                    on_attach = M.on_attach,
-                    capabilities = capabilities,
-                    settings = {
-                        intelephense = {
-                            environment = {phpVersion = "8.1"},
-                            stubs = {
-                                "apache",
-                                "bcmath",
-                                "bz2",
-                                "calendar",
-                                "com_dotnet",
-                                "Core",
-                                "ctype",
-                                "curl",
-                                "date",
-                                "dba",
-                                "dom",
-                                "enchant",
-                                "exif",
-                                "FFI",
-                                "fileinfo",
-                                "filter",
-                                "fpm",
-                                "ftp",
-                                "gd",
-                                "gettext",
-                                "gmp",
-                                "hash",
-                                "iconv",
-                                "imap",
-                                "intl",
-                                "json",
-                                "ldap",
-                                "libxml",
-                                "mbstring",
-                                "meta",
-                                "mysqli",
-                                "oci8",
-                                "odbc",
-                                "openssl",
-                                "pcntl",
-                                "pcre",
-                                "PDO",
-                                "pdo_ibm",
-                                "pdo_mysql",
-                                "pdo_pgsql",
-                                "pdo_sqlite",
-                                "pgsql",
-                                "Phar",
-                                "posix",
-                                "pspell",
-                                "readline",
-                                "Reflection",
-                                "session",
-                                "shmop",
-                                "SimpleXML",
-                                "snmp",
-                                "soap",
-                                "sockets",
-                                "sodium",
-                                "SPL",
-                                "sqlite3",
-                                "standard",
-                                "superglobals",
-                                "sysvmsg",
-                                "sysvsem",
-                                "sysvshm",
-                                "tidy",
-                                "tokenizer",
-                                "xml",
-                                "xmlreader",
-                                "xmlrpc",
-                                "xmlwriter",
-                                "xsl",
-                                "Zend OPcache",
-                                "zip",
-                                "zlib",
-                                "wordpress",
-                                "woocommerce",
-                                "acf-pro",
-                                "wordpress-globals",
-                                "wp-cli",
-                                "genesis"
-                            },
-                            files = {maxSize = 5000000}
-                        }
-                    }
-                }
-            end
-        }
-    )
+    require("mason-lspconfig").setup_handlers({
+        -- The first entry (without a key) will be the default handler
+        -- and will be called for each installed server that doesn't have
+        -- a dedicated handler.
+        function(server_name) -- default handler (optional)
+            require("lspconfig")[server_name].setup({
+                on_attach = M.on_attach,
+                capabilities = capabilities,
+            })
+        end,
+        ["lua_ls"] = function()
+            require("lspconfig").lua_ls.setup({
+                on_attach = M.on_attach,
+                capabilities = capabilities,
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim" },
+                        },
+                    },
+                },
+            })
+        end,
+        ["intelephense"] = function()
+            require("lspconfig").intelephense.setup({
+                on_attach = M.on_attach,
+                capabilities = capabilities,
+                settings = {
+                    intelephense = {
+                        environment = { phpVersion = "8.1" },
+                        stubs = {
+                            "apache",
+                            "bcmath",
+                            "bz2",
+                            "calendar",
+                            "com_dotnet",
+                            "Core",
+                            "ctype",
+                            "curl",
+                            "date",
+                            "dba",
+                            "dom",
+                            "enchant",
+                            "exif",
+                            "FFI",
+                            "fileinfo",
+                            "filter",
+                            "fpm",
+                            "ftp",
+                            "gd",
+                            "gettext",
+                            "gmp",
+                            "hash",
+                            "iconv",
+                            "imap",
+                            "intl",
+                            "json",
+                            "ldap",
+                            "libxml",
+                            "mbstring",
+                            "meta",
+                            "mysqli",
+                            "oci8",
+                            "odbc",
+                            "openssl",
+                            "pcntl",
+                            "pcre",
+                            "PDO",
+                            "pdo_ibm",
+                            "pdo_mysql",
+                            "pdo_pgsql",
+                            "pdo_sqlite",
+                            "pgsql",
+                            "Phar",
+                            "posix",
+                            "pspell",
+                            "readline",
+                            "Reflection",
+                            "session",
+                            "shmop",
+                            "SimpleXML",
+                            "snmp",
+                            "soap",
+                            "sockets",
+                            "sodium",
+                            "SPL",
+                            "sqlite3",
+                            "standard",
+                            "superglobals",
+                            "sysvmsg",
+                            "sysvsem",
+                            "sysvshm",
+                            "tidy",
+                            "tokenizer",
+                            "xml",
+                            "xmlreader",
+                            "xmlrpc",
+                            "xmlwriter",
+                            "xsl",
+                            "Zend OPcache",
+                            "zip",
+                            "zlib",
+                            "wordpress",
+                            "woocommerce",
+                            "acf-pro",
+                            "wordpress-globals",
+                            "wp-cli",
+                            "genesis",
+                        },
+                        files = { maxSize = 5000000 },
+                    },
+                },
+            })
+        end,
+    })
 
     -- replace the default lsp diagnostic letters with prettier symbols
-    vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
-    vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
-    vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
-    vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
+    vim.fn.sign_define("LspDiagnosticsSignError", { text = "", numhl = "LspDiagnosticsDefaultError" })
+    vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", numhl = "LspDiagnosticsDefaultWarning" })
+    vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", numhl = "LspDiagnosticsDefaultInformation" })
+    vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", numhl = "LspDiagnosticsDefaultHint" })
 
     vim.lsp.set_log_level(vim.log.levels.ERROR)
 end
