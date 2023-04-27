@@ -13,8 +13,10 @@ function M.on_attach(client, bufnr)
     -- Mappings.
     local opts = { noremap = true, silent = true }
 
-    buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    -- buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    -- buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "gD", "<Cmd>Lspsaga goto_definition<CR>", opts)
+    buf_set_keymap("n", "gd", "<Cmd>Lspsaga peek_definition<CR>", opts)
     buf_set_keymap("n", "<F12>", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
     -- buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
     buf_set_keymap("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
@@ -35,7 +37,8 @@ function M.on_attach(client, bufnr)
     buf_set_keymap("n", "<F10>", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
     -- buf_set_keymap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     buf_set_keymap("n", "ca", "<cmd>Lspsaga code_action<cr>", opts)
-    buf_set_keymap("x", "ca", ":<c-u>Lspsaga range_code_action<cr>", opts)
+    buf_set_keymap("x", "ca", ":<c-u>Lspsaga code_action<cr>", opts)
+    buf_set_keymap("n", "<leader>o", "<cmd>Lspsaga outline<cr>", opts)
 
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.documentFormattingProvider then

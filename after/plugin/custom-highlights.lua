@@ -30,6 +30,3 @@ cmd(string.format("hi TelescopeBorder   guifg=#%s", colors.base04))
 cmd(string.format("hi TelescopePromptBorder   guifg=#%s", colors.base04))
 cmd(string.format("hi TelescopeResultsBorder  guifg=#%s", colors.base04))
 cmd(string.format("hi TelescopePreviewBorder  guifg=#%s", colors.base04))
-
--- lspsaga
-cmd("highlight link LspSagaFinderSelection Search")
