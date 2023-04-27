@@ -1,5 +1,5 @@
 local cmd = vim.cmd
-local base16 = require "base16"
+local base16 = require("base16")
 local colors = base16.themes["material"]
 
 -- cmd "hi IndentBlanklineChar guifg=#383c44"
@@ -10,14 +10,14 @@ cmd(string.format("hi LineNr guifg=#%s", colors.base08))
 cmd(string.format("hi NvimInternalError guifg=#%s", colors.base08))
 cmd(string.format("hi VertSplit guifg=#%s", colors.base03))
 cmd(string.format("hi EndOfBuffer guifg=%s", colors.base03))
-cmd "highlight default link HighlightedyankRegion IncSearch"
-cmd "hi WinSeparator guibg=none"
-cmd "hi VertSplit guibg=none"
+cmd("highlight default link HighlightedyankRegion IncSearch")
+cmd("hi WinSeparator guibg=none")
+cmd("hi VertSplit guibg=none")
 -- inactive statuslines as thin splitlines
 cmd(string.format("highlight! StatusLineNC gui=underline guifg=#%s", colors.base03))
 
 -- line n.o
-cmd "hi clear CursorLine"
+cmd("hi clear CursorLine")
 cmd(string.format("hi cursorlinenr guifg=#%s", colors.base0B))
 
 -- git signs ---
@@ -30,3 +30,6 @@ cmd(string.format("hi TelescopeBorder   guifg=#%s", colors.base04))
 cmd(string.format("hi TelescopePromptBorder   guifg=#%s", colors.base04))
 cmd(string.format("hi TelescopeResultsBorder  guifg=#%s", colors.base04))
 cmd(string.format("hi TelescopePreviewBorder  guifg=#%s", colors.base04))
+
+-- lspsaga
+cmd("highlight link LspSagaFinderSelection Search")
