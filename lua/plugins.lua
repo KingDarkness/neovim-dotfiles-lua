@@ -164,22 +164,6 @@ function M.setup()
             end,
         })
         use({
-            "phpactor/phpactor",
-            after = "nvim-lspconfig",
-            event = "BufWinEnter",
-            ft = "php",
-            run = "composer install",
-            config = function()
-                require("utils").map_key(
-                    "n",
-                    "<leader>lp",
-                    "<cmd>PhpactorContextMenu<CR>",
-                    { silent = true, noremap = true }
-                )
-            end,
-        })
-
-        use({
             "akinsho/flutter-tools.nvim",
             event = "BufWinEnter",
             ft = "dart",

@@ -27,10 +27,13 @@ function M.setup()
         auto_jump = { "lsp_definitions" }, -- for the given modes, automatically jump if there is only a single result
         use_diagnostic_signs = true,
     })
-
-    utils.map_key("n", "<F8>", "<cmd>Trouble<cr>", { silent = true, noremap = true })
-    utils.map_key("n", "<F9>", "<cmd>Trouble lsp_references<cr>", { silent = true, noremap = true })
-    utils.map_key("n", "<F7>", "<cmd>Trouble quickfix<cr>", { silent = true, noremap = true })
+    -- Lua
+    utils.map_key("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
+    utils.map_key("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { silent = true, noremap = true })
+    utils.map_key("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { silent = true, noremap = true })
+    utils.map_key("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
+    utils.map_key("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
+    utils.map_key("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
 
     vim.api.nvim_exec(
         [[
