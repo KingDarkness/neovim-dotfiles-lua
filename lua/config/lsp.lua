@@ -40,6 +40,11 @@ function M.on_attach(client, bufnr)
     buf_set_keymap("x", "ca", ":<c-u>Lspsaga code_action<cr>", opts)
     buf_set_keymap("n", "<leader>o", "<cmd>Lspsaga outline<cr>", opts)
 
+    -- disable hover for php action using intelephense only
+    if client.name == "phpactor" then
+        client.server_capabilities.hoverProvider = false
+    end
+
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.documentFormattingProvider then
         buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
