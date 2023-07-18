@@ -224,6 +224,7 @@ function M.setup()
             "j-hui/fidget.nvim",
             after = "nvim-lspconfig",
             event = "VimEnter",
+            branch = "legacy",
             config = function()
                 require("fidget").setup()
             end,
