@@ -253,7 +253,7 @@ function M.setup()
                 require("config.tree").setup()
             end,
         })
-        use("nathom/filetype.nvim")
+        -- use("nathom/filetype.nvim")
         -- use "norcalli/nvim-base16.lua"
         use("KingDarkness/nvim-base16.lua")
         use({
