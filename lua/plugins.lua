@@ -46,7 +46,7 @@ function M.setup()
             end,
         })
         use({
-            "kyazdani42/nvim-web-devicons",
+            "nvim-tree/nvim-web-devicons",
             module = "nvim-web-devicons",
             config = function()
                 require("nvim-web-devicons").setup({ default = true })
