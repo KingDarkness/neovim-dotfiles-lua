@@ -396,11 +396,11 @@ function M.setup()
         })
         -- workspace & dashboard
         use({
-            "rmagatti/session-lens",
-            requires = { "rmagatti/auto-session" },
-            config = function()
-                require("config.sessions").setup()
-            end,
+           "rmagatti/session-lens",
+           requires = { "rmagatti/auto-session" },
+           config = function()
+               require("config.sessions").setup()
+           end,
         })
         -- search & replace
         use({

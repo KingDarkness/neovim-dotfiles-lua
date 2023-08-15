@@ -19,10 +19,13 @@ fi
 
 echo "Install dependency app"
 APT_GET_CMD=$(which apt-get)
+PACMAN_CMD=$(which pacman)
 BREW=$(which brew)
 
 if [[ ! -z $APT_GET_CMD ]]; then
     apt-get install -y ripgrep bat fd-find silversearcher-ag
+elif [[ ! -z $PACMAN_CMD ]]; then
+    pacman -S ripgrep bat fd-find silversearcher-ag
 elif [[ ! -z BREW ]]; then
     brew install ripgrep bat fd editorconfig luajit tree-sitter the_silver_searcher gnu-sed
 else
