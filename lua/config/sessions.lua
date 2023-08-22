@@ -2,6 +2,8 @@ local M = {}
 local utils = require("utils")
 
 function M.setup()
+    vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
     require("auto-session").setup({
         log_level = "info",
         auto_session_enable_last_session = false,
@@ -10,6 +12,12 @@ function M.setup()
         auto_save_enabled = nil,
         auto_restore_enabled = true,
         auto_session_suppress_dirs = nil,
+        pre_save_cmds = {
+            function()
+                require("nvim-tree.view").close()
+                require("spectre").close()
+            end,
+        },
     })
     require("session-lens").setup({
         prompt_title = "YOUR SESSIONS",

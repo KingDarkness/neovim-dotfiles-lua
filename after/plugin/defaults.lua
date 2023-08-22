@@ -2,7 +2,7 @@ local M = {}
 -- vim.o for setting global options
 -- vim.bo for setting buffer-scoped options
 -- vim.wo for setting window-scoped options
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
+local scopes = { o = vim.o, b = vim.bo, w = vim.wo }
 local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
 local g = vim.g -- a table to access global variables
 
@@ -74,6 +74,7 @@ function M.setup()
     opt("w", "cul", true)
 
     opt("o", "wildmode", "list:longest,list:full")
+    vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
     -- hide line numbers in terminal windows
     vim.api.nvim_exec(
         [[
@@ -93,8 +94,7 @@ function M.setup()
         false
     )
 
-    cmd(
-        [[
+    cmd([[
   filetype plugin indent on
   set smartindent
   set autoindent
@@ -103,7 +103,6 @@ function M.setup()
   set nowritebackup
   set noswapfile
 
-  set clipboard=unnamed,unnamedplus
   set fileformats=unix,dos,mac
 
   set nofoldenable
@@ -115,8 +114,7 @@ function M.setup()
   set shortmess+=c
   set cmdheight=0
   set mouse=
-]]
-    )
+]])
 end
 
 M.setup()
