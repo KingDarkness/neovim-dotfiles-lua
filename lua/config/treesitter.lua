@@ -33,19 +33,13 @@ function M.setup()
             max_file_lines = 1000,
             extended_mode = true,
         },
-        context_commentstring = {
-            enable = true,
-            context_commentstring = {
-                enable = true,
-                enable_autocmd = false,
-            },
-            config = {
-                vue = {
-                    __default = "// %s",
-                    comment = "// %s",
-                    css_style = "/* %s */",
-                    html = "<!-- %s -->",
-                },
+        enable_autocmd = false,
+        languages = {
+            vue = {
+                __default = "// %s",
+                comment = "// %s",
+                css_style = "/* %s */",
+                html = "<!-- %s -->",
             },
         },
         autotag = {
