@@ -1,38 +1,38 @@
 local M = {}
-local base16 = require "base16"
+local base16 = require("base16")
 local colors = base16.themes["material"]
 
 local ocean = {
     normal = {
-        a = {bg = colors.base0D, fg = colors.base00, gui = "bold"},
-        b = {bg = colors.base01, fg = colors.base0B},
-        c = {bg = colors.base01, fg = colors.base0B}
+        a = { bg = colors.base0D, fg = colors.base00, gui = "bold" },
+        b = { bg = colors.base01, fg = colors.base0B },
+        c = { bg = colors.base01, fg = colors.base0B },
     },
     insert = {
-        a = {bg = colors.base0B, fg = colors.base00, gui = "bold"},
-        b = {bg = colors.base01, fg = colors.base0B},
-        c = {bg = colors.base01, fg = colors.base0B}
+        a = { bg = colors.base0B, fg = colors.base00, gui = "bold" },
+        b = { bg = colors.base01, fg = colors.base0B },
+        c = { bg = colors.base01, fg = colors.base0B },
     },
     visual = {
-        a = {bg = colors.base09, fg = colors.base00, gui = "bold"},
-        b = {bg = colors.base01, fg = colors.base0B},
-        c = {bg = colors.base01, fg = colors.base0B}
+        a = { bg = colors.base09, fg = colors.base00, gui = "bold" },
+        b = { bg = colors.base01, fg = colors.base0B },
+        c = { bg = colors.base01, fg = colors.base0B },
     },
     replace = {
-        a = {bg = colors.base08, fg = colors.base00, gui = "bold"},
-        b = {bg = colors.base01, fg = colors.base0B},
-        c = {bg = colors.base01, fg = colors.base0B}
+        a = { bg = colors.base08, fg = colors.base00, gui = "bold" },
+        b = { bg = colors.base01, fg = colors.base0B },
+        c = { bg = colors.base01, fg = colors.base0B },
     },
     command = {
-        a = {bg = colors.base0A, fg = colors.base00, gui = "bold"},
-        b = {bg = colors.base01, fg = colors.base0B},
-        c = {bg = colors.base01, fg = colors.base0B}
+        a = { bg = colors.base0A, fg = colors.base00, gui = "bold" },
+        b = { bg = colors.base01, fg = colors.base0B },
+        c = { bg = colors.base01, fg = colors.base0B },
     },
     inactive = {
-        a = {bg = colors.base0E, fg = colors.base00, gui = "bold"},
-        b = {bg = colors.base01, fg = colors.base0B},
-        c = {bg = colors.base01, fg = colors.base0B}
-    }
+        a = { bg = colors.base0E, fg = colors.base00, gui = "bold" },
+        b = { bg = colors.base01, fg = colors.base0B },
+        c = { bg = colors.base01, fg = colors.base0B },
+    },
 }
 
 local condition = {
@@ -53,7 +53,7 @@ local condition = {
             return true
         end
         return false
-    end
+    end,
 }
 
 local function vi_mode()
@@ -64,7 +64,7 @@ local function vi_mode()
         V = " 🅥 VISUAL ",
         [""] = " 🅥 VISUAL ",
         v = " 🅥 VISUAL ",
-        R = " 🅡 REPLACE "
+        R = " 🅡 REPLACE ",
     }
 
     return "   " .. alias[vim.fn.mode()]
@@ -76,7 +76,7 @@ local function filesize()
         if size <= 0 then
             return ""
         end
-        local sufixes = {"b", "k", "m", "g"}
+        local sufixes = { "b", "k", "m", "g" }
         local i = 1
         while size > 1024 do
             size = size / 1024
@@ -128,7 +128,7 @@ local function get_nvim_lsp_diagnostic(diag_type)
         return ""
     end
 
-    return #vim.diagnostic.get(0, {severity = diag_type})
+    return #vim.diagnostic.get(0, { severity = diag_type })
 end
 
 local function get_diagnostic_error()
@@ -150,49 +150,49 @@ local config = {
         -- Disable sections and component separators
         component_separators = "",
         section_separators = "",
-        theme = ocean
+        theme = ocean,
     },
     sections = {
         -- these are to remove the defaults
-        lualine_a = {{vi_mode}},
+        lualine_a = { { vi_mode } },
         lualine_b = {
-            {"filename", condition = condition.buffer_not_empty},
-            {filesize, condition = condition.buffer_not_empty}
+            { "filename", condition = condition.buffer_not_empty },
+            { filesize, condition = condition.buffer_not_empty },
         },
         lualine_c = {
-            {lsp_info},
+            { lsp_info },
             {
                 get_diagnostic_error,
                 icon = "  ",
-                color = {fg = colors.base08}
+                color = { fg = colors.base08 },
             },
             {
                 get_diagnostic_warn,
                 icon = "  ",
-                color = {fg = colors.base09}
-            }
+                color = { fg = colors.base09 },
+            },
         },
         lualine_x = {
-            {"branch", icon = "", condition = condition.check_git_workspace}
+            { "branch", icon = "", condition = condition.check_git_workspace },
         },
         lualine_y = {
             {
                 "diff",
-                symbols = {added = " ", modified = "柳 ", removed = " "},
+                symbols = { added = " ", modified = "柳 ", removed = " " },
                 color_added = colors.base0B,
                 color_modified = colors.base09,
                 color_removed = colors.base08,
-                condition = condition.hide_in_width
-            }
+                condition = condition.hide_in_width,
+            },
         },
         lualine_z = {
-            {"encoding", condition = condition.buffer_not_empty},
-            {"fileformat", condition = condition.buffer_not_empty},
+            { "encoding", condition = condition.buffer_not_empty },
+            { "fileformat", condition = condition.buffer_not_empty },
             {
                 function()
                     return " " .. vim.fn.shiftwidth()
                 end,
-                condition = condition.buffer_not_empty
+                condition = condition.buffer_not_empty,
             },
             {
                 function()
@@ -200,22 +200,22 @@ local config = {
                     return cursor[1] .. ":" .. cursor[2] .. "/" .. vim.api.nvim_buf_line_count(0)
                 end,
                 condition = condition.buffer_not_empty,
-                icon = ""
+                icon = "",
             },
-            {"progress", condition = condition.buffer_not_empty, icon = ""}
-        }
+            { "progress", condition = condition.buffer_not_empty, icon = "" },
+        },
     },
     extensions = {
         "quickfix",
         {
             sections = {
-                lualine_a = {{"filename", icon = "פּ"}},
-                lualine_z = {{"branch", icon = "", condition = condition.check_git_workspace}}
+                lualine_a = { { "filename", icon = "פּ" } },
+                lualine_z = { { "branch", icon = "", condition = condition.check_git_workspace } },
             },
-            filetypes = {"NvimTree"}
+            filetypes = { "NvimTree" },
         },
-        require("config.spectres").lualine({})
-    }
+        -- require("config.spectres").lualine({})
+    },
 }
 
 function M.setup()
